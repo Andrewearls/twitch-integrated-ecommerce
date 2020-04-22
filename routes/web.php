@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/landing', 'BlogController@index')->name('landing');
-Route::get('/article', 'ArticleContoller@index')->name('article');
+Route::get('/article', 'ArticleController@index')->name('article');
 
 Auth::routes();
 
