@@ -50,7 +50,7 @@
 
         <hr>
 
-        @include('partials.cards.blog.forms')
+        @include('partials.cards.blog.forms.comments')
 
         @include('partials.comment')
 
