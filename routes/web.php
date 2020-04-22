@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/landing', 'BlogController@index')->name('landing');
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
