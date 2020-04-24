@@ -55,7 +55,7 @@
                             @include('partials.cards.admin.charts.area')
                             @include('partials.cards.admin.charts.bar')
                         </div>
-                        @include('partials.cards.admin.table')
+                        @include('partials.cards.admin.tables.primary')
                     </div>
                 </main>
                 <footer class="py-4 bg-light mt-auto">
