@@ -53,12 +53,7 @@
                         </div>
                         <div class="row">
                             @include('partials.cards.admin.charts.area')
-                            <div class="col-xl-6">
-                                <div class="card mb-4">
-                                    <div class="card-header"><i class="fas fa-chart-bar mr-1"></i>Bar Chart Example</div>
-                                    <div class="card-body"><canvas id="myBarChart" width="100%" height="40"></canvas></div>
-                                </div>
-                            </div>
+                            @include('partials.cards.admin.charts.bar')
                         </div>
                         <div class="card mb-4">
                             <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
