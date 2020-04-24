@@ -20,6 +20,7 @@ Route::get('/', function () {
 Route::get('/landing', 'BlogController@index')->name('landing');
 Route::get('/article', 'ArticleController@index')->name('article');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+Route::get('/dashboard/article/new', 'NewArticleController@index')->name('new-article');
 
 Auth::routes();
 
