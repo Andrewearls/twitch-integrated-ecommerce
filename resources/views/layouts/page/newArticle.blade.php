@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@push('styles')
+<link href="{{ URL::asset('admin/css/formify.css') }}" rel="stylesheet" />
+@endpush
+
 @section('content')
 <form>
 	<div class="container-fluid">
