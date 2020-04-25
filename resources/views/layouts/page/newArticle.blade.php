@@ -36,8 +36,10 @@
 	        <hr>
 
 	        <!-- Preview Image -->
-	        <img class="img-fluid rounded formable" src="http://placehold.it/900x300" alt="" id='article-preview-image'>
-	        <input type="file" name="article-preview-image" class="formafied">
+	        <div class="img-container">
+		        <img class="img-fluid rounded formable-image" src="http://placehold.it/900x300" alt="" id='article-preview-image'>
+		        <input type="file" name="article-preview-image" class="hidden">
+		    </div>
 
 	        <hr>
 

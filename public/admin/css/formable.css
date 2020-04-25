@@ -6,18 +6,22 @@ textarea:focus, input:focus{
     outline: none;
 }
 
-.formable, .formafied {
+.formable, .formafied, .formable-image{
 	border: 2px solid white;
 	border-radius: 5px;
 }
 
-.formable:hover, .formafied {
+.formable:hover, .formafied, .formable-image:hover {
 	border-color: gray;
 }
 
 .formafied {
 	display: none;
 	width: 100%;
+}
+
+.formable-image {
+
 }
 
 input {

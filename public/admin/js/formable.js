@@ -24,6 +24,11 @@ function unformafy(unformableElement) {
 	formableElement.show();
 };
 
+function imageLoader(formableImage) {
+	var fileSelector = $('[name='+formableImage.attr('id')+']');
+	fileSelector.trigger('click');
+}
+
 /*
  * on document ready
  * find formable elements
@@ -42,6 +47,12 @@ $(document).ready(function() {
 	$('.formafied').each(function(){
 		$(this).focusout(function() {
 			unformafy($(this));
+		});
+	});
+
+	$('.formable-image').each(function(){
+		$(this).click(function() {
+			imageLoader($(this));
 		});
 	});
 	// var formableElements = $('.formable');
