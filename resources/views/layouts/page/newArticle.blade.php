@@ -58,5 +58,5 @@
 @endsection
 
 @push('footer-scripts')
-<script type="text/javascript" src="{{ HTML::asset('admin/js/formable.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('admin/js/formable.js') }}"></script>
 @endpush
