@@ -7,7 +7,8 @@ function addListeners(elementList) {
 };
 
 function formafy(formableElement) {
-	console.log(formableElement.attr('id'));
+	formableElement.hide();
+	$('[name='+formableElement.attr('id')+']').show();
 	//make form element
 	//hide formableElement
 	//show new form element
@@ -23,7 +24,7 @@ function formafy(formableElement) {
  */ 
 $(document).ready(function() {
 	$('.formable').each(function() {
-		$(this).mouseover(function() {
+		$(this).click(function() {
 			formafy($(this));
 		});
 	});
