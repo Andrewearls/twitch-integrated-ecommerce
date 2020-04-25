@@ -16,7 +16,12 @@ function formafy(formableElement) {
 
 function unformafy(unformableElement) {
 	unformableElement.hide();
-	$('#'+unformableElement.attr('name')).show();
+	var formableElement = $('#'+unformableElement.attr('name'));
+	var value = $.trim(unformableElement.val());
+	if (value.length > 0) {
+		formableElement.html(unformableElement.val());
+	}
+	formableElement.show();
 };
 
 /*
