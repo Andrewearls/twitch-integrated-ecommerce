@@ -56,3 +56,7 @@
 	</div>
 </form>
 @endsection
+
+@push('footer-scripts')
+<script type="text/javascript" src="{{ HTML::asset('admin/js/formable.js') }}"></script>
+@endpush
