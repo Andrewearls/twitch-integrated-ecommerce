@@ -20,7 +20,7 @@ function unformafy(unformableElement) {
 	var value = $.trim(unformableElement.val());
 	if (value.length > 0) {
 		formableElement.html(unformableElement.val());
-	}
+	};
 	formableElement.show();
 };
 
