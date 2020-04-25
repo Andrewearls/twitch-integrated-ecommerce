@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @push('styles')
-<link href="{{ URL::asset('admin/css/formify.css') }}" rel="stylesheet" />
+<link href="{{ URL::asset('admin/css/formable.css') }}" rel="stylesheet" />
 @endpush
 
 @section('content')
