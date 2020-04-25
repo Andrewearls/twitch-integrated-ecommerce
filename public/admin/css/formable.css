@@ -6,3 +6,8 @@
 .formable:hover, .formafied {
 	border-color: gray;
 }
+
+.formafied {
+	display: none;
+	width: 100%;
+}
