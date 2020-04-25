@@ -8,10 +8,15 @@ function addListeners(elementList) {
 
 function formafy(formableElement) {
 	formableElement.hide();
-	$('[name='+formableElement.attr('id')+']').show();
+	$('[name='+formableElement.attr('id')+']').show().focus();
 	//make form element
 	//hide formableElement
 	//show new form element
+};
+
+function unformafy(unformableElement) {
+	unformableElement.hide();
+	$('#'+unformableElement.attr('name')).show();
 };
 
 /*
@@ -26,6 +31,12 @@ $(document).ready(function() {
 	$('.formable').each(function() {
 		$(this).click(function() {
 			formafy($(this));
+		});
+	});
+
+	$('.formafied').each(function(){
+		$(this).focusout(function() {
+			unformafy($(this));
 		});
 	});
 	// var formableElements = $('.formable');
