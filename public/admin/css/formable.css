@@ -1,3 +1,11 @@
+*:focus {
+    outline: none;
+}
+
+textarea:focus, input:focus{
+    outline: none;
+}
+
 .formable, .formafied {
 	border: 2px solid white;
 	border-radius: 5px;
@@ -10,4 +18,12 @@
 .formafied {
 	display: none;
 	width: 100%;
+}
+
+input {
+	font-size: 2.5rem;
+	font-weight: 500;
+	line-height: 1.15;
+	color: #212529;
+	margin-bottom: 0.5rem; 
 }
