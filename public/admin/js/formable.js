@@ -1,4 +1,6 @@
-function addListeners(elementList){
+var formElement = $("form");
+
+function addListeners(elementList) {
 	elementList.each(function(index) {
 		elementList[index].addEventListener('hover', formify(elementList[index]));
 	});
@@ -19,9 +21,9 @@ function formify(formableElement) {
  * create required formified elements
  *
  */ 
-$(document).ready(function(){
-	$('.formable').each(function(){
-		$(this).mouseover(function(){
+$(document).ready(function() {
+	$('.formable').each(function() {
+		$(this).mouseover(function() {
 			formify($(this));
 		});
 	});
