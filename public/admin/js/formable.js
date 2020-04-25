@@ -2,11 +2,11 @@ var formElement = $("form");
 
 function addListeners(elementList) {
 	elementList.each(function(index) {
-		elementList[index].addEventListener('hover', formify(elementList[index]));
+		elementList[index].addEventListener('hover', formafy(elementList[index]));
 	});
 };
 
-function formify(formableElement) {
+function formafy(formableElement) {
 	console.log(formableElement.attr('id'));
 	//make form element
 	//hide formableElement
@@ -18,13 +18,13 @@ function formify(formableElement) {
  * find formable elements
  * add listener to formable elements
  * create a form if one does not exist
- * create required formified elements
+ * create required formafied elements
  *
  */ 
 $(document).ready(function() {
 	$('.formable').each(function() {
 		$(this).mouseover(function() {
-			formify($(this));
+			formafy($(this));
 		});
 	});
 	// var formableElements = $('.formable');

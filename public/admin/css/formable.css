@@ -1,8 +1,8 @@
-.formable, .formified {
+.formable, .formafied {
 	border: 2px solid white;
 	border-radius: 5px;
 }
 
-.formable:hover, .formified {
+.formable:hover, .formafied {
 	border-color: gray;
 }

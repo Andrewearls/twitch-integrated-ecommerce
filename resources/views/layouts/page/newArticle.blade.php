@@ -20,7 +20,7 @@
 
 	        <!-- Title -->
 	        <h1 class="mt-4 formable" id="article-title">Post Title</h1>
-	        <input type="text" name="article-title" class="mt-4 formified">
+	        <input type="text" name="article-title" class="mt-4 formafied">
 
 	        <!-- Author -->
 	        <p class="lead">
@@ -37,7 +37,7 @@
 
 	        <!-- Preview Image -->
 	        <img class="img-fluid rounded formable" src="http://placehold.it/900x300" alt="" id='article-preview-image'>
-	        <input type="file" name="article-preview-image" class="formified">
+	        <input type="file" name="article-preview-image" class="formafied">
 
 	        <hr>
 
@@ -60,7 +60,7 @@
 
 		        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
 		    </div>
-		    <textarea class="formified" name="article-content"></textarea>
+		    <textarea class="formafied" name="article-content"></textarea>
 
 	</div>
 </form>
