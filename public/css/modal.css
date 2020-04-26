@@ -1,6 +1,7 @@
 .modal {
 	margin-top: 3rem;
 	height: 50%;
+	padding-top: 3rem;
 }
 
 .modal a.close-modal {
