@@ -49801,6 +49801,8 @@ var app = new Vue({
   el: '#app'
 });
 
+var Cropper = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'cropper'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
