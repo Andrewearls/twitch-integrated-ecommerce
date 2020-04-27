@@ -21,6 +21,15 @@ function unformafy(unformableElement) {
 	if (value.length > 0) {
 		formableElement.html(unformableElement.val());
 	};
+	/*
+	 *For the textarea parse the data 
+	 * and replace new line with </br>
+	 */
+	// console.log(unformableElement[0].nodeName);
+	// if (unformableElement[0].nodeName == "TEXTAREA") {
+	// 	var newVal = unformableElement[0].value;
+	// 	unformableElement.value = newVal.replace(new RegExp('\r?\n','g'), '<br />');
+	// }
 	formableElement.show();
 };
 
