@@ -46,7 +46,7 @@ function handleFileSelect(input) {
 			picture.onload = function () {
 				
 				new Cropper( picture, {
-					aspectRatio: findAspectRatio(this)
+					aspectRatio: 900/300
 				});
 
 				
