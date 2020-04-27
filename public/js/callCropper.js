@@ -35,22 +35,23 @@ function handleFileSelect(input) {
 	    reader.onload = function(e) {
 
 	    	//get the preview destination img element
-	    	var imagePreview = $('#cropper-image');
+	    	// var imagePreview = $('#cropper-image');
+	    	var imagePreview = $('#article-preview-image');
 	    	var picture = imagePreview[0];
 
 	    	//Set the Base64 string return from FileReader as source.
 			imagePreview.attr('src', e.target.result);
 
-			$('#modal-trigger').trigger('click');
+			// $('#modal-trigger').trigger('click');
 
-			picture.onload = function () {
+			// picture.onload = function () {
 				
-				new Cropper( picture, {
-					aspectRatio: 900/300
-				});
+			// 	new Cropper( picture, {
+			// 		aspectRatio: 900/300
+			// 	});
 
 				
-			}
+			// }
 	    	
 	      	
 
