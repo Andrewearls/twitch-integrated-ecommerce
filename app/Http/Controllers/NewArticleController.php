@@ -10,4 +10,9 @@ class NewArticleController extends Controller
     {
     	return view('layouts.page.newArticle');
     }
+
+    public function post(Request $request)
+    {
+    	return $request;
+    }
 }
