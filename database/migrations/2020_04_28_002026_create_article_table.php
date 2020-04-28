@@ -18,7 +18,7 @@ class CreateArticleTable extends Migration
             $table->timestamps();
             $table->string('title');
             $table->longText('content');
-            $table->longText('picture_id');
+            $table->longText('picture');
             $table->integer('user_id');
         });
     }
