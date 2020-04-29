@@ -14,10 +14,10 @@
         </h1>
         <!-- List of Articles -->
         @foreach ($articleList as $article)
-          @include('partials.cards.blog.preview', ['article' => $article])
+          @include('partials.cards.article.preview', ['article' => $article])
         @endforeach
 
-        @include('partials.paginations.blog.preview')
+        @include('partials.paginations.article.preview')
       </div>
 
       <!-- Sidebar Widgets Column -->
