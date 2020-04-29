@@ -6,18 +6,16 @@
 
     <div class="row">
 
-      <!-- Blog Entries Column -->
+      <!-- Article Entries Column -->
       <div class="col-md-8">
 
         <h1 class="my-4">Page Heading
           <small>Secondary Text</small>
         </h1>
-
-        @include('partials.cards.blog.preview')
-
-        @include('partials.cards.blog.preview')
-        
-        @include('partials.cards.blog.preview')
+        <!-- List of Articles -->
+        @foreach ($articleList as $article)
+          @include('partials.cards.blog.preview', ['article' => $article])
+        @endforeach
 
         @include('partials.paginations.blog.preview')
       </div>
