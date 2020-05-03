@@ -8,6 +8,6 @@
   </div>
   <div class="card-footer text-muted">
     Posted on {{ date('F j, Y', strtotime($article->created_at)) }} by
-    <a href="#">Start Bootstrap</a>
+    <a href="#">{{ $article->author->name }}</a>
   </div>
 </div>
