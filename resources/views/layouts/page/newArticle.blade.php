@@ -3,6 +3,7 @@
 @push('styles')
 <link href="{{ URL::asset('admin/css/formable.css') }}" rel="stylesheet" />
 <link href="{{ URL::asset('css/cropper.css') }}" rel="stylesheet" />
+<link href="{{ URL::asset('admin/css/main.css') }}" rel="stylesheet" />
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-modal/0.9.1/jquery.modal.min.css" />
 <link rel="stylesheet" type="text/css" href="{{ URL::asset('css/modal.css') }}">
 
@@ -87,6 +88,14 @@
 
 		        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Harum, dolor quis. Sunt, ut, explicabo, aliquam tenetur ratione tempore quidem voluptates cupiditate voluptas illo saepe quaerat numquam recusandae? Qui, necessitatibus, est!</p>
 		    </div>
+		</div>
+
+		<!-- Sidebar Widgets Column -->
+		<div class="col-md-4">
+
+		  	@include('partials.cards.widgets.forms.categories')
+
+		</div>
 
 	</div>
 </form>

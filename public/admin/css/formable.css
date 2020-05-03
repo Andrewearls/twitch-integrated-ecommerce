@@ -36,6 +36,10 @@ input {
 	margin-bottom: 0.5rem; 
 }
 
+input[type=text] {
+	width: 100%;
+}
+
 #submitButton {
 	border-color: 1px red solid;
 	font-size: 1.5rem;
