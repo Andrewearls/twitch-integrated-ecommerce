@@ -15,8 +15,8 @@ class CreateCategoryUserTable extends Migration
     {
         Schema::create('category_user', function (Blueprint $table) {
             $table->id();
-            $table->forginId('user_id');
-            $table->forginId('category_id');
+            $table->foreignId('user_id');
+            $table->foreignId('category_id');
             $table->timestamps();
         });
     }

@@ -10,7 +10,7 @@ function sendMessage(message, url) {
             message: message
         },
         success: function (data) {
-            alert('Success');
+            alert(data);
 
         },
         error: function (e) {
