@@ -3,7 +3,7 @@
   <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
   <div class="card-body">
     <h2 class="card-title">{{ $article->title }}</h2>
-    <p class="card-text">{{ $article}}</p>
+    <p class="card-text">{{ substr($article->content, 0, 200) }}</p>
     <a href="#" class="btn btn-primary">Read More &rarr;</a>
   </div>
   <div class="card-footer text-muted">
