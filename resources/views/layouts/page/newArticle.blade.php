@@ -41,13 +41,13 @@
 	        <!-- Author -->
 	        <p class="lead">
 	          by
-	          <a href="#">Start Bootstrap</a>
+	          <a href="#">{{ Auth::user()->name }}</a>
 	        </p>
 
 	        <hr>
 
 	        <!-- Date/Time -->
-	        <p>Posted on January 1, 2019 at 12:00 PM</p>
+	        <p>Posted on {{ date('F j, Y', strtotime(time())) }}</p>
 
 	        <hr>
 
