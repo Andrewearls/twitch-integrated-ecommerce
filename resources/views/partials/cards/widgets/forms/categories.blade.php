@@ -46,4 +46,5 @@
   var url = 
 </script>
 <script type="text/javascript" src="{{ URL::asset('admin/js/message.js') }}"></script>
+<script type="text/javascript" src="{{ URL::asset('admin/js/forms/categories.js') }}"></script>
 @endpush
