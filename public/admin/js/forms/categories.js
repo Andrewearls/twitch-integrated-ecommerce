@@ -13,10 +13,15 @@ function handlePressedEnter() {
 	submitNewCategory(category);
 }
 
+function toggleButton(button) {
+	button.toggleClass('clicked');
+	
+}
+
 $(document).ready(function() {
 	$('#categories-card button').each(function () {
 		$(this).click(function () {
-			$(this).toggleClass('clicked');
+			toggleButton($(this))
 		});
 	});
 });
