@@ -22,6 +22,7 @@ Route::get('/article/{id}', 'ArticleController@index')->name('article');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard/article/new', 'NewArticleController@index')->name('new-article');
 Route::post('/dashboard/article/new', 'NewArticleController@post');
+Route::post('/dashboard/category/new', 'CategoryController@create')->name('new-category');
 
 Auth::routes();
 
