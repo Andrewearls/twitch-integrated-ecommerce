@@ -13,8 +13,12 @@ class CategoryController extends Controller
     		'message' => 'required|unique:Categories,title',
     	]);
 
+    	//this the sanitation should take place 
+    	//before the validation
+    	//both the validation and sanitation
+    	//should be in a formrequest
     	Categories::create([
-    		'title' => $request['message'],
+    		'title' => json_decode($request['message'])	,
     	]);
 
     	return "success";

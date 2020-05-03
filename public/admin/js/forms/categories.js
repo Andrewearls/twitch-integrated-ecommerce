@@ -12,3 +12,11 @@ function handlePressedEnter() {
 	var category = $('#new-category').val();
 	submitNewCategory(category);
 }
+
+$(document).ready(function() {
+	$('#categories-card button').each(function () {
+		$(this).click(function () {
+			$(this).toggleClass('clicked');
+		});
+	});
+});

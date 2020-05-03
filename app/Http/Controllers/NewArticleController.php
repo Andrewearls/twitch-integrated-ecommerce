@@ -5,12 +5,16 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Articles;
+use App\Categories;
 
 class NewArticleController extends Controller
 {
     public function index()
     {
-    	return view('layouts.page.newArticle');
+        $categoryList = Categories::all();
+    	return view('layouts.page.newArticle', [
+            'categoryList' => $categoryList,
+        ]);
     }
 
     public function post(Request $request)
