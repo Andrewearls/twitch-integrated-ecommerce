@@ -6,6 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Dashboard - SB Admin</title>
         <link href="{{ URL::asset('admin/css/styles.css') }}" rel="stylesheet" />
         @stack('styles')
