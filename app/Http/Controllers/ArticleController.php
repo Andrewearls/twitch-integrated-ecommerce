@@ -3,11 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+Use App\Articles;
 
 class ArticleController extends Controller
 {
-    public function index()
+    public function index($articleId)
     {
-    	return view('layouts.page.article');
+    	$article = Articles::find($articleId);
+    	return view('layouts.page.article', [
+    		'article' => $article
+    	]);
     }
 }

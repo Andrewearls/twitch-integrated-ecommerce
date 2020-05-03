@@ -4,7 +4,7 @@
   <div class="card-body">
     <h2 class="card-title">{{ $article->title }}</h2>
     <p class="card-text">{{ substr($article->content, 0, 200) }}</p>
-    <a href="#" class="btn btn-primary">Read More &rarr;</a>
+    <a href="{{ route('article', ['id' => $article->id]) }}" class="btn btn-primary">Read More &rarr;</a>
   </div>
   <div class="card-footer text-muted">
     Posted on {{ date('F j, Y', strtotime($article->created_at)) }} by

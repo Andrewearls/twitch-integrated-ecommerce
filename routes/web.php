@@ -18,7 +18,7 @@ Route::get('/', function () {
 });
 
 Route::get('/directory', 'ArticleDirectoryController@index')->name('directory');
-Route::get('/article', 'ArticleController@index')->name('article');
+Route::get('/article/{id}', 'ArticleController@index')->name('article');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard/article/new', 'NewArticleController@index')->name('new-article');
 Route::post('/dashboard/article/new', 'NewArticleController@post');
