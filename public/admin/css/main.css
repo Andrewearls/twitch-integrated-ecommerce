@@ -11,6 +11,6 @@ button:focus {outline:0;}
 	background-color: white; 	
 }
 
-#categories-card button.clicked {
+#categories-card button.active {
 	border-color: lightgray;
 }

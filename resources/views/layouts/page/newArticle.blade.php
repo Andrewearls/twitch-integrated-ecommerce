@@ -10,7 +10,7 @@
 @endpush
 
 @section('content')
-<form action="{{ route('new-article') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('new-article') }}" method="post" enctype="multipart/form-data" id="new-article-form">
 	@csrf
 	<div class="container-fluid">
 		<h1 class="mt-4">New Article</h1>

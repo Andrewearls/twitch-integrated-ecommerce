@@ -14,7 +14,19 @@ function handlePressedEnter() {
 }
 
 function toggleButton(button) {
-	button.toggleClass('clicked');
+	var form = $("#new-article-form");
+
+	if (button.hasClass('active')) {
+		//remove category from form
+	} else if () {
+		//add category to form
+		$('<input>').attr({
+		    type: 'hidden',
+		    name: 'article-categories[]',
+		    value: button.html(),
+		}).appendTo(form);
+	}
+	button.toggleClass('active');
 	
 }
 

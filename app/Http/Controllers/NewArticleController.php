@@ -17,14 +17,15 @@ class NewArticleController extends Controller
         ]);
     }
 
-    public function post(Request $request)
+    public function create(Request $request)
     {
     	$user = Auth::user();
 
     	$validatedData = $request->validate([
     		'article-title' => 'required',
     		'article-preview-image' => 'required|image',
-    		'article-content' => 'required'
+    		'article-content' => 'required',
+            'article-categories' => 'required',
     	]);
 
     	// $article = new Articles;
@@ -36,6 +37,7 @@ class NewArticleController extends Controller
     	]);
 
     	// $article->save();
+
 
     	return redirect()->route('article');
     }
