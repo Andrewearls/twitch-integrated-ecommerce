@@ -11,9 +11,9 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-12" id="category-container">
           @foreach($categoryList as $category)
-            <button type="button">{{$category->title}}</button>
+            @include('partials.buttons.category')
           @endforeach
         </div>
       </div>

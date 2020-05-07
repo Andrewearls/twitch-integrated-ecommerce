@@ -1,3 +1,9 @@
+function handleSuccess(data) {
+    // each page will handle a success differently
+    // this function should be overwritten 
+    // by the the page calling message.js
+}
+
 function sendMessage(message, url) {
     // console.log(url);
     var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -10,7 +16,7 @@ function sendMessage(message, url) {
             message: message
         },
         success: function (data) {
-            alert(data);
+            handleSuccess(data);
 
         },
         error: function (e) {

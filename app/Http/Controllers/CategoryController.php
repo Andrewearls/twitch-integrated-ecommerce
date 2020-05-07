@@ -17,10 +17,12 @@ class CategoryController extends Controller
     	//before the validation
     	//both the validation and sanitation
     	//should be in a formrequest
-    	Categories::create([
+    	$category = Categories::create([
     		'title' => json_decode($request['message'])	,
     	]);
 
-    	return "success";
+    	return view('partials.buttons.category', [
+            'category' => $category,
+        ]);
     }
 }

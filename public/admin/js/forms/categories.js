@@ -13,6 +13,17 @@ function handlePressedEnter() {
 	submitNewCategory(category);
 }
 
+/*
+ * On successful creation of new category
+ * data should be a new button
+ * clear the new category box
+ * add the new button to the
+ * current list of categories
+ */
+function handleSuccess(data) {
+	
+}
+
 function toggleButton(button) {
 	var form = $("#new-article-form");
 
