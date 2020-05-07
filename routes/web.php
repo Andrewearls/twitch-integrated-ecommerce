@@ -13,11 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'ArticleDirectoryController@index')->name('directory');;
 
-Route::get('/directory', 'ArticleDirectoryController@index')->name('directory');
 Route::get('/article/{id}', 'ArticleController@index')->name('article');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard/article/new', 'NewArticleController@index')->name('new-article');
