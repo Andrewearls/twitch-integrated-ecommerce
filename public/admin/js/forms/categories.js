@@ -18,7 +18,7 @@ function toggleButton(button) {
 
 	if (button.hasClass('active')) {
 		//remove category from form
-	} else if () {
+	} else {
 		//add category to form
 		$('<input>').attr({
 		    type: 'hidden',
