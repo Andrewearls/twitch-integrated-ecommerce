@@ -7,7 +7,9 @@
       <div class="col-lg-4">
         <ul class="list-unstyled mb-0">
           <li>
-            <a href="#">{{ $category->title }}</a>
+            <a href="{{ route('search-category', ['categoryTitle' => $category->title]) }}">
+              {{ $category->title }}
+            </a>
           </li>
         </ul>
       </div>
