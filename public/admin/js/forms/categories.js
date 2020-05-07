@@ -25,7 +25,7 @@ function handlePressedEnter() {
  */
 function handleSuccess(data) {	
 	$('#category-container').append(data);
-	makeTogglable();
+	makeTogglable($('#category-container button').last());
 }
 
 function toggleButton(button) {
@@ -45,15 +45,16 @@ function toggleButton(button) {
 	
 }
 
-function makeTogglable() {
-	$('#categories-card button').each(function () {
-		$(this).click(function () {
-			toggleButton($(this))
-		});
+function makeTogglable(button) {
+	button.click(function () {
+		toggleButton(button)
 	});
 
 }
 
 $(document).ready(function() {
-	makeTogglable();
+	$('#categories-card button').each(function () {
+		makeTogglable($(this));
+	});
+	
 });
