@@ -9,8 +9,11 @@ function submitNewCategory(category) {
  * allow the enter key to submit new categories
  */
 function handlePressedEnter() {
-	var category = $('#new-category').val();
-	submitNewCategory(category);
+	var category = $.trim($('#new-category').val());
+	if (category !== '') {
+		submitNewCategory(category);
+	}	
+	$('#new-category').val('');
 }
 
 /*
@@ -20,8 +23,9 @@ function handlePressedEnter() {
  * add the new button to the
  * current list of categories
  */
-function handleSuccess(data) {
-	
+function handleSuccess(data) {	
+	$('#category-container').append(data);
+	makeTogglable();
 }
 
 function toggleButton(button) {
@@ -41,10 +45,15 @@ function toggleButton(button) {
 	
 }
 
-$(document).ready(function() {
+function makeTogglable() {
 	$('#categories-card button').each(function () {
 		$(this).click(function () {
 			toggleButton($(this))
 		});
 	});
+
+}
+
+$(document).ready(function() {
+	makeTogglable();
 });

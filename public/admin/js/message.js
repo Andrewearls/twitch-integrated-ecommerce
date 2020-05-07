@@ -20,7 +20,7 @@ function sendMessage(message, url) {
 
         },
         error: function (e) {
-            alert(e.response);
+            alert("error" + e.response);
         }
     });
 }
