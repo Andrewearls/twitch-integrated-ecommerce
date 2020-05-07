@@ -20,6 +20,7 @@ class CreateArticleTable extends Migration
             $table->longText('content');
             $table->longText('picture');
             $table->integer('user_id');
+            $table->string('url');
         });
     }
 

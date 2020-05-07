@@ -8,9 +8,9 @@ use App\Categories;
 
 class ArticleController extends Controller
 {
-    public function index($articleId)
+    public function index($articleURL)
     {
-    	$article = Articles::find($articleId);
+    	$article = Articles::where('url', $articleURL)->first();
     	$categoryList = Categories::all();
     	return view('layouts.page.article', [
     		'article' => $article,

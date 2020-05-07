@@ -9,6 +9,7 @@ use App\Categories;
 
 class NewArticleController extends Controller
 {
+
     public function index()
     {
         $categoryList = Categories::all();
@@ -34,13 +35,14 @@ class NewArticleController extends Controller
     		'content' => $request['article-content'],
     		'picture' => $request['article-preview-image'],
     		'user_id' => Auth::id(),
+            'url' => str_replace(' ', '-', $request['article-title']),
     	]);
 
     	// $article->save();
 
 
     	return redirect()->route('article', [
-            'id' => $article->id,
+            'url' => $article->url,
         ]);
     }
 }
