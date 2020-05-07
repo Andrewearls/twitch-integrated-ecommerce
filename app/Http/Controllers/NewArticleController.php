@@ -29,7 +29,7 @@ class NewArticleController extends Controller
     	]);
 
     	// $article = new Articles;
-    	Articles::create([
+    	$article = Articles::create([
     		'title' => $request['article-title'],
     		'content' => $request['article-content'],
     		'picture' => $request['article-preview-image'],
@@ -39,6 +39,8 @@ class NewArticleController extends Controller
     	// $article->save();
 
 
-    	return redirect()->route('article');
+    	return redirect()->route('article', [
+            'id' => $article->id,
+        ]);
     }
 }
