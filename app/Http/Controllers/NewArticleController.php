@@ -42,7 +42,7 @@ class NewArticleController extends Controller
 
         foreach ($request['article-categories'] as $categoryTitle) {
             $category = Category::where('title', $categoryTitle)->first();
-            $category->articles()->attach(1);
+            $category->articles()->attach($article->id);
         };
 
     	return redirect()->route('article', [
