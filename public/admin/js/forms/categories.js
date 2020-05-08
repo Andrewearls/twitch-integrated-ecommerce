@@ -29,32 +29,46 @@ function handleSuccess(data) {
 }
 
 function toggleButton(button) {
-	var form = $("#new-article-form");
+	// var form = $("#new-article-form");
 
-	if (button.hasClass('active')) {
-		//remove category from form
-	} else {
-		//add category to form
-		$('<input>').attr({
-		    type: 'hidden',
-		    name: 'article-categories[]',
-		    value: button.html(),
-		}).appendTo(form);
-	}
-	button.toggleClass('active');
-	
+	// if (button.hasClass('active')) {
+	// 	//remove category from form
+	// } else {
+	// 	//add category to form
+	// 	$('<input>').attr({
+	// 	    type: 'hidden',
+	// 	    name
+	// 	}).appendTo(form);
+	// }
+	button.toggleClass('active');	
 }
 
 function makeTogglable(button) {
 	button.click(function () {
 		toggleButton(button)
 	});
+}
 
+function collectCategories() {
+	var categories = $('#category-container button.active');
+	var form = $('new-article-form');
+
+	categories.each(function () {
+		$('<input>').attr({
+			type: 'hidden',
+			name: 'article-categories[]',
+		    value: $(this).html(),
+		}).append(form);
+	});
 }
 
 $(document).ready(function() {
 	$('#categories-card button').each(function () {
 		makeTogglable($(this));
+	});
+
+	$('#submitButton').submit( function() {
+		collectCategories();
 	});
 	
 });
