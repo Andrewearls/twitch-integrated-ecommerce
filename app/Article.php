@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Categories;
+use App\Category;
 
-class Articles extends Model
+class Article extends Model
 {
 
 	/**
@@ -38,6 +38,6 @@ class Articles extends Model
      */
     public function categories()
     {
-        return $this->belongsToMany('categories');
+        return $this->belongsToMany('App\Category', 'category_article');
     }
 }

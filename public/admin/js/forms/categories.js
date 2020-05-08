@@ -51,15 +51,19 @@ function makeTogglable(button) {
 
 function collectCategories() {
 	var categories = $('#category-container button.active');
-	var form = $('new-article-form');
-
+	var form = $('#new-article-form');
+	// alert(categories);
 	categories.each(function () {
-		$('<input>').attr({
-			type: 'hidden',
+		// alert($(this).html());
+		var category = $('<input>').attr({
+			// type: 'hidden',
 			name: 'article-categories[]',
 		    value: $(this).html(),
-		}).append(form);
+		});
+		form.append(category);
 	});
+	// form.submit();
+	return true;
 }
 
 $(document).ready(function() {
@@ -67,7 +71,8 @@ $(document).ready(function() {
 		makeTogglable($(this));
 	});
 
-	$('#submitButton').submit( function() {
+	$('#new-article-form').submit( function(event) {
+		// event.preventDefault();
 		collectCategories();
 	});
 	

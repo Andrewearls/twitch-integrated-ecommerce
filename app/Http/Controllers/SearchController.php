@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Categories;
+use App\Category;
 
 class SearchController extends Controller
 {
@@ -18,11 +18,14 @@ class SearchController extends Controller
 
     public function category($categoryTitle)
     {
-    	$category = Categories::where('title', $categoryTitle)->first();
-    	$articleList = $category->articles();
+        $categoryList = Category::all();
+    	$category = Category::where('title', $categoryTitle)->first();
+    	$articleList = $category->articles;
 
+        // dd( $articleList);
     	return view('layouts.page.directory', [
     		'articleList' => $articleList,
+            'categoryList' => $categoryList,
     	]);
     }
 }

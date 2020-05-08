@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Categories;
+use App\Category;
 
 class CategoryController extends Controller
 {
@@ -17,7 +17,7 @@ class CategoryController extends Controller
     	//before the validation
     	//both the validation and sanitation
     	//should be in a formrequest
-    	$category = Categories::create([
+    	$category = Category::create([
     		'title' => json_decode($request['message'])	,
     	]);
 

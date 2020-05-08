@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Articles;
+use App\Article;
 use App\User;
-use App\Categories;
+use App\Category;
 
 class ArticleDirectoryController extends Controller
 {
     public function index()
     {
-    	$articleList = Articles::all();
-    	$categoryList = Categories::all();
+    	$articleList = Article::all();
+    	$categoryList = Category::all();
     	
     	return view('layouts.page.directory', [
     		'articleList' => $articleList, 

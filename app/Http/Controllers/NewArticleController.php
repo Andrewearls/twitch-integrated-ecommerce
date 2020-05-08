@@ -4,15 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
-use App\Articles;
-use App\Categories;
+use App\Article;
+use App\Category;
 
 class NewArticleController extends Controller
 {
 
     public function index()
     {
-        $categoryList = Categories::all();
+        $categoryList = Category::all();
     	return view('layouts.page.newArticle', [
             'categoryList' => $categoryList,
         ]);
@@ -26,11 +26,11 @@ class NewArticleController extends Controller
     		'article-title' => 'required',
     		'article-preview-image' => 'required|image',
     		'article-content' => 'required',
-            'article-categories' => 'required',
+            'article-categories.*' => 'required',
     	]);
 
     	// $article = new Articles;
-    	$article = Articles::create([
+    	$article = Article::create([
     		'title' => $request['article-title'],
     		'content' => $request['article-content'],
     		'picture' => $request['article-preview-image'],
@@ -38,8 +38,12 @@ class NewArticleController extends Controller
             'url' => str_replace(' ', '-', $request['article-title']),
     	]);
 
-    	// $article->save();
+        // return $request;
 
+        foreach ($request['article-categories'] as $categoryTitle) {
+            $category = Category::where('title', $categoryTitle)->first();
+            $category->articles()->attach(1);
+        };
 
     	return redirect()->route('article', [
             'url' => $article->url,
