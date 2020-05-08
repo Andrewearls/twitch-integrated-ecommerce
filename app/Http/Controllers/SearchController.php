@@ -26,6 +26,8 @@ class SearchController extends Controller
     	return view('layouts.page.directory', [
     		'articleList' => $articleList,
             'categoryList' => $categoryList,
+            'pageHeading' => 'Category:',
+            'secondaryHeading' => $category->title,
     	]);
     }
 }

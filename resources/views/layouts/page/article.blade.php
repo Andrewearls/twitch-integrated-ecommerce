@@ -44,19 +44,20 @@
 
         <hr>
 
-        @include('partials.cards.article.forms.comments')
+        <!-- comments to come soon!
+        include('partials.cards.article.forms.comments')
 
-        @include('partials.comment')
+        include('partials.comment')
 
-        @include('partials.comment')
+        include('partials.comment') -->
 
       </div>
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">
-
-        @include('partials.cards.widgets.search')
-
+<!--    Search to come soon!
+        include('partials.cards.widgets.search')
+ -->
         @include('partials.cards.widgets.categories')
 
       </div>

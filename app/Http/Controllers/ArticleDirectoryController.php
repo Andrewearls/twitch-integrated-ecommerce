@@ -17,6 +17,8 @@ class ArticleDirectoryController extends Controller
     	return view('layouts.page.directory', [
     		'articleList' => $articleList, 
     		'categoryList' => $categoryList,
+            'pageHeading' => 'All Ariticles:',
+            'secondaryHeading' => 'For Your Enjoyment',
     	]);
     }
 }
