@@ -61,10 +61,10 @@ class User extends Authenticatable
         $role = Role::where('title', $roleTitle)->first();
 
         if($this->roles->contains($role)) {
-            return true;
+            return 'true';
         }
 
-        return false;
+        return 'false';
     }
 
 
