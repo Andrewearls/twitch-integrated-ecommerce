@@ -33,7 +33,7 @@ class NewArticleController extends Controller
     	$article = Article::create([
     		'title' => $request['article-title'],
     		'content' => $request['article-content'],
-    		'picture' => $request['article-preview-image'],
+    		'picture' => base64_encode(file_get_contents($request['article-preview-image'])),
     		'user_id' => Auth::id(),
             'url' => str_replace(' ', '-', $request['article-title']),
     	]);
