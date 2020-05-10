@@ -8,6 +8,6 @@
   </div>
   <div class="card-footer text-muted">
     Posted on {{ date('F j, Y', strtotime($article->created_at)) }} by
-    <a href="#">{{ $article->author->name }}</a>
+    <a href="{{ route('search-author', ['authorURL' => $article->author->url]) }}">{{ $article->author->name }}</a>
   </div>
 </div>

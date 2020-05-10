@@ -15,7 +15,9 @@
         <!-- Author -->
         <p class="lead">
           by
-          <a href="#">{{ $article->author->name}}</a>
+          <a href="{{ route('search-author', ['authorURL' => $article->author->url]) }}">
+            {{ $article->author->name}}
+          </a>
         </p>
 
         <hr>
