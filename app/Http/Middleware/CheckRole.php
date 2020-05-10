@@ -13,12 +13,12 @@ class CheckRole
      * @param  \Closure  $next
      * @return mixed
      */
-    public function handle($request, Closure $next)
+    public function handle($request, Closure $next, $role)
     {
-        if (in_array('guest', Auth::user()->roles) {
-            return redirect('directory');
+        if ($request->user()->hasRole($role)) {
+            return $next($request);
         }
-        
-        return $next($request);
+
+        return redirect()->route('directory');        
     }
 }

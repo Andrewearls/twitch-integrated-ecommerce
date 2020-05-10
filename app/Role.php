@@ -7,6 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = 'article';
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array
@@ -20,6 +27,6 @@ class Role extends Model
      */
     public function users()
     {
-        return $this->belongsToMany('App\User');
+        return $this->belongsToMany('App\User', 'user_role');
     }
 }
