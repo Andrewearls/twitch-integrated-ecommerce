@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use App\Articles;
+use App\Article;
 
 class User extends Authenticatable
 {
@@ -41,6 +41,6 @@ class User extends Authenticatable
      */
     public function articles()
     {
-        return $this->hasMany('articles', 'user_id');
+        return $this->hasMany('App\Article');
     }
 }

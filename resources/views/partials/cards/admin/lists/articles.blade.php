@@ -10,7 +10,7 @@
       <div class="col-md-8">
 
         <!-- List of Articles -->
-        @foreach (Auth::user()->articles as $article)
+        @foreach ($articleList as $article)
           @include('partials.cards.article.preview', ['article' => $article])
         @endforeach
 

@@ -18,7 +18,7 @@
                         <a class="nav-link" href="{{ route('new-article') }}">
                             New Article
                         </a>
-                        <a class="nav-link" href="layout-sidenav-light.html">
+                        <a class="nav-link" href="{{ route('user-articles') }}">
                             My Articles
                         </a>
                     </nav>
