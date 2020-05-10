@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'ArticleDirectoryController@index')->name('directory');;
 
 Route::get('/search/{categoryTitle}', 'SearchController@category')->name('search-category');
-Route::get('/search/{authorURL}', 'SearchController@author')->name('search-author');
+Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
 Route::get('/article/{url}', 'ArticleController@index')->name('article');
 Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 Route::get('/dashboard/my/articles', 'DashboardController@userArticles')->name('user-articles');

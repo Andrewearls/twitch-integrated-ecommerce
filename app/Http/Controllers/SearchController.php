@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+use App\User;
 
 class SearchController extends Controller
 {
@@ -34,7 +35,7 @@ class SearchController extends Controller
     public function author($authorURL)
     {
         $author = User::where('url', $authorURL)->first();
-        $articleList = $author->articles();
+        $articleList = $author->articles;
         $categoryList = Category::all();
 
         return view('layouts.page.directory', [
