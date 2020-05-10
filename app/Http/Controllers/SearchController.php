@@ -30,4 +30,18 @@ class SearchController extends Controller
             'secondaryHeading' => $category->title,
     	]);
     }
+
+    public function author($authorURL)
+    {
+        $author = User::where('url', $authorURL)->first();
+        $articleList = $author->articles();
+        $categoryList = Category::all();
+
+        return view('layouts.page.directory', [
+            'articleList' => $articleList,
+            'categoryList' => $categoryList,
+            'pageHeading' => 'Author',
+            'secondaryHeading' => $author->name,
+        ]);
+    }
 }
