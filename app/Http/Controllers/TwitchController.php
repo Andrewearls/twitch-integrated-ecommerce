@@ -18,14 +18,22 @@ class TwitchController extends Controller
     		'article-title' => 'required',
             'display' => 'required',
     	]);
-    	
+
+    	$display = 0;
+
+    	if($validatedData['display'] == "on") {
+			$display = 1;
+		} else {
+			$display = 0;
+		};
+		
     	$twitch = Twitch::updateOrCreate([
     			'id' => 1,
     		], [
 	    		'channel' => $validatedData['article-title'],
-	    		'display' => $validatedData['display'],
+	    		'display' => $display,	    			
     	]);
 
-    	return $request;
+    	return redirect()->route('dashboard');
     }
 }

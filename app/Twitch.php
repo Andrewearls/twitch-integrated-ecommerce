@@ -12,13 +12,13 @@ class Twitch extends Model
      * @var string
      */
     protected $table = 'twitch';
-    
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'channel', 'display',
+        'id', 'channel', 'display',
     ];
 }
