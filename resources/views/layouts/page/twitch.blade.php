@@ -38,7 +38,7 @@
 	        <hr>
 
 			<input type="checkbox" name="display">
-	        <label class="mt-4 formable" id="article-title">Display on Front Page</label>
+	        <label class="mt-4" id="article-title">Display on Front Page</label>
 	        
 
 		</div>
