@@ -10,4 +10,9 @@ class TwitchController extends Controller
     {
     	return view('layouts.page.twitch');
     }
+
+    public function update(Request $request)
+    {
+    	return $request;
+    }
 }

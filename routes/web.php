@@ -27,7 +27,8 @@ Route::middleware(['role:author',])->group(function () {
 	Route::get('/dashboard/article/new', 'NewArticleController@index')->name('new-article');
 	Route::post('/dashboard/article/new', 'NewArticleController@create');
 	Route::post('/dashboard/category/new', 'CategoryController@create')->name('new-category');
-	Route::get('/dashboead/twitch', 'TwitchController@index')->name('twitch');
+	Route::get('/dashboard/twitch', 'TwitchController@index')->name('twitch');
+	Route::post('/dashoard/twitch', 'TwitchController@update');
 });
 
 Route::get('/home', 'HomeController@index')->name('home');
