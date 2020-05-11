@@ -6,9 +6,13 @@
 
     <div class="row">
 
-      <!-- Article Entries Column -->
-      <div class="col-md-8">
+      @if(!$twitch->display == 0)
+        @include('partials.twitch', ['twitch' => $twitch])
+      @endif
 
+      <!-- Article Entries Column -->
+      <div class="col-md-8">  
+        
         <h1 class="my-4">{{$pageHeading}}
           <small>{{$secondaryHeading}}</small>
         </h1>

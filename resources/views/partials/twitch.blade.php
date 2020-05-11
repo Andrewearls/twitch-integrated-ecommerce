@@ -1,6 +1,7 @@
 <!-- Add a placeholder for the Twitch embed -->
 <div id="twitch-embed"></div>
 
+@push('footer-scripts')
 <!-- Load the Twitch embed script -->
 <script src="https://embed.twitch.tv/embed/v1.js"></script>
 
@@ -9,7 +10,7 @@
   new Twitch.Embed("twitch-embed", {
     width: 854,
     height: 480,
-    channel: "{{$twitch->title}}",
+    channel: "{{$twitch->channel}}",
     // only needed if your site is also embedded on embed.example.com and othersite.example.com 
     parent: ["embed.example.com", "othersite.example.com"]
   });
@@ -20,3 +21,4 @@
     player.play();
   });
 </script>
+@endpush

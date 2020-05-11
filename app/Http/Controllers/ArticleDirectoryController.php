@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Article;
 use App\User;
 use App\Category;
+use App\Twitch;
 
 class ArticleDirectoryController extends Controller
 {
@@ -13,12 +14,14 @@ class ArticleDirectoryController extends Controller
     {
     	$articleList = Article::all();
     	$categoryList = Category::all();
+        $twitch = Twitch::where('id', 1)->first();
     	
     	return view('layouts.page.directory', [
     		'articleList' => $articleList, 
     		'categoryList' => $categoryList,
             'pageHeading' => 'All Ariticles:',
             'secondaryHeading' => 'For Your Enjoyment',
+            'twitch' => $twitch,
     	]);
     }
 }
