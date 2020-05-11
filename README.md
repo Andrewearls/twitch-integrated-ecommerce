@@ -1,3 +1,40 @@
+## About HerokuBlog
+
+HerokuBlog is a simple blog CMS built on a Laravel framework. Designed with freedom in mind, this CMS only uses free and open scource software. While there are limits, this CMS is perfect for early stage entrapenures and small buisnesses. 
+
+## Requirements
+- Git - https://git-scm.com/downloads
+- PHP - https://www.php.net/downloads
+- Composer - https://getcomposer.org/
+- Heroku Account - https://signup.heroku.com/
+- Domain Name - https://domains.google/
+
+## Installation
+installation time ~1 hour
+php install
+composer install
+laravel install
+clone
+heroku init
+laravel serialise
+heroku config add laravel serialise
+cleardb init
+heroku configs add cleardb creds
+heroku push
+heroku migrate 
+heroku seed
+make user
+
+
+
+
+
+
+
+
+
+
+
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
 
 <p align="center">
