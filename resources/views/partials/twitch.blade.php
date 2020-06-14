@@ -12,7 +12,7 @@
     height: 480,
     channel: "{{$twitch->channel}}",
     // only needed if your site is also embedded on embed.example.com and othersite.example.com 
-    parent: ["embed.example.com", "othersite.example.com"]
+    // parent: ["embed.example.com", "othersite.example.com"]
   });
 
   embed.addEventListener(Twitch.Embed.VIDEO_READY, function() {
