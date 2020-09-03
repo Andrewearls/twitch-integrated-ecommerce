@@ -16,7 +16,7 @@ class CreateTwitchTable extends Migration
         Schema::create('twitch', function (Blueprint $table) {
             $table->id();
             $table->string('channel');
-            $table->boolean('display')->default(false);
+            $table->boolean('display');
             $table->timestamps();
         });
     }
