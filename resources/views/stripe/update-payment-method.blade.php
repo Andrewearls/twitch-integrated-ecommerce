@@ -35,7 +35,15 @@
 		        } else {
 		            // The card has been verified successfully...
 		            //send paymentMethod.id to server for processing
-					$.post("{{ route('stripe-checkout') }}", { _token: "{{csrf_token() }}", paymentMethod: paymentMethod.id });
+					$.post("{{ route('stripe-checkout') }}", { _token: "{{csrf_token() }}", paymentMethod: paymentMethod.id })
+					.done(function (response){
+						alert(response);
+						if(response == "success") {
+							// reroute
+						} else {
+							alert("something went wrong");
+						}
+					});
 		        }
 		    });
 		};

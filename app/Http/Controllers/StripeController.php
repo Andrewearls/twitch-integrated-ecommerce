@@ -12,6 +12,7 @@ class StripeController extends Controller
 	/**
 	 * The user is returning from stripe billing portal.
 	 *
+	 * @param  request
 	 * @return view
 	 */
 	public function index(Request $request)
@@ -23,6 +24,7 @@ class StripeController extends Controller
 	/**
 	 * Send the user to Stripes billing portal.
 	 *
+	 * @param  request
 	 * @return redirect
 	 */
     public function billingPortal(Request $request)
@@ -36,6 +38,7 @@ class StripeController extends Controller
     /**
      * return the stripe checkout view.
      *
+     * @param  request
      * @return view
      */
     public function checkout(Request $request)
@@ -46,14 +49,21 @@ class StripeController extends Controller
     /**
      * process the payment with stripe.
      *
+     * @param  request
      * @return view
      */
     public function processCheckout(Request $request)
     {
-    	return "here";
-
-    	$stripeCharge = $request->user()->charge(100,$paymentMethod);
-    	return $stripeCharge;
+    	try {
+	    	$stripeCharge = $request->user()->charge(100,$request->paymentMethod);
+	    	//email the receipt to the user
+	    	//store the cart as payed for
+	    	return "success";
+    	} catch (Exception $e) {
+    		\Log::error($e);
+    		return "false";
+    	}
+    	
     }
 
 }
