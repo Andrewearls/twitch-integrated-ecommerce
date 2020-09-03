@@ -13,22 +13,41 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'ArticleDirectoryController@index')->name('directory');;
-Route::get('/search/{categoryTitle}', 'SearchController@category')->name('search-category');
-Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
-Route::get('/article/{url}', 'ArticleController@index')->name('article');
+Route::middleware(['web'])->group(function () {
+	Route::get('/', 'ArticleDirectoryController@index')->name('directory');;
+	Route::get('/search/{categoryTitle}', 'SearchController@category')->name('search-category');
+	Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
+	Route::get('/article/{url}', 'ArticleController@index')->name('article');
+
+	Route::middleware(['auth'])->group(function () {
+
+		Route::get('/authenticated', function () {
+			return dd(Auth::user());
+		});
+
+	});
+
+	Auth::routes();
+
+	Route::middleware(['auth'])->group(function () {
+		Route::get('/stripe/portal', 'StripeController@billingPortal')->name('stripe-portal');
+		Route::get('/stripe', 'StripeController@index')->name('stripe-index');
+		Route::get('/stripe/checkout', 'StripeController@checkout')->name('stripe-checkout');
+		Route::post('/stripe/checkout', 'StripeController@processCheckout');
+
+		Route::middleware(['role:author',])->group(function () {
+			Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
+			Route::get('/dashboard/my/articles', 'DashboardController@userArticles')->name('user-articles');
+			Route::get('/dashboard/article/new', 'NewArticleController@index')->name('new-article');
+			Route::post('/dashboard/article/new', 'NewArticleController@create');
+			Route::post('/dashboard/category/new', 'CategoryController@create')->name('new-category');
+			Route::get('/dashboard/twitch', 'TwitchController@index')->name('twitch');
+			Route::post('/dashboard/twitch', 'TwitchController@update');
+		});
+	});
 
 
-Auth::routes();
-
-Route::middleware(['role:author',])->group(function () {
-	Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
-	Route::get('/dashboard/my/articles', 'DashboardController@userArticles')->name('user-articles');
-	Route::get('/dashboard/article/new', 'NewArticleController@index')->name('new-article');
-	Route::post('/dashboard/article/new', 'NewArticleController@create');
-	Route::post('/dashboard/category/new', 'CategoryController@create')->name('new-category');
-	Route::get('/dashboard/twitch', 'TwitchController@index')->name('twitch');
-	Route::post('/dashboard/twitch', 'TwitchController@update');
+	Route::get('/home', 'HomeController@index')->name('home');
 });
 
-Route::get('/home', 'HomeController@index')->name('home');
+

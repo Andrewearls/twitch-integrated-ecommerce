@@ -6,7 +6,7 @@
 
     <div class="row">
 
-      @if(!$twitch->display == 0)
+      @if(isset($twithc->display) && !$twitch->display == 0)
         @include('partials.twitch', ['twitch' => $twitch])
       @endif
 
