@@ -19,13 +19,12 @@ Route::middleware(['web'])->group(function () {
 	Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
 	Route::get('/article/{url}', 'ArticleController@index')->name('article');
 
-	Route::middleware(['auth'])->group(function () {
-
-		Route::get('/authenticated', function () {
-			return dd(Auth::user());
-		});
-
-	});
+	Route::get('/shopping/cart', 'CartController@index')->name('cart');
+	
+	// in the future make these post
+	Route::get('/shopping/cart/item/add', 'CartController@addItem');
+	Route::get('/shopping/cart/item/remove', 'CartController@removeItem');
+	// in the future make these post
 
 	Auth::routes();
 
