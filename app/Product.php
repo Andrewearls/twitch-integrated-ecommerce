@@ -12,7 +12,7 @@ class Product extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'price', 'quantity', 'options',
+        'user_id', 'store_id', 'name', 'price', 'options',
     ];
 
     /**
@@ -23,4 +23,38 @@ class Product extends Model
     protected $hidden = [
         'id',
     ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * Get the product id.
+     *
+     * @return integer
+     */
+    public function getIdAttribute($id)
+    {
+    	// this should probably be serialized or something.
+    	return $id;
+    }
+
+    /**
+     * Get the product options.
+     *
+     * @return array
+     */
+    public function getOptionsAttribute($options)
+    {
+    	if(!empty($options)){
+    		return json_decode($options, true);
+    	}
+
+    	return [];
+    }
 }

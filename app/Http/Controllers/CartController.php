@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Cart\CartInterface as Cart;
+use App\Product;
 
 class CartController extends Controller
 {	
@@ -27,8 +28,9 @@ class CartController extends Controller
 	{
 
 		// $cartItem = Cart::add($id, $name, $price, $quantity);
-		new CartItem();
-		$cartItem = $cart->add(2, 'yellow box', 100, 1);
+		$item = Product::find(1);
+	
+		$cartItem = $cart->add($item);
 
 		$request->session()->push('cart', $cart->content());
 

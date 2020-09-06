@@ -4,7 +4,7 @@ namespace App\Cart;
 
 use Illuminate\Http\Request;
 use Melihovv\ShoppingCart\Facades\ShoppingCart;
-
+use App\Product;
 /**
  * Interface with the shopping cart pacage
  */
@@ -13,11 +13,13 @@ class CartInterface
 	
 	function __construct(Request $request)
 	{
-		$this->checkForSessionCart($request);
+		if ($this->checkForSessionCart($request)) {
+			$this->loadCart($request->session()->pull('cart')[0]);
+		}
 	}
 
 	/**
-	 * check if cart is stored in session.
+	 * Check if cart is stored in session.
 	 *
 	 * @param Request
 	 * @return bool
@@ -25,7 +27,6 @@ class CartInterface
 	public function checkForSessionCart($request)
 	{
 		if ($request->session()->has('cart')) {
-			$this->loadCart($request->session()->pull('cart'));
 			return true;
 		}
 		return false;
@@ -41,8 +42,9 @@ class CartInterface
 	{
 		try {
 			// add the items to the current cart
-			foreach ($cartItems as $key => $item) {				
-				$this->add($item);
+			foreach ($cartItems as $key => $item) {	
+				$product = Product::find($item->id);			
+				$this->add($product, $item->quantity);
 			}
 
 			return true;
@@ -61,7 +63,7 @@ class CartInterface
 	}
 
 	/**
-	 * display the content of the cart.
+	 * Display the content of the cart.
 	 *
 	 * @return collection
 	 */
@@ -80,13 +82,13 @@ class CartInterface
 	 * @param options
 	 * @return cartItem
 	 */
-	public function add(Product $item)
+	public function add(Product $item, $quantity = 1)
 	{
-		return ShippingCart::add(
+		return ShoppingCart::add(
 					$item->id,
 					$item->name,
 					$item->price,
-					$item->quantity,
+					$quantity,
 					$item->options
 				);
 	}
