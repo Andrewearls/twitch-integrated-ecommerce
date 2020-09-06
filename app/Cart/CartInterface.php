@@ -2,7 +2,6 @@
 
 namespace App\Cart;
 
-use Illuminate\Http\Request;
 use Melihovv\ShoppingCart\Facades\ShoppingCart;
 use App\Product;
 /**
@@ -11,10 +10,10 @@ use App\Product;
 class CartInterface
 {
 	
-	function __construct(Request $request)
+	function __construct()
 	{
-		if ($this->checkForSessionCart($request)) {
-			$this->loadCart($request->session()->pull('cart')[0]);
+		if ($this->checkForSessionCart()) {
+			$this->loadCart(session('cart'));
 		}
 	}
 
@@ -24,9 +23,9 @@ class CartInterface
 	 * @param Request
 	 * @return bool
 	 */
-	public function checkForSessionCart($request)
+	public function checkForSessionCart()
 	{
-		if ($request->session()->has('cart')) {
+		if (session()->has('cart')) {
 			return true;
 		}
 		return false;
@@ -91,5 +90,15 @@ class CartInterface
 					$quantity,
 					$item->options
 				);
+	}
+
+	/**
+	 * save the cart.
+	 *
+	 * @return bool
+	 */
+	public function save()
+	{
+		return session(['cart'=>$this->content()]);
 	}
 }

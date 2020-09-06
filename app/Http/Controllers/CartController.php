@@ -26,13 +26,11 @@ class CartController extends Controller
 	 */
 	public function addItem(Request $request, Cart $cart)
 	{
-
-		// $cartItem = Cart::add($id, $name, $price, $quantity);
 		$item = Product::find(1);
 	
-		$cartItem = $cart->add($item);
+		$cart->add($item);
 
-		$request->session()->push('cart', $cart->content());
+		$cart->save();
 
 		return redirect()->route('cart');
 	}
