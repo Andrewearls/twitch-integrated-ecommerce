@@ -21,7 +21,7 @@ class Product extends Model
      * @var array
      */
     protected $hidden = [
-        'id',
+        'id', 'user_id',
     ];
 
     /**
@@ -56,5 +56,15 @@ class Product extends Model
     	}
 
     	return [];
+    }
+
+    /**
+     * Define the user relationship.
+     *
+     * @return user
+     */
+    public function user()
+    {
+        return $this->belongsTo('App\User');
     }
 }

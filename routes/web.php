@@ -34,6 +34,14 @@ Route::middleware(['web'])->group(function () {
 		Route::get('/stripe/checkout', 'StripeController@checkout')->name('stripe-checkout');
 		Route::post('/stripe/checkout', 'StripeController@processCheckout');
 
+		// product routes
+		Route::get('/product/{id}', 'ProductController@index')->name('product');
+		Route::get('/product/new', 'ProductController@create')->name('product-create');
+		Route::get('/product/edit/{$id}', 'ProductController@edit')->name('product-edit');
+		Route::get('/product/delete/{$id}', 'ProductController@delete')->name('product-delete');
+		Route::post('/product/update/{id?}', 'ProductController@update')->name('product-update');
+		// product routes
+
 		Route::middleware(['role:author',])->group(function () {
 			Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 			Route::get('/dashboard/my/articles', 'DashboardController@userArticles')->name('user-articles');

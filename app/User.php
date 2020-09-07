@@ -63,6 +63,7 @@ class User extends Authenticatable
 
     /**
      * Check for a given role
+     *      This looks like it should be in the middleware
      */
     public function hasRole($roleTitle)
     {
@@ -75,5 +76,13 @@ class User extends Authenticatable
         return 'false';
     }
 
-
+    /**
+     * Define the relationship with the products.
+     *
+     * @return App\Product
+     */
+    public function Products()
+    {
+        return $this->hasMany('App\Product');
+    }
 }
