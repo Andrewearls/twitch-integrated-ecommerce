@@ -13,29 +13,54 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+	return 'Homepage';
+});
+
 Auth::routes();
 
-Route::namespace('Guest')->group(function () {
-	// Routes Guests Can Access
-	Route::get('/', 'ArticleDirectoryController@index')->name('directory');
+// Routes Shoppers Can Access
+Route::namespace('Shopper')->group(function () {
 
-	Route::get('/search/{categoryTitle}', 'SearchController@category')->name('search-category');
-	Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
-	Route::get('/article/{url}', 'ArticleController@index')->name('article');
+	// Article Routes
+	Route::prefix('articles')->group(function () {
+		Route::get('/', 'ArticleDirectoryController@index')->name('directory');
 
-	Route::get('/shopping/cart', 'CartController@index')->name('cart');
+		Route::get('/search/{categoryTitle}', 'SearchController@category')->name('search-category');
+		Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
+		Route::get('/article/{url}', 'ArticleController@index')->name('article');
+	});
+
+	// Shopping Routes
+	Route::prefix('shopping')->group(function () {
+
+		// Cart Routes
+		Route::prefix('cart')->group(function () {
+			Route::get('/', 'CartController@index')->name('cart');
 	
-	// in the future make these post
-	Route::get('/shopping/cart/item/add', 'CartController@addItem');
-	Route::get('/shopping/cart/item/remove', 'CartController@removeItem');
-	// in the future make these post
+			// in the future make these post
+			Route::get('/item/add', 'CartController@addItem');
+			Route::get('/item/remove', 'CartController@removeItem');
+			// in the future make these post
+		});
+		
+	});
+
+
+
+	
 
 });
 
+// Routes Logged in Users Can Access
 Route::middleware(['auth',])->group(function () {
+
+	// Routes Admin Can Access
 	Route::namespace('Admin')->group(function () {
+
+		// Dashboard Routes
 		Route::prefix('dashboard')->group(function () {
-			// Routes Admin Can Access
+			
 			Route::get('/', 'DashboardController@index')->name('dashboard');
 
 			// Routes For Blog Owner
@@ -52,40 +77,25 @@ Route::middleware(['auth',])->group(function () {
 			Route::get('/inventory', 'Search\ProductController@index')->name('inventory');
 			// Product Routes
 			Route::get('/product/new', 'ProductController@create')->name('product-create');
-			Route::get('/product/edit/{$id}', 'ProductController@edit')->name('product-edit');
-			Route::get('/product/delete/{$id}', 'ProductController@delete')->name('product-delete');
+			Route::get('/product/edit/{id}', 'ProductController@edit')->name('product-edit');
+
+			Route::get('/product/delete/{id}', 'ProductController@delete')->name('product-delete');
 			Route::post('/product/update/{id?}', 'ProductController@update')->name('product-update');
 			Route::get('/product/{id}/view', 'ProductController@index')->name('product');
 		});	
+
+		Route::get('/home', 'HomeController@index')->name('home');
 	});	
+
+	// Stripe Routes
+	Route::get('/stripe/portal', 'StripeController@billingPortal')->name('stripe-portal');
+	Route::get('/stripe', 'StripeController@index')->name('stripe-index');
+	Route::get('/stripe/checkout', 'StripeController@checkout')->name('stripe-checkout');
+	Route::post('/stripe/checkout', 'StripeController@processCheckout');
 });
 
 Route::namespace('SuperAdmin')->group(function () {
 	// Routes SuperAdmin Can Access
-});
-
-// -------------------- Below Needs To Be Refactored ------------------
-
-Route::middleware(['web'])->group(function () {
-	
-
-	Route::middleware(['auth'])->group(function () {
-		Route::get('/stripe/portal', 'StripeController@billingPortal')->name('stripe-portal');
-		Route::get('/stripe', 'StripeController@index')->name('stripe-index');
-		Route::get('/stripe/checkout', 'StripeController@checkout')->name('stripe-checkout');
-		Route::post('/stripe/checkout', 'StripeController@processCheckout');
-
-		
-
-		Route::middleware(['role:author',])->group(function () {
-			
-		});
-	});
-
-
-
-
-	Route::get('/home', 'HomeController@index')->name('home');
 });
 
 

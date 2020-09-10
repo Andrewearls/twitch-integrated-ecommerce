@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Guest;
+namespace App\Http\Controllers\Shopper;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
