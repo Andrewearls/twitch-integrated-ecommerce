@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Shopper;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Cart\CartInterface as Cart;
 use App\Product;

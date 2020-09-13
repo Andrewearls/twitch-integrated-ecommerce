@@ -1,5 +1,5 @@
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-	@include('components.forms.product.edit')
+	@include('partials.forms.product.edit')
 @endsection

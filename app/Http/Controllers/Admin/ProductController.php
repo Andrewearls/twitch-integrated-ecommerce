@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductFormValidator as Validator;
 use App\Product;
@@ -33,6 +34,20 @@ class ProductController extends Controller
     }
 
     /**
+     * Return view for editing a product.
+     *
+     * @param id
+     * @return view
+     */
+    public function edit($id)
+    {
+        $product = Product::find($id);
+        return view('layouts.product.edit', [
+            'product' => $product,
+        ]);
+    }
+
+    /**
      * update a product.
      *
      * @param Request
@@ -54,9 +69,9 @@ class ProductController extends Controller
     	$product->price = $request->price;
     	$product->description = $request->description;
 
-    	$request->user->product->save($product);
+    	$request->user()->products()->save($product);
 
-    	return redirect()->route('product', ['id' => $product->id]);
+    	return redirect()->route('inventory');
     }
 
     /**
@@ -68,6 +83,8 @@ class ProductController extends Controller
      */
     public function delete($id)
     {
-    	return $this->product; 
+        $product = Product::find($id);
+        $product->delete();
+    	return redirect()->route('inventory'); 
     }
 }

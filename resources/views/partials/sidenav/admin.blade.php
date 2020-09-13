@@ -2,34 +2,68 @@
     <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
             <div class="nav">
+
+                <!-- Core Heading -->
                 <div class="sb-sidenav-menu-heading">Core</div>
+
+                <!-- Core Item Dashboard -->
                 <a class="nav-link" href="{{ route('dashboard') }}"
                     ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
                     Dashboard</a
                 >
+
+                <!-- Interface Heading -->
                 <div class="sb-sidenav-menu-heading">Interface</div>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
+
+                <!-- Interface Item Articles -->
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="false" aria-controls="collapseArticles"
                     ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Articles
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                 ></a>
-                <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <div class="collapse" id="collapseArticles" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
+
+                        <!-- Aritcle Sub Item New Article -->
                         <a class="nav-link" href="{{ route('new-article') }}">
                             New Article
                         </a>
+
+                        <!-- Aritcle Sub Item My Articles -->
                         <a class="nav-link" href="{{ route('user-articles') }}">
                             My Articles
                         </a>
+
                     </nav>
                 </div>
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="false" aria-controls="collapsePages"
+
+                <!-- Interface Item Products -->
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-boxes"></i></div>
+                    Products
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                ></a>
+                <div class="collapse" id="collapseProducts" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+                        <!-- Products Sub Item Inventory -->
+                        <a class="nav-link" href="{{ route('inventory') }}">
+                            Inventory
+                        </a>
+                        <a class="nav-link" href="{{ route('product-create') }}">
+                            New Product
+                        </a>
+                    </nav>
+                </div>
+
+                <!-- Interface Item Social Media -->
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSocialMedia" aria-expanded="false" aria-controls="collapseSocialMedia"
                     ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
                     Social Media
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                 ></a>
-                <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+                <div class="collapse" id="collapseSocialMedia" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
+                        <!-- Social Media Sub Item Twitch -->
                         <a class="nav-link" href="{{ route('twitch') }}">
                             Twitch
                         </a>
