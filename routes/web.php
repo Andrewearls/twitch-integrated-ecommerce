@@ -19,36 +19,39 @@ Route::get('/', function() {
 
 Auth::routes();
 
-// Routes Shoppers Can Access
-Route::namespace('Shopper')->group(function () {
+Route::domain('{store}.' . env('APP_URL'))->group(function () {
 
-	// Article Routes
-	Route::prefix('articles')->group(function () {
-		Route::get('/', 'ArticleDirectoryController@index')->name('directory');
+	// Routes Shoppers Can Access
+	Route::namespace('Shopper')->group(function () {
 
-		Route::get('/search/{categoryTitle}', 'SearchController@category')->name('search-category');
-		Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
-		Route::get('/article/{url}', 'ArticleController@index')->name('article');
-	});
+		// Article Routes
+		Route::prefix('articles')->group(function () {
+			Route::get('/', 'ArticleDirectoryController@index')->name('directory');
 
-	// Shopping Routes
-	Route::prefix('shopping')->group(function () {
-
-		// Cart Routes
-		Route::prefix('cart')->group(function () {
-			Route::get('/', 'CartController@index')->name('cart');
-	
-			// in the future make these post
-			Route::get('/item/add', 'CartController@addItem');
-			Route::get('/item/remove', 'CartController@removeItem');
-			// in the future make these post
+			Route::get('/search/{categoryTitle}', 'SearchController@category')->name('search-category');
+			Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
+			Route::get('/article/{article}', 'ArticleController@index')->name('article');
 		});
+
+		// Shopping Routes
+		Route::prefix('shopping')->group(function () {
+
+			// Store routes
+			Route::get('/', 'ShoppingController@index')->name('shopping');
+
+			// Cart Routes
+			Route::prefix('cart')->group(function () {
+				Route::get('/', 'CartController@index')->name('cart');
 		
+				// in the future make these post
+				Route::get('/item/add', 'CartController@addItem');
+				Route::get('/item/remove', 'CartController@removeItem');
+				// in the future make these post
+			});
+
+		});	
+
 	});
-
-
-
-	
 
 });
 
@@ -74,14 +77,28 @@ Route::middleware(['auth',])->group(function () {
 			Route::post('/twitch', 'TwitchController@update');
 
 			// Routes For Store Owner
-			Route::get('/inventory', 'Search\ProductController@index')->name('inventory');
-			// Product Routes
-			Route::get('/product/new', 'ProductController@create')->name('product-create');
-			Route::get('/product/edit/{id}', 'ProductController@edit')->name('product-edit');
+			Route::prefix('store')->group(function () {
 
-			Route::get('/product/delete/{id}', 'ProductController@delete')->name('product-delete');
-			Route::post('/product/update/{id?}', 'ProductController@update')->name('product-update');
-			Route::get('/product/{id}/view', 'ProductController@index')->name('product');
+				// Store Searching Routes
+				Route::namespace('Search')->group(function () {
+					Route::get('/', 'StoreController@index')->name('store-choose');
+					Route::get('/inventory', 'ProductController@index')->name('inventory');
+				});
+
+				Route::get('/new', 'StoreController@index')->name('store-new');
+				Route::get('/edit/{store?}', 'StoreController@edit')->name('store-edit');
+
+
+				// Product Routes
+				Route::prefix('product')->group(function () {
+					Route::get('/new', 'ProductController@create')->name('product-create');
+					Route::get('/edit/{product}', 'ProductController@edit')->name('product-edit');
+
+					Route::get('/delete/{product}', 'ProductController@delete')->name('product-delete');
+					Route::post('/update/{product?}', 'ProductController@update')->name('product-update');
+					Route::get('/{product}/view', 'ProductController@index')->name('product');
+				});
+			});
 		});	
 
 		Route::get('/home', 'HomeController@index')->name('home');
