@@ -27,7 +27,7 @@
                         </a>
 
                         <!-- Aritcle Sub Item My Articles -->
-                        <a class="nav-link" href="{{ route('user-articles') }}">
+                        <a class="nav-link" href="{{ route('store-list') }}">
                             My Stores
                         </a>
 

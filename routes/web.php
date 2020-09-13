@@ -81,12 +81,13 @@ Route::middleware(['auth',])->group(function () {
 
 				// Store Searching Routes
 				Route::namespace('Search')->group(function () {
-					Route::get('/', 'StoreController@index')->name('store-choose');
+					Route::get('/', 'StoreController@index')->name('store-list');
 					Route::get('/inventory', 'ProductController@index')->name('inventory');
 				});
 
 				Route::get('/new', 'StoreController@index')->name('store-new');
 				Route::get('/edit/{store?}', 'StoreController@edit')->name('store-edit');
+				Route::post('/update/{store?}', 'StoreController@update')->name('store-update');
 
 
 				// Product Routes
