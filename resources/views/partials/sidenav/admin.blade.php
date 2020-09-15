@@ -22,14 +22,14 @@
                     <nav class="sb-sidenav-menu-nested nav">
 
                         <!-- Aritcle Sub Item New Article -->
-                        <a class="nav-link" href="{{ route('store-edit') }}">
+                        <a class="nav-link" href="{{ route('store-edit', ['store', $store->id]) }}">
                             Settings
                         </a>
 
                         <!-- Aritcle Sub Item My Articles -->
-                        <a class="nav-link" href="{{ route('store-list') }}">
+                        <!-- <a class="nav-link" href="{{ route('store-list') }}">
                             My Stores
-                        </a>
+                        </a> -->
 
                     </nav>
                 </div>

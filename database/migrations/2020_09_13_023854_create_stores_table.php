@@ -17,7 +17,6 @@ class CreateStoresTable extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('name');
-            $table->string('slug')->unique();
             $table->timestamps();
         });
     }
