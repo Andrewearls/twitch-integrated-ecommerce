@@ -81,8 +81,18 @@ class User extends Authenticatable
      *
      * @return App\Product
      */
-    public function Products()
+    public function products()
     {
         return $this->hasMany('App\Product');
+    }
+
+    /**
+     * Define the relationship with stores.
+     *
+     * @return App\Stores
+     */
+    public function stores()
+    {
+        return $this->hasMany('App\Store');
     }
 }

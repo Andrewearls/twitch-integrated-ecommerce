@@ -12,6 +12,28 @@
                     Dashboard</a
                 >
 
+                <!-- Core Item Store -->
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="false" aria-controls="collapseArticles"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Store
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                ></a>
+                <div class="collapse" id="collapseArticles" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+
+                        <!-- Aritcle Sub Item New Article -->
+                        <a class="nav-link" href="{{ route('store-edit', ['store', $store->id]) }}">
+                            Settings
+                        </a>
+
+                        <!-- Aritcle Sub Item My Articles -->
+                        <!-- <a class="nav-link" href="{{ route('store-list') }}">
+                            My Stores
+                        </a> -->
+
+                    </nav>
+                </div>
+
                 <!-- Interface Heading -->
                 <div class="sb-sidenav-menu-heading">Interface</div>
 

@@ -48,7 +48,7 @@ class ProductController extends Controller
     }
 
     /**
-     * update a product.
+     * Update a product.
      *
      * @param Request
      * @param id
