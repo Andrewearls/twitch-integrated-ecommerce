@@ -12,6 +12,7 @@
                     Dashboard</a
                 >
 
+                @if(isset($store) && $store->isNotEmpty())
                 <!-- Core Item Store -->
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="false" aria-controls="collapseArticles"
                     ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -22,7 +23,7 @@
                     <nav class="sb-sidenav-menu-nested nav">
 
                         <!-- Aritcle Sub Item New Article -->
-                        <a class="nav-link" href="{{ route('store-edit', ['store', $store->id]) }}">
+                        <a class="nav-link" href="{{ route('store-edit', ['store', $store->id ?? '']) }}">
                             Settings
                         </a>
 
@@ -33,6 +34,7 @@
 
                     </nav>
                 </div>
+                @endif
 
                 <!-- Interface Heading -->
                 <div class="sb-sidenav-menu-heading">Interface</div>
