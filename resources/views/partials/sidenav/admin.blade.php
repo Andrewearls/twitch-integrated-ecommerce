@@ -12,7 +12,8 @@
                     Dashboard</a
                 >
 
-                @if(isset($store) && $store->isNotEmpty())
+                <!-- if team has a store resource -->
+                @if(false)
                 <!-- Core Item Store -->
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="false" aria-controls="collapseArticles"
                     ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -35,6 +36,28 @@
                     </nav>
                 </div>
                 @endif
+
+                <!-- Core Item Settings -->
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="false" aria-controls="collapseSettings"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Settings
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                ></a>
+                <div class="collapse" id="collapseSettings" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+
+                        <!-- Settings Sub Item New Resource -->
+                        <a class="nav-link" href="{{ route('new-resource') }}">
+                            New Resource
+                        </a>
+
+                        <!-- Settings Sub Item My Team Resources -->
+                        <a class="nav-link" href="{{ route('resources') }}">
+                            My Resources
+                        </a>
+
+                    </nav>
+                </div>
 
                 <!-- Interface Heading -->
                 <div class="sb-sidenav-menu-heading">Interface</div>
