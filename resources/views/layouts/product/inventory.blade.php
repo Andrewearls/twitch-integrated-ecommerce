@@ -49,4 +49,6 @@
 		</div>
 	</div>
 </div>
+// Please be consistant and use the dashboard layout --Andrew
+
 @endsection

@@ -20,7 +20,7 @@ Route::get('/', function() {
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::domain('{store}.' . env('APP_URL'))->group(function () {
+Route::domain('{team-slug}.' . env('APP_URL'))->group(function () {
 
 	// Routes Shoppers Can Access
 	Route::namespace('Shopper')->group(function () {
@@ -87,7 +87,7 @@ Route::middleware(['auth',])->group(function () {
 				});
 
 				Route::get('/new', 'StoreController@create')->name('store-new');
-				Route::get('/edit/{store?}', 'StoreController@edit')->name('store-edit');
+				Route::get('/edit', 'StoreController@edit')->name('store-edit');
 				Route::post('/update/{store?}', 'StoreController@update')->name('store-update');
 
 

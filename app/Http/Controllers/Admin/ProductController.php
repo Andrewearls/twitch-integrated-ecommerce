@@ -10,7 +10,7 @@ use App\Product;
 class ProductController extends Controller
 {
     /**
-     * display list of products.
+     * display product details.
      *
      * @return view
      */
