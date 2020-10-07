@@ -18,7 +18,6 @@
         "laravel/ui": "^3.0",
         "melihovv/laravel-shopping-cart": "^8.0",
         "mpociot/teamwork": "^6.1",
-        "laravel/ui": "^3.0",
         "melihovv/laravel-shopping-cart": "^7.0.2",
         "predis/predis": "^1.1"
     },
