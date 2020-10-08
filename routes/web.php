@@ -20,7 +20,7 @@ Route::get('/', function() {
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::domain('{store}.' . env('APP_URL'))->group(function () {
+Route::domain('{team-slug}.' . env('APP_URL'))->group(function () {
 
 	// Routes Shoppers Can Access
 	Route::namespace('Shopper')->group(function () {
@@ -59,12 +59,12 @@ Route::domain('{store}.' . env('APP_URL'))->group(function () {
 // Routes Logged in Users Can Access
 Route::middleware(['auth',])->group(function () {
 
-	// Routes Admin Can Access
-	Route::namespace('Admin')->group(function () {
+	// Dashboard Routes
+	Route::prefix('dashboard')->group(function () {
 
-		// Dashboard Routes
-		Route::prefix('dashboard')->group(function () {
-			
+		// Routes Admin Can Access
+		Route::namespace('Admin')->group(function () {
+
 			Route::get('/', 'DashboardController@index')->name('dashboard');
 
 			// Routes For Blog Owner
@@ -86,8 +86,8 @@ Route::middleware(['auth',])->group(function () {
 					Route::get('/inventory', 'ProductController@index')->name('inventory');
 				});
 
-				Route::get('/new', 'StoreController@index')->name('store-new');
-				Route::get('/edit/{store?}', 'StoreController@edit')->name('store-edit');
+				Route::get('/new', 'StoreController@create')->name('store-new');
+				Route::get('/edit', 'StoreController@edit')->name('store-edit');
 				Route::post('/update/{store?}', 'StoreController@update')->name('store-update');
 
 
@@ -102,6 +102,33 @@ Route::middleware(['auth',])->group(function () {
 				});
 			});
 		});	
+
+		/**
+		 * Teamwork routes
+		 */
+		Route::group(['prefix' => 'teams', 'namespace' => 'Teamwork'], function()
+		{
+		    Route::get('/', [App\Http\Controllers\Teamwork\TeamController::class, 'index'])->name('teams.index');
+		    Route::get('create', [App\Http\Controllers\Teamwork\TeamController::class, 'create'])->name('teams.create');
+		    Route::post('teams', [App\Http\Controllers\Teamwork\TeamController::class, 'store'])->name('teams.store');
+		    Route::get('edit/{id}', [App\Http\Controllers\Teamwork\TeamController::class, 'edit'])->name('teams.edit');
+		    Route::put('edit/{id}', [App\Http\Controllers\Teamwork\TeamController::class, 'update'])->name('teams.update');
+		    Route::delete('destroy/{id}', [App\Http\Controllers\Teamwork\TeamController::class, 'destroy'])->name('teams.destroy');
+		    Route::get('switch/{id}', [App\Http\Controllers\Teamwork\TeamController::class, 'switchTeam'])->name('teams.switch');
+
+		    Route::get('members/{id}', [App\Http\Controllers\Teamwork\TeamMemberController::class, 'show'])->name('teams.members.show');
+		    Route::get('members/resend/{invite_id}', [App\Http\Controllers\Teamwork\TeamMemberController::class, 'resendInvite'])->name('teams.members.resend_invite');
+		    Route::post('members/{id}', [App\Http\Controllers\Teamwork\TeamMemberController::class, 'invite'])->name('teams.members.invite');
+		    Route::delete('members/{id}/{user_id}', [App\Http\Controllers\Teamwork\TeamMemberController::class, 'destroy'])->name('teams.members.destroy');
+
+		    Route::get('accept/{token}', [App\Http\Controllers\Teamwork\AuthController::class, 'acceptInvite'])->name('teams.accept_invite');
+		
+			Route::prefix('resources')->group(function () {
+				Route::get('/', 'TeamResourceController@currentResources')->name('resources');
+				Route::get('/add', 'TeamResourceController@availableResources')->name('new-resource');
+			});
+		    
+		});
 
 		Route::get('/home', 'HomeController@index')->name('home');
 	});	

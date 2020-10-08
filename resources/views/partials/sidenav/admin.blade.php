@@ -12,19 +12,25 @@
                     Dashboard</a
                 >
 
-                @if(isset($store) && $store->isNotEmpty())
+                <!-- if team has a store resource -->
+                @if($team->store)
                 <!-- Core Item Store -->
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="false" aria-controls="collapseArticles"
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStore" aria-expanded="false" aria-controls="collapseStore"
                     ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Store
                     <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                 ></a>
-                <div class="collapse" id="collapseArticles" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                <div class="collapse" id="collapseStore" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav">
 
-                        <!-- Aritcle Sub Item New Article -->
-                        <a class="nav-link" href="{{ route('store-edit', ['store', $store->id ?? '']) }}">
-                            Settings
+                        <!-- Store Sub Item Products -->
+                        <a class="nav-link" href="{{ route('inventory') }}">
+                            Products
+                        </a>
+
+                        <!-- Store Sub Item Settings -->
+                        <a class="nav-link" href="{{ route('store-edit') }}">
+                            Settings (doesn't work)
                         </a>
 
                         <!-- Aritcle Sub Item My Articles -->
@@ -35,6 +41,28 @@
                     </nav>
                 </div>
                 @endif
+
+                <!-- Core Item Settings -->
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="false" aria-controls="collapseSettings"
+                    ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                    Settings
+                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                ></a>
+                <div class="collapse" id="collapseSettings" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                    <nav class="sb-sidenav-menu-nested nav">
+
+                        <!-- Settings Sub Item New Resource -->
+                        <a class="nav-link" href="{{ route('new-resource') }}">
+                            New Resource
+                        </a>
+
+                        <!-- Settings Sub Item My Team Resources -->
+                        <a class="nav-link" href="{{ route('resources') }}">
+                            My Resources
+                        </a>
+
+                    </nav>
+                </div>
 
                 <!-- Interface Heading -->
                 <div class="sb-sidenav-menu-heading">Interface</div>

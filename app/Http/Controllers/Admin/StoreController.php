@@ -18,6 +18,20 @@ class StoreController extends Controller
         $store = new Store;
         return view('admin.layouts.pages.store.edit')->with(['store' => $store]);
     }
+
+    /**
+     * Create a new store.
+     *
+     * @param Request
+     * @return redirect resources
+     */
+    public function create(Request $request)
+    {
+        $store = $request->user()->currentTeam->store()->create();
+
+        return redirect()->route('resources');
+    }
+
     /**
      * Return the edit Store view.
      *
