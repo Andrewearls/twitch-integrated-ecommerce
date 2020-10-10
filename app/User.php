@@ -5,18 +5,12 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Mpociot\Teamwork\Traits\UserHasTeams;
 use Laravel\Cashier\Billable;
 use App\Article;
 use App\Role;
 
 class User extends Authenticatable
 {
-
-    // Enable the realationship with teams
-    // reference https://github.com/mpociot/teamwork
-    use UserHasTeams;
-
     /**
      * Use the billble trait for casheer/stripe.
      */

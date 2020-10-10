@@ -5,8 +5,6 @@ namespace App\Listeners;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
 use App\Coordinator\TeamsCoordinator;
-use App\Team;
-use App\Role;
 
 class CreateUserTeam
 {

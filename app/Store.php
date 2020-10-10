@@ -3,13 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Mpociot\Teamwork\Traits\UsedByTeams;
 
 class Store extends Model
 {
-    // Limit model to current team
-    //https://github.com/mpociot/teamwork#limit-models-to-current-team
-    use UsedByTeams;
 
     /**
      * The attributes that are mass assignable.
