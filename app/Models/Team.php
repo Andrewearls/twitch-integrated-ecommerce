@@ -40,7 +40,7 @@ class Team extends JetstreamTeam
     ];
 
     /**
-     * define the relationship with store resource.
+     * Define the relationship with store resource.
      *
      * @return Collection App\Store
      */
