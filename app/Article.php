@@ -3,7 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use App\User;
+use App\Models\User;
 use App\Category;
 
 class Article extends Model
@@ -30,7 +30,7 @@ class Article extends Model
     */
     public function author()
     {
-        return $this->belongsTo('App\User', 'user_id');
+        return $this->belongsTo('App\Models\User', 'user_id');
     }
 
     /**

@@ -3,8 +3,8 @@
 namespace App\Coordinators;
 
 use App\Coordinators\PermissionsCoordinator as Permission;
-use App\Team;
-use App\User;
+use App\Models\Team;
+use App\Models\User;
 
 /**
  * Cordinate store actions
@@ -47,7 +47,7 @@ class TeamsCoordinator
 	 *
 	 * @param string name
 	 * @param App\Role\Const role
-	 * @return App\Team
+	 * @return App\Models\Team
 	 */
 	public function createTeam($name, $permissions = [Permission::CAN_SHOP])
 	{
@@ -70,7 +70,7 @@ class TeamsCoordinator
 	/**
 	 * Set the users logged in team for this instance.
 	 *
-	 * @return App/Team
+	 * @return App\Models\Team
 	 */
 	private function setLoggedInTeam()
 	{
@@ -91,7 +91,7 @@ class TeamsCoordinator
 	/**
 	 * retrieve the logged in team.
 	 *
-	 * @return App\Team
+	 * @return App\Models\Team
 	 */
 	public function getLoggedInTeam()
 	{

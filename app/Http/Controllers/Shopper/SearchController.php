@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Shopper;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Category;
-use App\User;
+use App\Models\User;
 
 class SearchController extends Controller
 {

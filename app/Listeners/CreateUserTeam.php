@@ -4,7 +4,7 @@ namespace App\Listeners;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Coordinator\TeamsCoordinator;
+use App\Coordinators\TeamsCoordinator;
 
 class CreateUserTeam
 {
@@ -26,8 +26,9 @@ class CreateUserTeam
      */
     public function handle($event)
     {
-        $teamsCoordinator = new TeamsCoordinator($event->user);
-        $team = $teamsCoordinator->createTeam('team ' . $event->user->name);
-        $teamsCoordinator->login($team);
+        
+        // $teamsCoordinator = new TeamsCoordinator($event->user);
+        // $team = $teamsCoordinator->createTeam('team ' . $event->user->name);
+        // $teamsCoordinator->login($team);
     }
 }

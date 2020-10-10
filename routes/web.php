@@ -17,7 +17,6 @@ Route::get('/', function() {
 	return 'Homepage';
 });
 
-Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
 Route::domain('{team-slug}.' . env('APP_URL'))->group(function () {

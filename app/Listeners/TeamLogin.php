@@ -26,18 +26,18 @@ class TeamLogin
      */
     public function handle($event)
     {
-        $user = $event->user;
-        $teamsCoordinator = new TeamsCoordinator($user);
-        $teams = $user->teams;
+        // $user = $event->user;
+        // $teamsCoordinator = new TeamsCoordinator($user);
+        // $teams = $user->teams;
 
-        if ($teams->count() < 1) {
-            // create a team for the user
-            $teamsCoordinator->createTeam('team ' . $user->name);
-        }
+        // if ($teams->count() < 1) {
+        //     // create a team for the user
+        //     $teamsCoordinator->createTeam('team ' . $user->name);
+        // }
 
-        if ($teams->count() === 1) {
-            // sign user into team
-            $teamsCoordinator->login($teams->first());
-        }
+        // if ($teams->count() === 1) {
+        //     // sign user into team
+        //     $teamsCoordinator->login($teams->first());
+        // }
     }
 }

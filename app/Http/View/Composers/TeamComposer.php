@@ -3,7 +3,7 @@
 namespace App\Http\View\Composers;
 
 // use Illuminate\Support\Facades\Auth;
-use App\User;
+use App\Models\User;
 use App\Coordinators\TeamsCoordinator;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
