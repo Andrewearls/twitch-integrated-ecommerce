@@ -56,7 +56,7 @@ Route::domain('{team-slug}.' . env('APP_URL'))->group(function () {
 });
 
 // Routes Logged in Users Can Access
-Route::middleware(['auth',])->group(function () {
+Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 	// Dashboard Routes
 	Route::prefix('dashboard')->group(function () {
@@ -130,6 +130,6 @@ Route::namespace('SuperAdmin')->group(function () {
 
 
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return Inertia\Inertia::render('Dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return Inertia\Inertia::render('Dashboard');
+// })->name('dashboard');

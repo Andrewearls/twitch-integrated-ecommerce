@@ -38,4 +38,14 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    /**
+     * define the relationship with store resource.
+     *
+     * @return Collection App\Store
+     */
+    public function store()
+    {
+        return $this->hasOne('App\Store');
+    }
 }
