@@ -6,6 +6,14 @@
 	<div class="col-10">
 		<div class="card">
 			<div class="card-header">
+				Create New Product
+			</div>
+			<div class="card-body">
+				<a href="{{route('product-create')}}">Create a product</a>
+			</div>
+		</div>
+		<div class="card">
+			<div class="card-header">
 				<h2>Inventory</h2>
 			</div>
 			<div class="card-body">
