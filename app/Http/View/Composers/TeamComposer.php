@@ -32,6 +32,7 @@ class TeamComposer
 		// dd('$this->teamsCoordinator');
 		$team = $this->teamsCoordinator->getLoggedInTeam();
 		// $team->name = 'here';
+		// dd($team->id);
 		$view->with('team', $team);
 	}
 }

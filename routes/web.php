@@ -13,47 +13,50 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function() {
-	return 'Homepage';
-});
-
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::domain('{team-slug}.' . env('APP_URL'))->group(function () {
+Route::domain('{teamSlug}.' . env('APP_URL'))->group(function () {
+	Route::namespace('Audience')->group(function () {
 
-	// Routes Shoppers Can Access
-	Route::namespace('Shopper')->group(function () {
+		Route::get('/', 'Controller@index')->name('public-home');
 
-		// Article Routes
-		Route::prefix('articles')->group(function () {
-			Route::get('/', 'ArticleDirectoryController@index')->name('directory');
+		// Routes Shoppers Can Access
+		Route::namespace('Shopper')->group(function () {
 
-			Route::get('/search/{categoryTitle}', 'SearchController@category')->name('search-category');
-			Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
-			Route::get('/article/{article}', 'ArticleController@index')->name('article');
-		});
+			// Article Routes
+			Route::prefix('articles')->group(function () {
+				Route::get('/', 'ArticleDirectoryController@index')->name('directory');
 
-		// Shopping Routes
-		Route::prefix('shopping')->group(function () {
-
-			// Store routes
-			Route::get('/', 'ShoppingController@index')->name('shopping');
-
-			// Cart Routes
-			Route::prefix('cart')->group(function () {
-				Route::get('/', 'CartController@index')->name('cart');
-		
-				// in the future make these post
-				Route::get('/item/add', 'CartController@addItem');
-				Route::get('/item/remove', 'CartController@removeItem');
-				// in the future make these post
+				Route::get('/search/{categoryTitle}', 'SearchController@category')->name('search-category');
+				Route::get('/search/user/{authorURL}', 'SearchController@author')->name('search-author');
+				Route::get('/article/{article}', 'ArticleController@index')->name('article');
 			});
 
-		});	
+			// Shopping Routes
+			Route::prefix('shopping')->group(function () {
 
+				// Store routes
+				Route::get('/', 'ShoppingController@index')->name('shopping');
+
+				// Cart Routes
+				Route::prefix('cart')->group(function () {
+					Route::get('/', 'CartController@index')->name('cart');
+			
+					// in the future make these post
+					Route::get('/item/add', 'CartController@addItem');
+					Route::get('/item/remove', 'CartController@removeItem');
+					// in the future make these post
+				});
+
+			});	
+
+		});
 	});
+});
 
+Route::get('/', function() {
+	return 'Homepage';
 });
 
 // Routes Logged in Users Can Access
