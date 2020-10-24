@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::domain('{teamSlug}.' . env('APP_URL'))->group(function () {
+Route::domain('{teamSlug}.' . env('APP_URL'))->middleware('team.parameter.defaults')->group(function () {
 	Route::namespace('Audience')->group(function () {
 
 		Route::get('/', 'Controller@index')->name('public-home');
@@ -54,16 +54,11 @@ Route::domain('{teamSlug}.' . env('APP_URL'))->group(function () {
 		});
 	});
 
-	Route::get('/dashboard', function ($request) {
-		dd(request('teamSlug'));
-	});
-});
+	// Route::get('/dashboard', function ($request) {
+	// 	dd(request('teamSlug'));
+	// });
 
-Route::get('/', function() {
-	return 'Homepage';
-});
-
-// Routes Logged in Users Can Access
+	// Routes Logged in Users Can Access
 Route::middleware(['auth',])->group(function () {
 
 	// Dashboard Routes
@@ -145,6 +140,11 @@ Route::middleware(['auth',])->group(function () {
 	Route::get('/stripe', 'StripeController@index')->name('stripe-index');
 	Route::get('/stripe/checkout', 'StripeController@checkout')->name('stripe-checkout');
 	Route::post('/stripe/checkout', 'StripeController@processCheckout');
+});
+});
+
+Route::get('/', function() {
+	return 'Homepage';
 });
 
 Route::namespace('SuperAdmin')->group(function () {
