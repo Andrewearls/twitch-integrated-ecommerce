@@ -1,6 +1,6 @@
-@extends('layouts.app')
+@extends('layouts.audience')
 
-@section('content')
+@section('page-content')
 //content goes here
 
 @endsection
