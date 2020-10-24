@@ -10,6 +10,7 @@
             </div>
         </div>
  -->    </form>
+    <a href="{{ route('public-home', ['teamSlug' => $team->id]) }}">View Website</a>
     <!-- Navbar-->
     <ul class="navbar-nav ml-auto ml-md-0">
         <li class="nav-item dropdown">
