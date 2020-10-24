@@ -15,6 +15,7 @@ class Controller extends OriginalController
      */
     public function index(Request $request, $teamSlug)
     {
-    	return $teamSlug;
+    	// return $teamSlug;
+        return view('audience.homepage');
     }
 }

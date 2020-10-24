@@ -53,6 +53,10 @@ Route::domain('{teamSlug}.' . env('APP_URL'))->group(function () {
 
 		});
 	});
+
+	Route::get('/dashboard', function ($request) {
+		dd(request('teamSlug'));
+	});
 });
 
 Route::get('/', function() {
