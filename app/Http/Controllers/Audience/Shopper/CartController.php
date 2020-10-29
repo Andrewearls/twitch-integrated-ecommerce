@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Shopper;
+namespace App\Http\Controllers\Audience\Shopper;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -25,9 +25,9 @@ class CartController extends Controller
 	 * @param Request
 	 * @return redirect
 	 */
-	public function addItem(Request $request, Cart $cart)
+	public function addItem(Request $request, Cart $cart, $productId)
 	{
-		$item = Product::find(1);
+		$item = Product::find($productId)->first();
 	
 		$cart->add($item);
 
