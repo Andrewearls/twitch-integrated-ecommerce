@@ -59,12 +59,12 @@ class Product extends Model
     }
 
     /**
-     * Define the user relationship.
+     * Define the Store relationship.
      *
-     * @return user
+     * @return Store
      */
-    public function user()
+    public function store()
     {
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Store');
     }
 }

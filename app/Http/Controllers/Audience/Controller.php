@@ -13,9 +13,11 @@ class Controller extends OriginalController
      * @param Request
      * @return view
      */
-    public function index(Request $request, $teamSlug)
+    public function index(Request $request)
     {
+        // dd($request->team);
+        // $team = Team::find($teamSlug)->first();
     	// return $teamSlug;
-        return view('audience.homepage');
+        return view('audience.homepage')->with(['team' => $request->team]);
     }
 }

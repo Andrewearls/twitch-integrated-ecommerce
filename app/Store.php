@@ -37,4 +37,14 @@ class Store extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Define the relationship with the products.
+     *
+     * @return App\Product
+     */
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
 }
