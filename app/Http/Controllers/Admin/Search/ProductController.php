@@ -15,6 +15,7 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {
-    	return view('layouts.product.inventory',['products' => $request->user()->products]);
+        // dd($request->user()->currentTeam->store->products);
+    	return view('layouts.product.inventory',['products' => $request->team->store->products]);
     }
 }

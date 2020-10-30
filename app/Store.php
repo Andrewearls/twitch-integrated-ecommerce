@@ -9,7 +9,7 @@ class Store extends Model
 {
     // Limit model to current team
     //https://github.com/mpociot/teamwork#limit-models-to-current-team
-    use UsedByTeams;
+    // use UsedByTeams;
 
     /**
      * The attributes that are mass assignable.
@@ -37,4 +37,14 @@ class Store extends Model
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Define the relationship with the products.
+     *
+     * @return App\Product
+     */
+    public function products()
+    {
+        return $this->hasMany('App\Product');
+    }
 }

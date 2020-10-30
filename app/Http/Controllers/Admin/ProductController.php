@@ -56,7 +56,8 @@ class ProductController extends Controller
      */
     public function update(Validator $request, $id = null)
     {
-    	$product = new Product;
+    	$product = new Product();
+        $store = $request->user()->currentTeam->store;
 
     	if (!empty($id)) {
     		$product = Product::find($id);
@@ -64,12 +65,15 @@ class ProductController extends Controller
     	}
 
     	// $product->user_id = $request->user->id;
-    	$product->user_id = 1;
+    	// $product->user_id = 1;
+        // dd($request->user()->currentTeam->id);
+        // dd($product);
+        // $product->store_id = $store->id;
     	$product->name = $request->name;
     	$product->price = $request->price;
     	$product->description = $request->description;
 
-    	$request->user()->products()->save($product);
+    	$store->products()->save($product);
 
     	return redirect()->route('inventory');
     }

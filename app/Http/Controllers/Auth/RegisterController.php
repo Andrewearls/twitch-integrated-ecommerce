@@ -69,7 +69,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'url' => str_replace(' ', '-', $data['name']),
+            // 'url' => str_replace(' ', '-', $data['name']),
         ]);
 
         $role = Role::where('title', 'guest')->first();

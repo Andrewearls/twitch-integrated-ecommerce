@@ -74,11 +74,7 @@ class CartInterface
 	/**
 	 * add items to the cart.
 	 *
-	 * @param id
-	 * @param name
-	 * @param price
-	 * @param quantity
-	 * @param options
+	 * @param product
 	 * @return cartItem
 	 */
 	public function add(Product $item, $quantity = 1)
@@ -90,6 +86,35 @@ class CartInterface
 					$quantity,
 					$item->options
 				);
+	}
+
+	/**
+	 * remove items from the cart.
+	 *
+	 * @param product
+	 * @return cartItem
+	 */
+	public function remove(Product $item, $quantity = 1)
+	{
+		$cartItem = $this->search($item);
+		// dd($cartItem->getUniqueId());
+		return ShoppingCart::remove($cartItem->getUniqueId());
+	}
+
+	/**
+	 * Search the shopping cart for an item.
+	 *		
+	 * @param Product
+	 * @return uniqueId || null
+	 */
+	public function search(Product $item)
+	{
+		foreach ($this->content() as $cartItem) {
+			if ($cartItem->id === $item->id) {
+				return $cartItem;
+			}
+		}
+		return null;
 	}
 
 	/**

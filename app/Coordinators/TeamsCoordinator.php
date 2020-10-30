@@ -7,7 +7,7 @@ use App\Team;
 use App\User;
 
 /**
- * Cordinate store actions
+ * Cordinate team actions
  */
 class TeamsCoordinator
 {
@@ -96,5 +96,17 @@ class TeamsCoordinator
 	public function getLoggedInTeam()
 	{
 		return $this->loggedInTeam;
+	}
+
+	/**
+	 * retrieve a team from the team slug.
+	 *
+	 * @param TeamSlug
+	 * @return App\Models\Team
+	 */
+	public function find($teamSlug)
+	{
+		$team = Team::first($teamSlug);
+		return $team;
 	}
 }
