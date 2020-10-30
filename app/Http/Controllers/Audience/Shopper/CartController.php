@@ -16,7 +16,8 @@ class CartController extends Controller
 	 */
 	public function index(Cart $cart)
 	{
-		return $cart->content();
+		// dd($cart->content());
+		return view('audience.shopping.cart')->with(['cart' => $cart->content()]);
 	}
 
 	/**
@@ -42,9 +43,14 @@ class CartController extends Controller
 	 * @param Request
 	 * @return redirect
 	 */
-	public function removeItem(Request $request)
+	public function removeItem(Request $request, Cart $cart, $productId)
 	{
-		$cart->remove($cartItem->uniqueId);
+		$item = Product::find($productId)->first();
+
+		$cart->remove($item);
+		
+		$cart->save();
+		
 		return redirect()->route('cart');
 	}
 

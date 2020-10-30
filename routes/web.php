@@ -45,7 +45,7 @@ Route::domain('{teamSlug}.' . env('APP_URL'))->middleware('team.parameter.defaul
 			
 					// in the future make these post
 					Route::get('/item/add/{productId}', 'CartController@addItem')->name('cart.item.add');
-					Route::get('/item/remove', 'CartController@removeItem');
+					Route::get('/item/remove/{itemId}', 'CartController@removeItem')->name('cart.item.remove');
 					// in the future make these post
 				});
 
