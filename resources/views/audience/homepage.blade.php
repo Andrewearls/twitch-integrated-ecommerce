@@ -2,7 +2,6 @@
 
 @section('page-content')
 	@foreach ($team->store->products as $product)
-		{{ $product }}
 		<div class="row justify-content-center">
 			<div class="col-10">
 				<div class="card">
