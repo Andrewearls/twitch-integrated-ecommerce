@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Shopper;
+namespace App\Http\Controllers\Audience\Shopper;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
+use App\Cart\CartInterface as Cart;
 
 class StripeController extends Controller
 {
@@ -42,9 +43,9 @@ class StripeController extends Controller
      * @param  request
      * @return view
      */
-    public function checkout(Request $request)
+    public function checkout(Request $request, Cart $cart)
     {
-    	return view('stripe.checkout');
+    	return view('stripe.checkout')->with(['cart' => $cart->checkout()]);
     }
 
     /**
@@ -53,10 +54,10 @@ class StripeController extends Controller
      * @param  request
      * @return view
      */
-    public function processCheckout(Request $request)
+    public function processCheckout(Request $request, Cart $cart)
     {
     	try {
-	    	$stripeCharge = $request->user()->charge(100,$request->paymentMethod);
+	    	$stripeCharge = $request->user()->charge($cart->checkout()->total,$request->paymentMethod);
 	    	//email the receipt to the user
 	    	//store the cart as payed for
 	    	return "success";

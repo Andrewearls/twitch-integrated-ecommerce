@@ -126,4 +126,19 @@ class CartInterface
 	{
 		return session(['cart'=>$this->content()]);
 	}
+
+	/**
+	 * return a checkout ready version of the cart.
+	 *
+	 * @return object/checkout/ready/cart
+	 */
+	public function checkout()
+	{
+		$cart = collect();
+
+		$cart->products = $this->content();
+		$cart->total = ShoppingCart::getTotal();
+
+		return $cart;
+	}
 }
