@@ -79,6 +79,7 @@ class CartInterface
 	 */
 	public function add(Product $item, $quantity = 1)
 	{
+		// dd($item->price);
 		return ShoppingCart::add(
 					$item->id,
 					$item->name,
@@ -137,7 +138,8 @@ class CartInterface
 		$cart = collect();
 
 		$cart->products = $this->content();
-		$cart->total = ShoppingCart::getTotal();
+		$cart->total = toDollars(ShoppingCart::getTotal());
+		// dd($cart->products);
 
 		return $cart;
 	}

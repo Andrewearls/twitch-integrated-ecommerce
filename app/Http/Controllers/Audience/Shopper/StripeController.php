@@ -57,7 +57,7 @@ class StripeController extends Controller
     public function processCheckout(Request $request, Cart $cart)
     {
     	try {
-	    	$stripeCharge = $request->user()->charge($cart->checkout()->total,$request->paymentMethod);
+	    	$stripeCharge = $request->user()->charge(toCents($cart->checkout()->total),$request->paymentMethod);
 	    	//email the receipt to the user
 	    	//store the cart as payed for
 	    	return "success";

@@ -28,8 +28,9 @@ class CartController extends Controller
 	 */
 	public function addItem(Request $request, Cart $cart, $productId)
 	{
-		$item = Product::find($productId)->first();
-	
+		// dd($productId);
+		$item = Product::find($productId);
+		// dd($item);
 		$cart->add($item);
 
 		$cart->save();

@@ -10,13 +10,14 @@
 			<div class="card-body">
 				@foreach($cart->products as $product)
 					<div>
+						{{$product->quantity}}
 						{{$product->name}}
-						{{$product->price}}
+						${{toDollars($product->price)}}
 					</div>
 				@endforeach
 			</div>
 			<div class="card-body">
-				Total {{$cart->total}}
+				Total: ${{$cart->total}}
 			</div>
 		</div>
 		<div class="card">
