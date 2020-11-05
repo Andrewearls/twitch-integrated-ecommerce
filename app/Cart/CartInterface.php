@@ -4,6 +4,8 @@ namespace App\Cart;
 
 use Melihovv\ShoppingCart\Facades\ShoppingCart;
 use App\Product;
+use App\User;
+
 /**
  * Interface with the shopping cart pacage
  */
@@ -59,6 +61,61 @@ class CartInterface
 		// });
 
 		return false;
+	}
+
+	/**
+	 * Get or set the instance of the cart.
+	 *
+	 * @param instance name || null
+	 * @return instance name
+	 */
+	public function instance($name = null)
+	{
+		if ($name !== null) {
+			ShoppingCart::instance($name);
+		}
+
+		return ShoppingCart::currentInstance();
+	}
+
+	/**
+	 * The cart has been checked out time to process.
+	 *
+	 * @param user
+	 * @return name of the instance
+	 */
+	public function process(User $user, $chargeId)
+	{
+		// Store the cart in a receipt category
+		$this->store($user, $chargeId);
+
+		// Switch instance
+		ShoppingCart::instance('default')->restore($user->id);
+
+		// Clear current instance
+		ShoppingCart::clear();
+		// $this->store($user, 'default');
+
+		$this->save();
+
+		return true;
+	}
+
+	/**
+	 * Persist current shopping cart instance to storage.
+	 *
+	 * @param name of the instance
+	 * @return name of the instance
+	 */
+	private function store(User $user, $name = null)
+	{
+		if ($name === null) {
+			$name = $this->instance();
+		}
+
+		ShoppingCart::instance($name)->store($user->id);
+
+		return $this;
 	}
 
 	/**

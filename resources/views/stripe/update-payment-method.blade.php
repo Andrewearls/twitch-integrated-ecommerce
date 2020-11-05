@@ -38,8 +38,8 @@
 					$.post("{{ route('stripe-checkout') }}", { _token: "{{csrf_token() }}", paymentMethod: paymentMethod.id })
 					.done(function (response){
 						// alert(response);
-						if(response == "success") {
-							window.location.replace("{{route('shopping-receipt')}}");
+						if(response !== "false") {
+							window.location.replace(response);
 						} else {
 							alert("something went wrong");
 						}

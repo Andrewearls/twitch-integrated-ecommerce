@@ -140,7 +140,7 @@ Route::domain('{teamSlug}.' . env('APP_URL'))->middleware('team.parameter.defaul
 					Route::get('/checkout', 'StripeController@checkout')->name('stripe-checkout');
 					Route::post('/checkout', 'StripeController@processCheckout');
 				});
-				Route::get('/receipt/{receiptId?}', 'ReceiptController@index')->name('shopping-receipt');
+				Route::get('/receipt/{receiptId}', 'ReceiptController@index')->name('shopping-receipt');
 			});
 		});
 	});

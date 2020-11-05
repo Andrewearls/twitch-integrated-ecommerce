@@ -14,8 +14,10 @@ class ReceiptController extends Controller
      * @param Optional ReceiptId
      * @return view
      */
-    public function index(Request $request, $receiptId = null)
+    public function index(Request $request, $receiptId)
     {
-    	return view('audience.shopping.receipt');
+        $receipt = $request->user()->receipts()->find($receiptId);
+
+    	return view('audience.shopping.receipt')->with('receipt', $receipt);
     }
 }

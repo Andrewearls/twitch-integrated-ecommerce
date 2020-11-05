@@ -9,6 +9,7 @@ use Mpociot\Teamwork\Traits\UserHasTeams;
 use Laravel\Cashier\Billable;
 use App\Article;
 use App\Role;
+use App\Receipt;
 
 class User extends Authenticatable
 {
@@ -88,5 +89,15 @@ class User extends Authenticatable
     public function stores()
     {
         return $this->hasMany('App\Store');
+    }
+
+    /**
+     * Define the relationship with receipts.
+     *
+     * @return App\Receipts
+     */
+    public function receipts()
+    {
+        return $this->hasMany('App\Receipt');
     }
 }
