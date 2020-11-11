@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Receipt;
 use App\Cart\CartInterface as Cart;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmation;
 class StripeController extends Controller
 {
 
@@ -61,7 +62,7 @@ class StripeController extends Controller
     	try {
             // Charge with stripe
 	    	$stripeCharge = $request->user()->charge(toCents($cart->checkout()->total),$request->paymentMethod);
-
+            
             // store the cart
             $cart->process($request->user(), $stripeCharge->id);
 
@@ -72,7 +73,11 @@ class StripeController extends Controller
                 'payment' => $stripeCharge->id,
             ]);
 
-	    	//email the receipt to the user
+	    	// email the receipt to the user
+            // This should be done in a queued job
+            Mail::to('andrew.e.earls@gmail.com')->send(new OrderConfirmation($receipt));
+
+            
 
 	    	return route('shopping-receipt', ['receiptId' => $receipt->id]);
     	} catch (Exception $e) {
