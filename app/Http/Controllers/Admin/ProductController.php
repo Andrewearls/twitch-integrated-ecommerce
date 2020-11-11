@@ -70,8 +70,12 @@ class ProductController extends Controller
         // dd($product);
         // $product->store_id = $store->id;
     	$product->name = $request->name;
-    	$product->price = $request->price;
+    	$product->price = toCents($request->price);
     	$product->description = $request->description;
+
+        // if ($product->isDirty('price')) {
+        //     dd('price is dirty');
+        // }
 
     	$store->products()->save($product);
 

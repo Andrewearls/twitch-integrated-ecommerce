@@ -4,6 +4,12 @@
 <div class="row justify-content-center">
 	<div class="col-10">
 		<div class="card">
+			<div class="card-header">
+				Cart
+				<div class="float-right">
+					<a href="{{route('stripe-checkout')}}">Checkout</a>
+				</div>
+			</div>
 			@foreach($cart as $item)
 				<div class="card-body">
 					{{$item->name}}

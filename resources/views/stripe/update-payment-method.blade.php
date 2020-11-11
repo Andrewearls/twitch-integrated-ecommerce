@@ -31,15 +31,15 @@
 
 		        if (error) {
 		            // Display "error.message" to the user...
-		            alert(error);
+		            alert(error.message);
 		        } else {
 		            // The card has been verified successfully...
 		            //send paymentMethod.id to server for processing
 					$.post("{{ route('stripe-checkout') }}", { _token: "{{csrf_token() }}", paymentMethod: paymentMethod.id })
 					.done(function (response){
-						alert(response);
-						if(response == "success") {
-							// reroute
+						// alert(response);
+						if(response !== "false") {
+							window.location.replace(response);
 						} else {
 							alert("something went wrong");
 						}

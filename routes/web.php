@@ -131,11 +131,18 @@ Route::domain('{teamSlug}.' . env('APP_URL'))->middleware('team.parameter.defaul
 			Route::get('/home', 'HomeController@index')->name('home');
 		});	
 
-		// Stripe Routes
-		Route::get('/stripe/portal', 'StripeController@billingPortal')->name('stripe-portal');
-		Route::get('/stripe', 'StripeController@index')->name('stripe-index');
-		Route::get('/stripe/checkout', 'StripeController@checkout')->name('stripe-checkout');
-		Route::post('/stripe/checkout', 'StripeController@processCheckout');
+		Route::namespace('Audience\Shopper')->group(function () {
+			Route::prefix('shopping')->group(function () {
+				Route::prefix('stripe')->group(function () {
+					// Stripe Routes
+					Route::get('/portal', 'StripeController@billingPortal')->name('stripe-portal');
+					Route::get('/', 'StripeController@index')->name('stripe-index');
+					Route::get('/checkout', 'StripeController@checkout')->name('stripe-checkout');
+					Route::post('/checkout', 'StripeController@processCheckout');
+				});
+				Route::get('/receipt/{receiptId}', 'ReceiptController@index')->name('shopping-receipt');
+			});
+		});
 	});
 });
 

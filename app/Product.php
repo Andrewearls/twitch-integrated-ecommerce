@@ -59,6 +59,19 @@ class Product extends Model
     }
 
     /**
+     * Get the price in cents format.
+     *
+     * @param price
+     * @return cents price
+     */
+    public function getPriceAttribute($price)
+    {
+        // dd(toDollars($price));
+        // return toDollars($price);
+        return $price;
+    }
+
+    /**
      * Define the Store relationship.
      *
      * @return Store

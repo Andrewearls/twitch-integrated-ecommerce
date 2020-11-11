@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Shopper;
+namespace App\Http\Controllers\Audience\Shopper;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
-
+use App\Receipt;
+use App\Cart\CartInterface as Cart;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderConfirmation;
 class StripeController extends Controller
 {
 
@@ -42,9 +45,10 @@ class StripeController extends Controller
      * @param  request
      * @return view
      */
-    public function checkout(Request $request)
+    public function checkout(Request $request, Cart $cart)
     {
-    	return view('stripe.checkout');
+        // dd($cart->instance());
+    	return view('stripe.checkout')->with(['cart' => $cart->checkout()]);
     }
 
     /**
@@ -53,13 +57,29 @@ class StripeController extends Controller
      * @param  request
      * @return view
      */
-    public function processCheckout(Request $request)
+    public function processCheckout(Request $request, Cart $cart)
     {
     	try {
-	    	$stripeCharge = $request->user()->charge(100,$request->paymentMethod);
-	    	//email the receipt to the user
-	    	//store the cart as payed for
-	    	return "success";
+            // Charge with stripe
+	    	$stripeCharge = $request->user()->charge(toCents($cart->checkout()->total),$request->paymentMethod);
+            
+            // store the cart
+            $cart->process($request->user(), $stripeCharge->id);
+
+            // create a receipt
+            $receipt = Receipt::create([
+                'user_id' => $request->user()->id,
+                'cart_name' => $cart->instance(),
+                'payment' => $stripeCharge->id,
+            ]);
+
+	    	// email the receipt to the user
+            // This should be done in a queued job
+            Mail::to('andrew.e.earls@gmail.com')->send(new OrderConfirmation($receipt));
+
+            
+
+	    	return route('shopping-receipt', ['receiptId' => $receipt->id]);
     	} catch (Exception $e) {
     		\Log::error($e);
     		return "false";
