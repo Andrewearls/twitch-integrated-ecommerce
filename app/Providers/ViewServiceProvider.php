@@ -25,7 +25,7 @@ class ViewServiceProvider extends ServiceProvider
     public function boot()
     {
         View::composer(
-            ['partials.topnav.admin', 'partials.sidenav.admin'], 'App\Http\View\Composers\TeamComposer'
+            ['audience.homepage', 'partials.topnav.admin', 'partials.sidenav.admin'], 'App\Http\View\Composers\TeamComposer'
         );
     }
 }
