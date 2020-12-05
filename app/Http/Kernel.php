@@ -62,7 +62,6 @@ class Kernel extends HttpKernel
         'role' => \App\Http\Middleware\CheckRole::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'team.owner' => \Mpociot\Teamwork\Middleware\TeamOwner::class,
-        'team.parameter.defaults' => \App\Http\Middleware\CurrentTeamDefaults::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
     ];

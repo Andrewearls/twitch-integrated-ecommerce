@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name('logout');
 
-Route::domain('{teamSlug}.' . env('APP_URL'))->middleware('team.parameter.defaults')->group(function () {
+// Route::domain('{teamSlug}.' . env('APP_URL'))->middleware('team.parameter.defaults')->group(function () {
 	Route::namespace('Audience')->group(function () {
 
 		Route::get('/', 'Controller@index')->name('public-home');
@@ -144,14 +144,14 @@ Route::domain('{teamSlug}.' . env('APP_URL'))->middleware('team.parameter.defaul
 			});
 		});
 	});
-});
+// });
 
 // Redirect to team login
 // Route::get('/dashboard', 'Admin\DashboardController@index');
 
-Route::get('/', function() {
-	return 'Homepage';
-});
+// Route::get('/', function() {
+// 	return 'Homepage';
+// });
 
 Route::namespace('SuperAdmin')->group(function () {
 	// Routes SuperAdmin Can Access
