@@ -26,6 +26,7 @@ class User extends Authenticatable
 
     /**
      * Use the Spatie Permissions pacakge
+     * https://spatie.be/docs/laravel-permission/v3/basic-usage/basic-usage
      */
     use HasRoles;
 
