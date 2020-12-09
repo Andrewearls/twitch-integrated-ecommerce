@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Mpociot\Teamwork\Traits\UserHasTeams;
+use Spatie\Permission\Traits\HasRoles;
 use Laravel\Cashier\Billable;
 use App\Article;
 use App\Role;
@@ -22,6 +23,11 @@ class User extends Authenticatable
      * Use the billble trait for casheer/stripe.
      */
     use Billable;
+
+    /**
+     * Use the Spatie Permissions pacakge
+     */
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -56,29 +62,6 @@ class User extends Authenticatable
     public function articles()
     {
         return $this->hasMany('App\Article');
-    }
-
-    /**
-     * Get the roles of this user
-     */
-    public function roles()
-    {
-        return $this->belongsToMany('App\Role', 'user_role');
-    }
-
-    /**
-     * Check for a given role
-     *      This looks like it should be in the middleware
-     */
-    public function hasRole($roleTitle)
-    {
-        $role = Role::where('title', $roleTitle)->first();
-
-        if($this->roles->contains($role)) {
-            return 'true';
-        }
-
-        return 'false';
     }
 
     /**

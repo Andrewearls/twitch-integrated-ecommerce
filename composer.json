@@ -18,7 +18,8 @@
         "laravel/ui": "^3.0",
         "melihovv/laravel-shopping-cart": "^7.0.2",
         "mpociot/teamwork": "^6.1",
-        "predis/predis": "^1.1"
+        "predis/predis": "^1.1",
+        "spatie/laravel-permission": "^3.18"
     },
     "require-dev": {
         "facade/ignition": "^2.3.6",
