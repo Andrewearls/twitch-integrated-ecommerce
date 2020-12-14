@@ -5,7 +5,7 @@
 
                 <!-- Core Heading -->
                 <div class="sb-sidenav-menu-heading">Core</div>
-                @if(permissions === Customer)
+                <!-- if(permissions === Customer) -->
                 <!-- Core Item Dashboard -->
                 <a class="nav-link" href="{{ route('dashboard') }}"
                     ><div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
