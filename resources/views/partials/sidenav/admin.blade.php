@@ -13,7 +13,8 @@
                 >
 
                 <!-- if team has a store resource -->
-                @if($team->store)
+                @if($team->store && auth()->user()->can('edit products'))
+
                 <!-- Core Item Store -->
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStore" aria-expanded="false" aria-controls="collapseStore"
                     ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -43,6 +44,7 @@
                 @endif
 
                 <!-- Core Item Settings -->
+                @if(auth()->user()->can('edit resources'))
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSettings" aria-expanded="false" aria-controls="collapseSettings"
                     ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
                     Settings
@@ -63,10 +65,14 @@
 
                     </nav>
                 </div>
+                @endif
+
+                @if(auth()->user()->can('edit articles') || auth()->user()->can('edit social media'))
 
                 <!-- Interface Heading -->
                 <div class="sb-sidenav-menu-heading">Interface</div>
 
+                @can('edit articles')
                 <!-- Interface Item Articles -->
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseArticles" aria-expanded="false" aria-controls="collapseArticles"
                     ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
@@ -88,6 +94,7 @@
 
                     </nav>
                 </div>
+                @endcan
 
                 <!-- Interface Item Products -->
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseProducts" aria-expanded="false" aria-controls="collapseProducts"
@@ -107,6 +114,7 @@
                     </nav>
                 </div>
 
+                @can('edit social media')
                 <!-- Interface Item Social Media -->
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSocialMedia" aria-expanded="false" aria-controls="collapseSocialMedia"
                     ><div class="sb-nav-link-icon"><i class="fas fa-book-open"></i></div>
@@ -121,6 +129,9 @@
                         </a>
                     </nav>
                 </div>
+                @endcan
+
+                @endif
                 <!-- <div class="collapse" id="collapsePages" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
                     <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
                         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#pagesCollapseAuth" aria-expanded="false" aria-controls="pagesCollapseAuth"

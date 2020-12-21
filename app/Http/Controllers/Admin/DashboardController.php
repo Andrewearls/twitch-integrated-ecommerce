@@ -10,7 +10,7 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        // dd($request->user()->team);
+        // dd(Auth()->user()->hasPermissionTo('edit resources'));
     	return view('layouts.page.dashboard');
     }
 
