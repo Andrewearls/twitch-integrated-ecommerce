@@ -10,12 +10,12 @@
 				<div class="card-body form-row">
 					<div class="col-6">
 					<!-- <label for="productName">Name</label> -->
-						<input type="text" id="productName" class="form-control" name="name" value="{{ $product->name }}" aria-describedby="productName" placeholder="Enter Product Name">
+						<input type="text" id="productName" class="form-control" name="name" value="{{ old('name') ?? $product->name }}" aria-describedby="productName" placeholder="Enter Product Name">
 					</div>
 					<div class="col-3">
 
 					<!-- <label>Price</label> -->
-						<input type="text" class="form-control" name="price" value="{{ $product->price }}" aria-describedby="productPrice" placeholder="Enter Product Price">
+						<input type="text" class="form-control" name="price" value="{{ old('price') ?? $product->price }}" aria-describedby="productPrice" placeholder="Enter Product Price">
 					</div>
 				</div>
 			</div>
@@ -24,7 +24,7 @@
 				<div class="card-body row justify-content-end">
 					<div class="col-6">				
 						<label>Image:</label>
-						<input type="file" class="form-control-file" name="image" value="{{ $product->image_url }}">
+						<input type="file" class="form-control-file" name="image" value="{{ old('image_url') ?? $product->image_url }}">
 					</div>
 				</div>
 			</div>
@@ -33,7 +33,7 @@
 				<div class="card-body row">
 					<div class="col-10">				
 						<label>Description</label>
-						<textarea name="description" class="form-control" rows="10">{{ $product->description }}</textarea>
+						<textarea name="description" class="form-control" rows="10">{{ old('description') ?? $product->description }}</textarea>
 					</div>
 				</div>
 
