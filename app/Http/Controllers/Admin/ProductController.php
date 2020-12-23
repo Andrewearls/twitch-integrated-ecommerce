@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductFormValidator as Validator;
 use App\Product;
+use App\Image;
 
 class ProductController extends Controller
 {
@@ -56,28 +57,33 @@ class ProductController extends Controller
      */
     public function update(Validator $request, $id = null)
     {
+        $user = auth()->user();
+
+        // Save the image
+        $image = new Image();  
+        $image->image = file_get_contents($request->file('image'));      
+        $image->save();
+        $image->refresh();
+        // $image = $user->currentTeam->images()->save($image);
+        // $images = json_encode(array($image->id));
+
+        // make the product
     	$product = new Product();
-        $store = $request->user()->currentTeam->store;
+        $store = $user->currentTeam->store;
 
     	if (!empty($id)) {
-    		$product = Product::find($id);
-    		
+    		$product = Product::find($id);    		
     	}
 
-    	// $product->user_id = $request->user->id;
-    	// $product->user_id = 1;
-        // dd($request->user()->currentTeam->id);
-        // dd($product);
-        // $product->store_id = $store->id;
     	$product->name = $request->name;
     	$product->price = toCents($request->price);
     	$product->description = $request->description;
 
-        // if ($product->isDirty('price')) {
-        //     dd('price is dirty');
-        // }
-
     	$store->products()->save($product);
+
+        // Attach image to product
+        $product->refresh();
+        $product->images()->attach($image->id);
 
     	return redirect()->route('inventory');
     }

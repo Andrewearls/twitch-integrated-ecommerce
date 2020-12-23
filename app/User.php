@@ -96,4 +96,14 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Receipt');
     }
+
+    /**
+     * Define the relationship with images.
+     *
+     * @return App\Image
+     */
+    public function images()
+    {
+        return $this->hasMany('App\Image', 'owner_id', 'id');
+    }
 }

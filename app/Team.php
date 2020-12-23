@@ -15,4 +15,14 @@ class Team extends TeamworkTeam
     {
     	return $this->hasOne('App\Store');
     }
+
+    /**
+     * Define the relationship with images.
+     *
+     * @return App\Image
+     */
+    public function images()
+    {
+    	return $this->hasMany('App\Image');
+    }
 }

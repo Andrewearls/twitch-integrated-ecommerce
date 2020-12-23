@@ -80,4 +80,14 @@ class Product extends Model
     {
         return $this->belongsTo('App\Store');
     }
+
+    /**
+     * Define the Image relationship.
+     *
+     * @return App\Image
+     */
+    public function images()
+    {
+        return $this->belongsToMany('App\Image');
+    }
 }

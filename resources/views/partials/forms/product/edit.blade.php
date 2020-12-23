@@ -1,7 +1,7 @@
 <br>
 <div class="row justify-content-center">
 	<div class="col-10">
-		<form method="POST" action="{{ route('product-update', [$product->id ?? '']) }}">
+		<form method="POST" action="{{ route('product-update', [$product->id ?? '']) }}" enctype="multipart/form-data">
 			@csrf 
 			<div class="card form-group">
 				<div class="card-header">
