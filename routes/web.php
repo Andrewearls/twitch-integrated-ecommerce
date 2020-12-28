@@ -49,13 +49,15 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 					// in the future make these post
 				});
 
+				Route::get('/orders', 'OrderController@index')->name('my-orders');
+
 			});	
 
 		});
 	});
 
 	// Routes Logged in Users Can Access
-	Route::middleware(['auth',])->group(function () {
+	Route::middleware(['auth', 'can:view dashboard'])->group(function () {
 
 		// Dashboard Routes
 		Route::prefix('dashboard')->group(function () {
@@ -97,6 +99,11 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 						Route::get('/delete/{product}', 'ProductController@delete')->name('product-delete');
 						Route::post('/update/{product?}', 'ProductController@update')->name('product-update');
 						Route::get('/{product}/view', 'ProductController@index')->name('product');
+					});
+
+					// Orders
+					Route::prefix('orders')->group(function () {
+						Route::get('/', 'OrderController@index')->name('store-orders');
 					});
 				});
 			});	

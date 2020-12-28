@@ -55,11 +55,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    @if (Auth::user()->hasRole('author')) 
+                                    @if (Auth::user()->can('veiw dashboard')) 
                                     <a class="dropdown-item" href="{{ route('dashboard') }}">
                                         Dashboard
                                     </a>
                                     @endif
+                                    <a class="dropdown-item" href="{{ route('my-orders') }}">
+                                        My Orders
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

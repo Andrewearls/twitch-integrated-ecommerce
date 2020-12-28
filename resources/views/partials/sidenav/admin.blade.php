@@ -13,34 +13,44 @@
                 >
 
                 <!-- if team has a store resource -->
-                @if($team->store && auth()->user()->can('edit products'))
 
-                <!-- Core Item Store -->
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStore" aria-expanded="false" aria-controls="collapseStore"
-                    ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                    Store
-                    <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
-                ></a>
-                <div class="collapse" id="collapseStore" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
-                    <nav class="sb-sidenav-menu-nested nav">
+                @if($team->store)
+                    @if(auth()->user()->can('edit products'))
 
-                        <!-- Store Sub Item Products -->
-                        <a class="nav-link" href="{{ route('inventory') }}">
-                            Products
-                        </a>
+                    <!-- Core Item Store -->
+                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseStore" aria-expanded="false" aria-controls="collapseStore"
+                        ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
+                        Store
+                        <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
+                    ></a>
+                    <div class="collapse" id="collapseStore" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
+                        <nav class="sb-sidenav-menu-nested nav">
 
-                        <!-- Store Sub Item Settings -->
-                        <a class="nav-link" href="{{ route('store-edit') }}">
-                            Settings (doesn't work)
-                        </a>
+                            <!-- Store Sub Item Products -->
+                            <a class="nav-link" href="{{ route('inventory') }}">
+                                Products
+                            </a>
 
-                        <!-- Aritcle Sub Item My Articles -->
-                        <!-- <a class="nav-link" href="{{ route('store-list') }}">
-                            My Stores
-                        </a> -->
+                            @if(auth()->user()->can('manage orders'))
+                            <a class="nav-link" href="{{route('store-orders')}}">
+                                Orders
+                            </a>
+                            @endif
 
-                    </nav>
-                </div>
+                            <!-- Store Sub Item Settings -->
+                            <a class="nav-link" href="{{ route('store-edit') }}">
+                                Settings (doesn't work)
+                            </a>
+
+                            
+                            <!-- Aritcle Sub Item My Articles -->
+                            <!-- <a class="nav-link" href="{{ route('store-list') }}">
+                                My Stores
+                            </a> -->
+
+                        </nav>
+                    </div>
+                    @endif
                 @endif
 
                 <!-- Core Item Settings -->
