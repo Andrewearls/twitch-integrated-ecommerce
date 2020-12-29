@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Team;
 use App\Store;
 
 class StoreController extends Controller
@@ -39,33 +40,27 @@ class StoreController extends Controller
      */
     public function edit($store = null)
     {
-        if (empty($store)) {
+        $team = Team::find(env('APP_TEAM'));
+        // dd(empty($team->store));
+        if (empty($team->store)) {
             return redirect()->route('store-new');
         }
 
-    	$store = Store::first($store);
-        return view('admin.layouts.pages.store.edit')->with(['store' => $store]);
+    	// $store = Store::first($store);
+        return view('admin.layouts.pages.store.edit')->with(['store' => $team->store]);
     }
 
     /**
      * Update a store.
      *
      * @param Request
-     * @param store id
      * @return redirect
      */
-    public function update(Request $request, $id = null)
+    public function update(Request $request)
     {
-        $store = new Store;
+        $store = Store::find(env('APP_STORE'));
 
-        if (!empty($id)) {
-            $store = Store::find($id);
-        }
-
-        $store->name = $request->name;
-        $store->slug = $request->slug;
-
-        $request->user()->stores()->save($store);
+        $store->save();
 
         return redirect()->route('dashboard');
     }

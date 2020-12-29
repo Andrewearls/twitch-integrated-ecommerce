@@ -16,6 +16,7 @@ class CreateStoresTable extends Migration
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->foreignId('team_id');
+            $table->string('stripe_user_id')->nullable();
             $table->timestamps();
         });
     }

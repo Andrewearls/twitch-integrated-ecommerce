@@ -14,6 +14,7 @@ class PermissionsSeeder extends Seeder
 {
     /**
      * create the initial roles and permissions. 
+     * https://spatie.be/docs/laravel-permission/v3/basic-usage/basic-usage
      *
      * @return void
      */
@@ -30,6 +31,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'manage orders']);
         Permission::create(['name' => 'manage my orders']);
         Permission::create(['name' => 'view dashboard']);
+        Permission::create(['name' => 'manage stripe account']);
 
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'admin']);
@@ -69,5 +71,14 @@ class PermissionsSeeder extends Seeder
 
         $user->assignRole($role2);
         $user->teams()->attach($team, ['permissions' => $role2->id]);
+
+        // Create a test admin
+        $user = User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@test.com',
+        ]);
+
+        $user->assignRole($role1);
+        $uesr->teams()->attach($team, ['permissions' => $role1->id]);
     }
 }

@@ -88,7 +88,7 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 
 					Route::get('/new', 'StoreController@create')->name('store-new');
 					Route::get('/edit', 'StoreController@edit')->name('store-edit');
-					Route::post('/update/{store?}', 'StoreController@update')->name('store-update');
+					Route::post('/update', 'StoreController@update')->name('store-update');
 
 
 					// Product Routes
@@ -137,6 +137,9 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 
 			Route::get('/home', 'HomeController@index')->name('home');
 		});	
+
+		// Stripe Callback
+		Route::get('/webhook/internal/stripe/oauth/{code?}', 'Admin\StripeController@index')->name('stripe-connect-callback')->middleware('can:manage stripe account');
 
 		Route::namespace('Audience\Shopper')->group(function () {
 			Route::prefix('shopping')->group(function () {
