@@ -140,7 +140,9 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 
 		// Stripe Callback
 		Route::get('/webhook/internal/stripe/oauth/{code?}', 'Admin\StripeController@index')->name('stripe-connect-callback')->middleware('can:manage stripe account');
+	});
 
+	Route::middleware('can:checkout')->group(function () {
 		Route::namespace('Audience\Shopper')->group(function () {
 			Route::prefix('shopping')->group(function () {
 				Route::prefix('stripe')->group(function () {
@@ -154,6 +156,7 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 			});
 		});
 	});
+	
 // });
 
 // Redirect to team login

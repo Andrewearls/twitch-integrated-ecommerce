@@ -15,6 +15,6 @@ class Receipt extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'cart_name', 'payment',
+        'user_id', 'cart_content', 'payment', 'total',
     ];
 }

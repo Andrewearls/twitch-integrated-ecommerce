@@ -60,6 +60,9 @@
                                         Dashboard
                                     </a>
                                     @endif
+                                    <a class="dropdown-item" href="{{ route('cart') }}">
+                                        Cart
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('my-orders') }}">
                                         My Orders
                                     </a>

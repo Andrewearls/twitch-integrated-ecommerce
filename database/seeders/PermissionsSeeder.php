@@ -32,6 +32,7 @@ class PermissionsSeeder extends Seeder
         Permission::create(['name' => 'manage my orders']);
         Permission::create(['name' => 'view dashboard']);
         Permission::create(['name' => 'manage stripe account']);
+        Permission::create(['name' => 'checkout']);
 
         // create roles and assign existing permissions
         $role1 = Role::create(['name' => 'admin']);
@@ -43,6 +44,7 @@ class PermissionsSeeder extends Seeder
 
         $role2 = Role::create(['name' => 'customer']);
         $role2->givePermissionTo('manage my orders');
+        $role2->givePermissionTo('checkout');
 
         $role3 = Role::create(['name' => 'Super Admin']);
         // gets all permissions via Gate::before rule; see AuthServiceProvider
@@ -79,6 +81,6 @@ class PermissionsSeeder extends Seeder
         ]);
 
         $user->assignRole($role1);
-        $uesr->teams()->attach($team, ['permissions' => $role1->id]);
+        $user->teams()->attach($team, ['permissions' => $role1->id]);
     }
 }

@@ -17,7 +17,9 @@ class CreateReceiptsTable extends Migration
             $table->id();
             $table->timestamps();
             $table->integer('user_id');
-            $table->string('cart_name');
+            $table->string('cart_content');
+            $table->string('total');
+            $table->boolean('transaction_compleated')->default(false);
             $table->string('payment');
         });
     }

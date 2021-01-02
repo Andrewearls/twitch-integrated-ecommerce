@@ -60,24 +60,31 @@ class StripeController extends Controller
     public function processCheckout(Request $request, Cart $cart)
     {
     	try {
-            // Charge with stripe
-	    	$stripeCharge = $request->user()->charge(toCents($cart->checkout()->total),$request->paymentMethod);
-            
-            // store the cart
-            $cart->process($request->user(), $stripeCharge->id);
-
+            $chargeAmount = toCents($cart->checkout()->total);
+            \Log::error($cart->content());
             // create a receipt
             $receipt = Receipt::create([
                 'user_id' => $request->user()->id,
-                'cart_name' => $cart->instance(),
-                'payment' => $stripeCharge->id,
+                'cart_content' => $cart->content(),
+                'total' => $chargeAmount,
+                'payment' => $request->paymentMethod,
             ]);
+
+            // Charge with stripe
+            $stripeCharge = $request->user()->charge($chargeAmount, $request->paymentMethod, ['transfer_group' => $receipt->id]);
+
+            $receipt->transaction_compleated = true;
+            $receipt->save();
+
+            // store the cart
+            $cart->process($request->user(), $request->paymentMethod);       
+            // $receipt->refresh();
+            
+            
 
 	    	// email the receipt to the user
             // This should be done in a queued job
             Mail::to('andrew.e.earls@gmail.com')->send(new OrderConfirmation($receipt));
-
-            
 
 	    	return route('shopping-receipt', ['receiptId' => $receipt->id]);
     	} catch (Exception $e) {
