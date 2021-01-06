@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\PermissionRegistrar;
-use Illuminate\Support\Facades\Hash;
+
 
 class PermissionsSeeder extends Seeder
 {
@@ -48,39 +48,5 @@ class PermissionsSeeder extends Seeder
 
         $role3 = Role::create(['name' => 'Super Admin']);
         // gets all permissions via Gate::before rule; see AuthServiceProvider
-
-        // create Super Admin user
-        $user = User::factory()->create([
-            'name' => env('SUPER_ADMIN_NAME'),
-            'email' => env('SUPER_ADMIN_EMAIL'),
-            'password' => Hash::make(env('SUPER_ADMIN_PASSWORD')),
-        ]);
-
-        // Create the team for the Super Admin
-        $team = Team::create([
-			'name' => $user->name . ' Team',
-			'owner_id' => $user->id,
-		]);
-
-        $user->assignRole($role3);
-        $user->teams()->attach($team, ['permissions' => $role3->id]);
-
-        // Create a test customer
-        $user = User::factory()->create([
-            'name' => 'Customer',
-            'email' => 'customer@test.com',
-        ]);
-
-        $user->assignRole($role2);
-        $user->teams()->attach($team, ['permissions' => $role2->id]);
-
-        // Create a test admin
-        $user = User::factory()->create([
-            'name' => 'Admin',
-            'email' => 'admin@test.com',
-        ]);
-
-        $user->assignRole($role1);
-        $user->teams()->attach($team, ['permissions' => $role1->id]);
     }
 }

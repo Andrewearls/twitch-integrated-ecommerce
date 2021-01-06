@@ -15,10 +15,16 @@ class TeamSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::first();
-        $team = Team::create::([
-        	'name' = $user->name . ' Team',
-        	'owner_id' = $user->id,
+        $superAdmin = User::role('Super Admin')->first();
+        // Create the team for the Super Admin
+        $team = Team::create([
+            'name' => $superAdmin->name . ' Team',
+            'owner_id' => $superAdmin->id,
         ]);
+
+        $users = User::all();
+        foreach ($users as $user) {
+            $user->attachTeam($team);
+        }
     }
 }
