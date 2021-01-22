@@ -50,6 +50,17 @@ class Store extends Model
     }
 
     /**
+     * Set the Stripe Id.
+     *
+     * @param string $value
+     * @return void
+     */
+    public function setStripeIdAttribute($stripeAccountId)
+    {
+        $this->attributes['stripe_user_id'] = $stripeAccountId;
+    }
+
+    /**
      * Define the relationship with the products.
      *
      * @return App\Product

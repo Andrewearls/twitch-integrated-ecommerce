@@ -90,6 +90,13 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 					Route::get('/edit', 'StoreController@edit')->name('store-edit');
 					Route::post('/update', 'StoreController@update')->name('store-update');
 
+					// Stripe Routes For Owner
+					Route::prefix('stripe')->group(function () {
+						Route::get('/account/create', 'StripeAccountController@create')->name('stripe-account-create');
+						Route::get('/account/pending', 'StripeAccountController@pending')->name('stripe-account-pending');
+						Route::get('/account/create/callback', 'StripeAccountController@createCallback')->name('stripe-account-create-callback');
+					});
+					
 
 					// Product Routes
 					Route::prefix('product')->group(function () {

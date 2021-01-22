@@ -13,6 +13,7 @@ use App\ReceiptStatus;
 
 /**
  * Initiate Stripe (E)lectronic (F)unds (T)ransfer
+ * These need to be reworked compleatly
  */
 class InitiateStripeEFT implements ShouldQueue
 {
@@ -48,7 +49,9 @@ class InitiateStripeEFT implements ShouldQueue
     public function handle()
     {
         // Calculate fees
-        $accruedExpence = $this->receipt->total;
+        $total = $this->receipt->total;
+        // Deduct fees
+        $accruedExpence = $total * ((100-6) / 100);
 
         try {
             // Process ETF
@@ -56,7 +59,8 @@ class InitiateStripeEFT implements ShouldQueue
                 'amount' => $accruedExpence,
                 'currency' => 'usd',
                 'destination' => $this->accountPayable,
-                'group' => $this->receipt->name,
+                'source_transaction' => $this->receipt->name,
+                // 'livemode' => false,
             ]);
 
             // Mark as compleated

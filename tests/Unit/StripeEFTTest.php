@@ -15,11 +15,11 @@ class StripeEFTTest extends TestCase
      *
      * @return void
      */
-    public function testPayableAccountExists()
+    public function PayableAccountCreation()
     {
-    	$team = Team::find(1);
+    	$store = Team::find(1)->store;
 
-        $this->assertNotEmpty($team->store->stripe_user_id);
+        $this->assertNotEmpty($store->stripeId);
     }
 
     /**
