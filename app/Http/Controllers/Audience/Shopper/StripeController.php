@@ -52,7 +52,7 @@ class StripeController extends Controller
     }
 
     /**
-     * process the payment with stripe.
+     * Process the payment with stripe.
      *
      * @param  request
      * @return view
