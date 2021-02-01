@@ -64,12 +64,23 @@ class Product extends Model
     }
 
     /**
+     * Get the price in Dollar fromat.
+     *
+     * @param Int price in cents
+     * @return Int price in dollars
+     */
+    public function getPriceAttribute($price)
+    {
+        return toDollars($price);
+    }
+
+    /**
      * Get the price in cents format.
      *
      * @param price
      * @return cents price
      */
-    public function getPriceAttribute($price)
+    public function getCentPriceAttribute($price)
     {
         // dd(toDollars($price));
         // return toDollars($price);

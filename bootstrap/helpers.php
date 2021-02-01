@@ -29,3 +29,25 @@ if (! function_exists('toDollars')) {
     	return number_format($amountInCents / 100, 2);
     }
 }
+
+if (! function_exists('limitChars')) {
+    /**
+     * Retreive only the first X Chars from a string
+     *
+     * @param string    $unlimitedString
+     * @param int       $limitingQuantity
+     * @return string   $limitedString
+     *
+     */
+
+    function limitChars($unlimitedString, $limitingQuantity)
+    {
+        $limitedString = $unlimitedString;
+
+        if (strlen($unlimitedString) > $limitingQuantity) {
+            $limitedString = substr($unlimitedString, 0, $limitingQuantity) . '...';
+        }
+
+        return $limitedString;
+    }
+}
