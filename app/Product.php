@@ -5,6 +5,12 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
+//https://moneyphp.org/en/stable/getting-started.html
+use Money\Currencies\ISOCurrencies;
+use Money\Currency;
+use Money\Formatter\DecimalMoneyFormatter;
+use Money\Money;
+
 
 class Product extends Model
 {
@@ -69,22 +75,25 @@ class Product extends Model
      * @param Int price in cents
      * @return Int price in dollars
      */
-    public function getPriceAttribute($price)
+    public function getCentAttribute($price)
     {
         return toDollars($price);
     }
 
     /**
-     * Get the price in cents format.
+     * Get the price in USD format.
      *
      * @param price
-     * @return cents price
+     * @return USD price
      */
-    public function getCentPriceAttribute($price)
+    public function getUsdAttribute()
     {
-        // dd(toDollars($price));
-        // return toDollars($price);
-        return $price;
+        $money = new Money($this->price, new Currency('USD'));
+        $currencies = new ISOCurrencies();
+
+        $moneyFormatter = new DecimalMoneyFormatter($currencies);
+
+        return $moneyFormatter->format($money);
     }
 
     /**
