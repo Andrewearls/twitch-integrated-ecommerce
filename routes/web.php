@@ -39,6 +39,9 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 				// Store routes
 				Route::get('/', 'ShoppingController@index')->name('shopping');
 
+				// Product Routes
+				Route::get('product/{id}/description', 'ProductPreviewController@index')->name('product-preview');
+
 				// Cart Routes
 				Route::prefix('cart')->group(function () {
 					Route::get('/', 'CartController@index')->name('cart');
@@ -49,6 +52,7 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 					// in the future make these post
 				});
 
+				// Orders Routes
 				Route::get('/orders', 'OrderController@index')->name('my-orders');
 
 			});	

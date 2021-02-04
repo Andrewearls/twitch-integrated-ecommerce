@@ -1,5 +1,28 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
+#product_preview .carosel div {
+  overflow: hidden;
+}
+
+#product_preview .carosel img {
+  overflow: hidden;
+}
+
+.button {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  background-color: lightgray;
+  color: white;
+  text-decoration: none;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.button:hover {
+  text-decoration: none;
+  color: white;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors
@@ -10880,9 +10903,5 @@ a.text-dark:focus {
     color: inherit;
     border-color: #dee2e6;
   }
-}
-
-.hidden {
-  display: none;
 }
 
