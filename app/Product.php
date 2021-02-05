@@ -115,4 +115,14 @@ class Product extends Model
     {
         return $this->belongsToMany('App\Image');
     }
+
+    /**
+     * Define the Primary Image relationship.
+     *
+     * @return App\Image
+     */
+    public function primary()
+    {
+        return $this->images()->first();
+    }
 }
