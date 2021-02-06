@@ -94,7 +94,7 @@ class User extends Authenticatable
      */
     public function receipts()
     {
-        return $this->hasMany('App\Receipt');
+        return $this->hasMany('App\Receipt', 'user_email', 'email');
     }
 
     /**

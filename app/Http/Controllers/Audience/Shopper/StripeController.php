@@ -33,6 +33,7 @@ class StripeController extends Controller
 	 */
     public function billingPortal(Request $request)
     {
+        // i don't think this is being used
     	$customer = $request->user()->createOrGetStripeCustomer();
     	return $request->user()->redirectToBillingPortal(
     		route('stripe-index')
@@ -59,25 +60,32 @@ class StripeController extends Controller
      */
     public function processCheckout(Request $request, Cart $cart)
     {
+        $user = $request->user();
+
+        if ($user->empty()) {
+            $user = new User;
+            $user->email = $request->email;
+        }
+
     	try {
             $chargeAmount = toCents($cart->checkout()->total);
             \Log::error($cart->content());
             // create a receipt
             $receipt = Receipt::create([
-                'user_id' => $request->user()->id,
+                'user_email' => $user->email,
                 'cart_content' => $cart->content(),
                 'total' => $chargeAmount,
                 'payment' => $request->paymentMethod,
             ]);
 
             // Charge with stripe
-            $stripeCharge = $request->user()->charge($chargeAmount, $request->paymentMethod, ['transfer_group' => $receipt->id]);
+            $stripeCharge = $user->charge($chargeAmount, $request->paymentMethod, ['transfer_group' => $receipt->id]);
 
             $receipt->transaction_compleated = true;
             $receipt->save();
 
             // store the cart
-            $cart->process($request->user(), $request->paymentMethod);       
+            $cart->process($user, $request->paymentMethod);       
             // $receipt->refresh();
             
             

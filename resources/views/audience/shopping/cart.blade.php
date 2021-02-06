@@ -7,7 +7,11 @@
 			<div class="card-header">
 				Cart
 				<div class="float-right">
-					<a href="{{route('stripe-checkout')}}">Checkout</a>
+					@guest
+						<a href="{{route('stripe-checkout')}}">Checkout</a>
+					@else
+						<a href="{{route('stripe-checkout')}}">Checkout</a>
+					@endcan
 				</div>
 			</div>
 
@@ -37,13 +41,14 @@
                     			<div class="p-2">
                       				<img src="{{$item->primary()->image}}" class="img-fluid rounded shadow-sm">
                       			<div class="ml-3 d-inline-block align-middle">
-                        			<h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{$item->name}}</a>
+                        			<h5 class="mb-0"> <a href="{{route('product-preview', ['id' => $item->id])}}" class="text-dark d-inline-block align-middle">{{$item->name}}</a>
                         			<!-- </h5><span class="text-muted font-weight-normal font-italic d-block">Category: Watches</span> -->
                       				</div>
                     			</div>
                   			</th>
                   			<td class="border-0 align-middle"><strong>${{$item->usd}}</strong></td>
                   			<td class="border-0 align-middle"><strong>{{$item->quantity}}</strong></td>
+                  			<!-- add buttons that adjust quantity -->
                   			<td class="border-0 align-middle"><a href="{{route('cart.item.remove', ['itemId' => $item->id])}}" class="text-dark"><i class="fa fa-trash"></i></a></td>
                 		</tr>
                 		@endforeach

@@ -153,7 +153,9 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 		Route::get('/webhook/internal/stripe/oauth/{code?}', 'Admin\StripeController@index')->name('stripe-connect-callback')->middleware('can:manage stripe account');
 	});
 
-	Route::middleware('can:checkout')->group(function () {
+	
+
+	// Route::middleware('can:checkout')->group(function () {
 		Route::namespace('Audience\Shopper')->group(function () {
 			Route::prefix('shopping')->group(function () {
 				Route::prefix('stripe')->group(function () {
@@ -166,7 +168,9 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 				Route::get('/receipt/{receiptId}', 'ReceiptController@index')->name('shopping-receipt');
 			});
 		});
-	});
+	// });
+
+	
 	
 // });
 
