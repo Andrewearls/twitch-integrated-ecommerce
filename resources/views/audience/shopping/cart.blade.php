@@ -7,11 +7,7 @@
 			<div class="card-header">
 				Cart
 				<div class="float-right">
-					@guest
-						<a href="{{route('stripe-checkout')}}">Checkout</a>
-					@else
-						<a href="{{route('stripe-checkout')}}">Checkout</a>
-					@endcan
+					<a href="{{route('stripe-checkout')}}">Checkout</a>
 				</div>
 			</div>
 

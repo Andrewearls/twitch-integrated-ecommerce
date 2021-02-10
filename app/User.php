@@ -13,6 +13,7 @@ use Laravel\Cashier\Billable;
 use App\Article;
 use App\Role;
 use App\Receipt;
+use App\AddressType;
 
 class User extends Authenticatable
 {
@@ -38,7 +39,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password', 'url',
+        'first_name', 'last_name', 'email', 'password', 'url',
     ];
 
     /**
@@ -58,6 +59,36 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    /**
+     * Retrieve the Name.
+     *
+     * @return string $name
+     */
+    public function getNameAttribute()
+    {
+        return $this->firstName . ' ' . $this->lastName; 
+    }
+
+    /**
+     * Retrieve First Name.
+     *
+     * @return string $firstName
+     */
+    public function getFirstNameAttribute()
+    {
+        return $this->attributes['first_name'];
+    }
+
+    /**
+     * Retrieve Last Name.
+     *
+     * @return string $lastName
+     */
+    public function getLastNameAttribute()
+    {
+        return $this->attributes['last_name'];
+    }
 
     /**
      * Create a new factory instance for the model.
@@ -105,5 +136,37 @@ class User extends Authenticatable
     public function images()
     {
         return $this->hasMany('App\Image', 'owner_id', 'id');
+    }
+
+    /**
+     * Define the relationship with Addresses.
+     *
+     * @return App\Address
+     */
+    public function addresses()
+    {
+        return $this->hasMany('App\Address');
+    }
+
+    /**
+     * Retrieve Billing Address.
+     *
+     * @return App\Address
+     */
+    public function getBillingAddressAttribute()
+    {
+        //this should be a function on the addresses model
+        return $this->addresses()->where('type', '=', AddressType::BILLING)->first();
+    }
+
+    /**
+     * Retrieve Shipping Address.
+     *
+     * @return App\Address
+     */
+    public function getShippingAddressAttribute()
+    {
+        //this should be a function on the addresses model
+        return $this->addresses()->where('type', '=', AddressType::SHIPPING)->first();
     }
 }

@@ -27,7 +27,7 @@ class StripeEFTTest extends TestCase
      *
      * @return view
      */
-    public function testEFTCompleated()
+    public function EFTCompleated()
     {
     	$receipt = Receipt::factory()->create();
 

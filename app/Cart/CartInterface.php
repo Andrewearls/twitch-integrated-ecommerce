@@ -194,7 +194,16 @@ class CartInterface
 	{
 		$cart = collect();
 
-		$cart->products = $this->content();
+		//this should be moved to $this->contents()
+		$cart->products = [];
+
+		foreach ($this->content() as $item) {
+		    $product = Product::find($item->id);
+		    $product->quantity = $item->quantity;
+		    $cart->products[] = $product;
+		}
+		//this should be moved to $this->contents()
+
 		$cart->total = toDollars(ShoppingCart::getTotal());
 		// dd($cart->products);
 

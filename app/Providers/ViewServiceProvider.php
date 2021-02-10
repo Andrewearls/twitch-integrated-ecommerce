@@ -27,5 +27,9 @@ class ViewServiceProvider extends ServiceProvider
         View::composer(
             ['audience.homepage', 'partials.topnav.admin', 'partials.sidenav.admin'], 'App\Http\View\Composers\TeamComposer'
         );
+
+        View::composer(
+            ['stripe.checkout'], 'App\Http\View\Composers\AddressComposer'
+        );
     }
 }

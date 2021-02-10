@@ -5,6 +5,8 @@ namespace Database\Seeders;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 use App\User;
+use App\Address;
+use App\AddressType;
 
 class UserSeeder extends Seeder
 {
@@ -17,7 +19,8 @@ class UserSeeder extends Seeder
     {
         // create Super Admin user
         $superAdmin = User::factory()->create([
-            'name' => env('SUPER_ADMIN_NAME'),
+            'first_name' => 'Test',
+            'last_name' => env('SUPER_ADMIN_NAME'),
             'email' => env('SUPER_ADMIN_EMAIL'),
             'password' => Hash::make(env('SUPER_ADMIN_PASSWORD')),
         ]);
@@ -27,7 +30,8 @@ class UserSeeder extends Seeder
 
         // Create a test admin
         $admin = User::factory()->create([
-            'name' => 'Admin',
+            'first_name' => 'Test',
+            'last_name' => 'Admin',
             'email' => 'admin@test.com',
         ]);
         // Assign Customer Role
@@ -36,11 +40,18 @@ class UserSeeder extends Seeder
 
          // Create a test customer
         $customer = User::factory()->create([
-            'name' => 'Customer',
+            'first_name' => 'Test',
+            'last_name' => 'Customer',
             'email' => 'customer@test.com',
         ]);
-        // Assign Admin Role
+        // Assign Customer Role
         $customer->assignRole('customer');
+
+        // Assign Billing Address
+        $customer->addresses()->save(Address::factory()->create(['type' => AddressType::BILLING]));
+
+        // Assign Shipping Address
+        $customer->addresses()->save(Address::factory()->create(['type' => AddressType::SHIPPING]));
 
     }
 }
