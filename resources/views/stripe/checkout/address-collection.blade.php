@@ -15,9 +15,10 @@
   <div class="col-md-5 mb-3">
     <label for="country">Country</label>
     <select class="custom-select d-block w-100" id="country" required="">
-      <option value="">Choose...</option>
+      <option value="{{$country->cca3}}" selected="selected">{{$country->name->common}}</option>
+<!--       <option value="">Choose...</option>
       <option value="USA" selected="selected">United States</option>
-    </select>
+ -->    </select>
     <div class="invalid-feedback">
       Please select a valid country.
     </div>
@@ -26,7 +27,10 @@
     <label for="state">State</label>
     <select class="custom-select d-block w-100" id="state" required="">
       <option value="">Choose...</option>
-      <option>California</option>
+      <option disabled>──────────</option>
+      @foreach($country->states as $state)
+        <option value="{{$state['postal']}}">{{$state['name']}}</option>
+      @endforeach
     </select>
     <div class="invalid-feedback">
       Please provide a valid state.

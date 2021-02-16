@@ -31,5 +31,9 @@ class ViewServiceProvider extends ServiceProvider
         View::composer(
             ['stripe.checkout'], 'App\Http\View\Composers\AddressComposer'
         );
+
+        View::composer(
+            ['stripe.checkout.address-collection'], 'App\Http\View\Composers\CountryStateComposer'
+        );
     }
 }
