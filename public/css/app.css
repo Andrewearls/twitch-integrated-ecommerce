@@ -23,6 +23,23 @@
   color: white;
 }
 
+#cc-name {
+  font-size: 16px;
+  font-weight: 500;
+}
+
+#cc-name:focus {
+  border: 1px solid lightgray;
+  border-color: lightgray;
+  box-shadow: none;
+}
+
+#stripe-payment-card {
+  border: 1px solid lightgray;
+  border-radius: 5px;
+  color: #495057;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

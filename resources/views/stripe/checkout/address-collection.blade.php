@@ -29,7 +29,11 @@
       <option value="">Choose...</option>
       <option disabled>──────────</option>
       @foreach($country->states as $state)
-        <option value="{{$state['postal']}}">{{$state['name']}}</option>
+        @if ($address->state === $state['name'])
+        <option value="{{$state['name']}}" selected="selected">{{$state['name']}}</option>
+        @else
+        <option value="{{$state['name']}}">{{$state['name']}}</option>
+        @endif
       @endforeach
     </select>
     <div class="invalid-feedback">

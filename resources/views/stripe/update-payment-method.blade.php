@@ -1,12 +1,12 @@
-<input id="card-holder-name" type="text">
+<!-- <input id="card-holder-name" type="text"> -->
 
 <!-- Stripe Elements Placeholder -->
 <div id="card-element"></div>
 
-<button id="card-button">
+<!-- <button id="card-button">
     Process Payment
 </button>
-	
+	 -->
 @push('footer-scripts')
 	<script src="https://js.stripe.com/v3/"></script>
 
@@ -15,7 +15,28 @@
 		    const stripe = Stripe("{{ env('STRIPE_KEY') }}");
 
 		    const elements = stripe.elements();
-		    const cardElement = elements.create('card');
+		    const cardElement = elements.create('card', {
+		    	style: {
+		    	    base: {
+		    	      	iconColor: '#495057',
+		    	      	color: '#495057',
+		    	      	fontWeight: '500',
+		    	      	fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
+		    	      	fontSize: '16px',
+		    	      	fontSmoothing: 'antialiased',
+		    	      	':-webkit-autofill': {
+		    	        	color: '#495057',
+		    	      	},
+		    	      	'::placeholder': {
+		    	        	color: '#495057',
+		    	      	},
+		    	    },
+		    	    invalid: {
+		    	      	iconColor: '#FFC7EE',
+		    	      	color: '#FFC7EE',
+		    	    },	
+		    	},
+		    });
 
 		    cardElement.mount('#card-element');
 	    

@@ -13,6 +13,7 @@
 
 <div class="row">
   <div class="col-md-6 mb-3">
+
     <label for="cc-name">Name on card</label>
     <input type="text" class="form-control" id="cc-name" placeholder="" required="">
     <small class="text-muted">Full name as displayed on card</small>
@@ -46,6 +47,11 @@
   </div>
 </div>
 <hr class="mb-4">
+<div class="card">
+  <div id="stripe-payment-card" class="card-body">
+    @include('stripe.update-payment-method')
+  </div>
+</div>
 <!--      <span class="_hsShareImage hsShareImage">&nbsp;</span></body>
       <div class="card-header">
         <h2>Checkout</h2>
