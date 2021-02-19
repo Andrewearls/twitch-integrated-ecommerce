@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\User;
 use App\Receipt;
+use App\ReceiptStatus;
 use App\Cart\CartInterface as Cart;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderConfirmation;
@@ -62,30 +63,36 @@ class StripeController extends Controller
     {
         $user = $request->user();
 
-        if ($user->empty()) {
+        if (empty($user)) {
             $user = new User;
             $user->email = $request->email;
+            // $user->save();
         }
-
+        \Log::error($cart->instance());
+        // \Log::error($cart->checkout()->total))*100);
     	try {
             $chargeAmount = toCents($cart->checkout()->total);
-            \Log::error($cart->content());
+            // \Log::error($cart->content());
             // create a receipt
             $receipt = Receipt::create([
                 'user_email' => $user->email,
-                'cart_content' => $cart->content(),
+                // this line should be deleted
+                'cart_content' => $cart->instance(),
+                // this line should be deleted
                 'total' => $chargeAmount,
                 'payment' => $request->paymentMethod,
+                'status' => ReceiptStatus::NOTPAYED,
             ]);
 
             // Charge with stripe
             $stripeCharge = $user->charge($chargeAmount, $request->paymentMethod, ['transfer_group' => $receipt->id]);
 
-            $receipt->transaction_compleated = true;
+            $receipt->status = ReceiptStatus::PAYED;
+            // \Log::error($receipt);
             $receipt->save();
 
             // store the cart
-            $cart->process($user, $request->paymentMethod);       
+            $cart->process($user, $receipt->id);       
             // $receipt->refresh();
             
             

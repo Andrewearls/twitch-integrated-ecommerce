@@ -15,6 +15,16 @@ class Receipt extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'cart_content', 'payment', 'total', 'current_status',
+        'user_email', 'cart_content', 'payment', 'total', 'current_status', 'status',
     ];
+
+    /**
+     * Define the relationship with the user.
+     *
+     * @return App\User
+     */
+    public function user()
+    {
+    	return $this->belongsTo('App\User', 'user_email', 'email');
+    }
 }

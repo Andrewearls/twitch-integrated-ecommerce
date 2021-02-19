@@ -9,6 +9,7 @@ class ReceiptStatus extends Model
 {
     use HasFactory;
 
+    const NOTPAYED = "CustomerHasNotPayed";
     const PAYED = "CustomerHasPayed";
     const EFT_READY = "ReadyForEFT";
     const EFT_PROCESSING = "ProcessingEFT";

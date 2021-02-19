@@ -14,26 +14,27 @@
 <div class="row">
   <div class="col-md-5 mb-3">
     <label for="country">Country</label>
-    <select class="custom-select d-block w-100" id="country" required="">
+    <select class="custom-select d-block w-100 country-dropdown" required="">
       <option value="{{$country->cca3}}" selected="selected">{{$country->name->common}}</option>
 <!--       <option value="">Choose...</option>
       <option value="USA" selected="selected">United States</option>
- -->    </select>
+ -->    
+    </select>
     <div class="invalid-feedback">
       Please select a valid country.
     </div>
   </div>
   <div class="col-md-4 mb-3">
     <label for="state">State</label>
-    <select class="custom-select d-block w-100" id="state" required="">
+    <select class="custom-select d-block w-100 state-dropdown" required="">
       <option value="">Choose...</option>
       <option disabled>──────────</option>
       @foreach($country->states as $state)
-        @if ($address->state === $state['name'])
-        <option value="{{$state['name']}}" selected="selected">{{$state['name']}}</option>
+        @isset($address->state)
+          <option value="{{$state['name']}}" selected="selected">{{$state['name']}}</ option>
         @else
-        <option value="{{$state['name']}}">{{$state['name']}}</option>
-        @endif
+          <option value="{{$state['name']}}">{{$state['name']}}</option>
+        @endisset
       @endforeach
     </select>
     <div class="invalid-feedback">

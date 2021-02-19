@@ -3,7 +3,7 @@
 <div class="row">
   <div class="col-md-6 mb-3">
     <label for="cc-name">Name on card</label>
-    <input type="text" class="form-control" id="cc-name" placeholder="" value="Test Card" required="">
+    <input type="text" class="form-control" id="card-holder-name" placeholder="" value="Test Card" required="">
     <small class="text-muted">Full name as displayed on card</small>
     <div class="invalid-feedback">
       Name on card is required
@@ -17,6 +17,12 @@
     </div>
   </div> -->
 </div>
+
+Number: 4242 4242 4242 4242
+Exp: 02/22 
+CVV: 222 
+Zip: 22222
+
 
 <div class="row">
   <div id="stripe-payment-card" class="col mb-3 ml-3 p-2">

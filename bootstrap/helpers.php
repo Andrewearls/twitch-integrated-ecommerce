@@ -10,7 +10,7 @@ if (! function_exists('toCents')) {
     */
 
     function toCents($amountInDollars) {
-        return intval($amountInDollars * 100);
+        return intval(floatval(str_replace(',', '', $amountInDollars)) * 100);
     }
 }
 

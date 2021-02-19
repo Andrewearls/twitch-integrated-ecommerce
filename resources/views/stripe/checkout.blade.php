@@ -29,7 +29,7 @@
 				            		@include('stripe.checkout.payment')
 				            	@endif
 			            
-			            		<button class="btn btn-primary btn-lg btn-block mb-3" type="submit">Continue to checkout</button>
+			            		<button class="btn btn-primary btn-lg btn-block mb-3" id="card-button" type="button">Continue to checkout</button>
 			          		</form>
 			        	</div>
 			     	</div>

@@ -84,13 +84,13 @@ class CartInterface
 	 * @param user
 	 * @return name of the instance
 	 */
-	public function process(User $user, $chargeId)
+	public function process(User $user, $receiptId)
 	{
 		// Store the cart in a receipt category
-		// $this->store($user, $chargeId);
+		$this->store($user, $receiptId);
 
 		// Switch instance
-		// ShoppingCart::instance('default')->restore($user->id);
+		ShoppingCart::instance('default')->restore($user->id);
 
 		// Clear current instance
 		ShoppingCart::clear();

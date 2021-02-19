@@ -9,7 +9,7 @@ use App\Team;
 class StripeController extends Controller
 {
     /**
-     * return the users connection.
+     * set the team stripe id.
      *
      * @param Request
      * @return connection
