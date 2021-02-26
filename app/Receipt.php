@@ -19,6 +19,16 @@ class Receipt extends Model
     ];
 
     /**
+     * Return the created timestamp.
+     *
+     * @return time $created_at
+     */
+    public function getCheckoutTimeAttribute()
+    {
+    	return date_format($this->created_at, 'l, F j, o');
+    }
+
+    /**
      * Define the relationship with the user.
      *
      * @return App\User

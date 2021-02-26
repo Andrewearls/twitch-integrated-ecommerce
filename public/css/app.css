@@ -40,6 +40,101 @@
   color: #495057;
 }
 
+.invoice-wrapper {
+  background: #FFF;
+  border: 0px;
+  border-top: 1px solid #CDD3E2;
+  padding: 40px 40px 60px;
+  margin-top: 40px;
+}
+
+.invoice-wrapper .payment-details {
+  border-top: 2px solid #EBECEE;
+  margin-top: 30px;
+  padding-top: 20px;
+  line-height: 22px;
+}
+
+.invoice-wrapper .payment-details span {
+  color: #A9B0BB;
+  display: block;
+}
+
+.invoice-wrapper .payment-details a {
+  display: inline-block;
+  margin-top: 5px;
+}
+
+.invoice-wrapper .line-items {
+  margin-top: 40px;
+}
+
+.invoice-wrapper .line-items .headers {
+  color: #A9B0BB;
+  font-size: 13px;
+  letter-spacing: 0.3px;
+  border-bottom: 2px solid #EBECEE;
+  padding-bottom: 4px;
+}
+
+.invoice-wrapper .line-items .items {
+  margin-top: 8px;
+  border-bottom: 2px solid #EBECEE;
+  padding-bottom: 8px;
+}
+
+.invoice-wrapper .line-items .items .item {
+  padding: 10px 0;
+  color: #696969;
+  font-size: 15px;
+}
+
+.invoice-wrapper .line-items .print {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.invoice-wrapper .line-items .print a {
+  display: inline-block;
+  border: 1px solid #9CB5D6;
+  padding: 13px 13px;
+  border-radius: 5px;
+  color: #708DC0;
+  font-size: 13px;
+  transition: all 0.2s linear;
+}
+
+.invoice-wrapper .line-items .print a:hover {
+  text-decoration: none;
+  border-color: #333;
+  color: #333;
+}
+
+.invoice-wrapper .line-items .total {
+  margin-top: 30px;
+}
+
+.invoice-wrapper .line-items .total .extra-notes {
+  float: left;
+  width: 40%;
+  text-align: left;
+  font-size: 13px;
+  color: #7A7A7A;
+  line-height: 20px;
+}
+
+.invoice-wrapper .line-items .total .extra-notes strong {
+  display: block;
+  margin-bottom: 5px;
+  color: #454545;
+}
+
+.invoice-wrapper .line-items .total .field {
+  margin-bottom: 7px;
+  font-size: 14px;
+  color: #555;
+}
+
 /*!
  * Bootstrap v4.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 The Bootstrap Authors

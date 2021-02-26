@@ -69,10 +69,10 @@ class CartInterface
 	 * @param instance name || null
 	 * @return instance name
 	 */
-	public function instance($name = null)
+	public function instance(User $user, $name = null)
 	{
 		if ($name !== null) {
-			ShoppingCart::instance($name);
+			ShoppingCart::instance($name)->restore($user->id);
 		}
 
 		return ShoppingCart::currentInstance();
@@ -186,6 +186,16 @@ class CartInterface
 	}
 
 	/**
+	 * return total.
+	 *
+	 * @return float $total
+	 */
+	public function total()
+	{
+		return toDollars(ShoppingCart::getTotal());
+	}
+
+	/**
 	 * return a checkout ready version of the cart.
 	 *
 	 * @return object/checkout/ready/cart
@@ -204,7 +214,7 @@ class CartInterface
 		}
 		//this should be moved to $this->contents()
 
-		$cart->total = toDollars(ShoppingCart::getTotal());
+		$cart->total = $this->total();
 		// dd($cart->products);
 
 		return $cart;
