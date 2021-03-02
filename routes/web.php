@@ -53,7 +53,7 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 				});
 
 				// Orders Routes
-				Route::get('/orders', 'OrderController@index')->name('my-orders');
+				// Route::get('/orders', 'OrderController@index')->name('my-orders');
 
 			});	
 
