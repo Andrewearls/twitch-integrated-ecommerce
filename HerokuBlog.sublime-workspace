@@ -1,0 +1,285 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"connec",
+				"connected_account_id"
+			],
+			[
+				"json",
+				"json_encode"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"console":
+	{
+		"height": 0.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/[HerokuBlog]",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/HerokuBlog",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/[.env,routes.php]",
+		"/home/andrew/Desktop/Moo.desktop",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Controllers/Admin/OrderController.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/admin/layouts/pages/store/orders.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/partials/sidenav/admin.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Controllers/Audience/Shopper/OrderController.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/database/seeders/PermissionsSeeder.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/layouts/app.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/audience/shopping/orders.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Providers/RouteServiceProvider.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/vendor/laravel/ui/auth-backend/AuthenticatesUsers.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Controllers/Auth/LoginController.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/partials/topnav/admin.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Requests/ProductFormValidator.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Image.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/database/migrations/2020_12_22_205052_create_images_table.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Product.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/User.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/partials/forms/product/edit.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Team.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Controllers/Admin/ProductController.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/layouts/product/edit.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/audience/shopping/store.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/audience/homepage.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Controllers/Audience/Controller.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/database/migrations/2020_09_05_233759_create_products_table.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/database/migrations/2020_12_22_231730_create_image_product_table.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Controllers/Admin/DashboardController.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Providers/AuthServiceProvider.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/audience/backend/sidenav/core.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/composer.json",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Coordinators/TeamsCoordinator.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/View/Composers/TeamComposer.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/database/factories/UserFactory.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/database/seeders/DatabaseSeeder.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Controllers/Admin/StoreController.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/database/seeders/TeamSeeder.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/phpunit.xml",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/database/factories/TeamFactory.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/tests/Unit/UserTest.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/tests/Unit/TeamTest.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/tests/Feature/LoginTest.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/tests/Browser/LoginTest.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/audience/backend/sidenav.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Listeners/TeamLogin.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Listeners/CreateUserTeam.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Controllers/Auth/RegisterController.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Controllers/Admin/Search/ProductController.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Coordinators/PermissionsCoordinator.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/database/migrations/2014_10_12_000000_create_users_table.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Kernel.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Providers/ViewServiceProvider.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/app/Http/Middleware/CurrentTeamDefaults.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/core/homepage.blade.php",
+		"/home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/views/welcome.blade.php"
+	],
+	"find":
+	{
+		"height": 28.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 28.0
+	},
+	"input":
+	{
+		"height": 70.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "HerokuBlog.sublime-project",
+	"replace":
+	{
+		"height": 52.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"migrations/store",
+				"database/migrations/2020_09_13_023854_create_stores_table.php"
+			],
+			[
+				"database/migrations/store",
+				"database/migrations/2020_09_13_023854_create_stores_table.php"
+			],
+			[
+				"store/edit",
+				"resources/views/admin/layouts/pages/store/edit.blade.php"
+			],
+			[
+				"sidena",
+				"resources/views/partials/sidenav/admin.blade.php"
+			],
+			[
+				"topnav",
+				"resources/views/partials/topnav/admin.blade.php"
+			],
+			[
+				"seeder/per",
+				"database/seeders/PermissionsSeeder.php"
+			],
+			[
+				"sidenav/",
+				"resources/views/partials/sidenav/admin.blade.php"
+			],
+			[
+				"audience/shopping/st",
+				"resources/views/audience/shopping/store.blade.php"
+			],
+			[
+				"audience/h",
+				"resources/views/audience/homepage.blade.php"
+			],
+			[
+				"partials",
+				"resources/views/partials/forms/product/edit.blade.php"
+			],
+			[
+				"partials/forms/",
+				"resources/views/partials/forms/product/edit.blade.php"
+			],
+			[
+				"layouts/product",
+				"resources/views/layouts/product/edit.blade.php"
+			],
+			[
+				"core/hom",
+				"resources/views/core/homepage.blade.php"
+			],
+			[
+				"welcom",
+				"resources/views/welcome.blade.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 313.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

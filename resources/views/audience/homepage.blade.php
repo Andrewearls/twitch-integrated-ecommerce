@@ -4,7 +4,6 @@
 	@if(isset($team->store))
 		@include('audience.shopping.store')
 	@endif
-//content goes here
 
 
 @endsection
