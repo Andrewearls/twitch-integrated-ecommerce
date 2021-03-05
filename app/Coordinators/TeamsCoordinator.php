@@ -29,8 +29,10 @@ class TeamsCoordinator
 	 * @param team
 	 * @return bool
 	 */
-	public function login(Team $team)
+	public function login()
 	{
+		$team = Team::find(env('APP_TEAM'));
+
 		try {
 			$this->user->switchTeam($team);
 		} catch (Exception $e) {

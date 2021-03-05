@@ -25,7 +25,7 @@ class ProductFactory extends Factory
             'store_id' => 1,
             'name' => $this->faker->words($nb = 2, $asText = True),
             'price' => $this->faker->numberBetween($min = 100, $max = 100000),
-            'description' => $this->faker->paragraph(),
+            'description' => $this->faker->paragraph($nb_sentences = 1),
             'options' => null,
         ];
     }
