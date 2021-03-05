@@ -38,7 +38,7 @@ class TeamworkSetupTables extends Migration
                 ->references('id')
                 ->on(\Config::get('teamwork.teams_table'))
                 ->onDelete('cascade');
-            $table->string('permissions');
+            // $table->string('permissions');
 
         });
 

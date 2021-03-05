@@ -70,6 +70,7 @@ class RegisterController extends Controller
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             // 'url' => str_replace(' ', '-', $data['name']),
+            // 'current_team_id' => env('APP_TEAM'),
         ]);
 
         $role = Role::where('title', 'guest')->first();

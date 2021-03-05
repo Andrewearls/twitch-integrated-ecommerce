@@ -1,0 +1,15 @@
+#cc-name {
+	font-size: 16px;
+	font-weight: 500;
+	&:focus{
+		border: 1px solid lightgray;
+		border-color: lightgray;
+		box-shadow: none;
+	}
+}
+
+#stripe-payment-card {
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	color: #495057;
+}

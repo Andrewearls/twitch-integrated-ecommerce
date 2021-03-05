@@ -11,16 +11,21 @@
         "php": "^7.3.0",
         "fideloper/proxy": "^4.2",
         "fruitcake/laravel-cors": "^1.0",
+        "fzaninotto/faker": "^1.9.1",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/cashier": "^12.3",
         "laravel/framework": "^8.0",
         "laravel/tinker": "^2.0",
         "laravel/ui": "^3.0",
         "melihovv/laravel-shopping-cart": "^7.0.2",
+        "moneyphp/money": "^3.3",
         "mpociot/teamwork": "^6.1",
-        "predis/predis": "^1.1"
+        "pragmarx/countries": "^0.7.2",
+        "predis/predis": "^1.1",
+        "spatie/laravel-permission": "^3.18"
     },
     "require-dev": {
+        "barryvdh/laravel-debugbar": "^3.5",
         "facade/ignition": "^2.3.6",
         "fzaninotto/faker": "^1.9.1",
         "laravel/homestead": "^11.1",

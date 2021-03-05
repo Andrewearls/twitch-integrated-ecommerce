@@ -29,7 +29,8 @@ class CreateUserTeam
     public function handle($event)
     {
         $teamsCoordinator = new TeamsCoordinator($event->user);
-        $team = $teamsCoordinator->createTeam('team ' . $event->user->name);
+        // $team = $teamsCoordinator->createTeam('team ' . $event->user->name);
+        $team = $teamsCoordinator->attach(env('APP_TEAM'));
         $teamsCoordinator->login($team);
     }
 }

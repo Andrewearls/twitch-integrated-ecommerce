@@ -3,15 +3,18 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
+use App\User;
 
-class ExampleTest extends TestCase
+class SuperAdminTest extends TestCase
 {
+	private $user;
+
     /**
-     * A basic test example.
+     * A basic unit test example.
      *
      * @return void
      */
-    public function testBasicTest()
+    public function testExample()
     {
         $this->assertTrue(true);
     }

@@ -49801,8 +49801,6 @@ var app = new Vue({
   el: '#app'
 });
 
-var Cropper = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module 'cropper'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
-
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -49937,8 +49935,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! c:\xampp\htdocs\webdev\HerokuBlog\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! c:\xampp\htdocs\webdev\HerokuBlog\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/andrew/Webdev/Laravel/Projects/HerokuBlog/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

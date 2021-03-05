@@ -17,7 +17,15 @@ class CartController extends Controller
 	public function index(Cart $cart)
 	{
 		// dd($cart->content());
-		return view('audience.shopping.cart')->with(['cart' => $cart->content()]);
+		$products = [];
+
+		foreach ($cart->content() as $item) {
+			$product = Product::find($item->id);
+			$product->quantity = $item->quantity;
+			$products[] = $product;
+		}
+
+		return view('audience.shopping.cart')->with(['cart' => $products]);
 	}
 
 	/**
@@ -46,7 +54,7 @@ class CartController extends Controller
 	 */
 	public function removeItem(Request $request, Cart $cart, $productId)
 	{
-		$item = Product::find($productId)->first();
+		$item = Product::find($productId);
 
 		$cart->remove($item);
 		

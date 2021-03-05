@@ -8,8 +8,9 @@ use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
+        // dd(Auth()->user()->hasPermissionTo('edit resources'));
     	return view('layouts.page.dashboard');
     }
 

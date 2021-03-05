@@ -4,9 +4,17 @@
 // Variables
 @import 'variables';
 
+// Product Styles
+@import 'products';
+
+// Stripe Styles
+@import 'stripe';
+
+// Receipt Styles
+@import 'receipt';
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-.hidden {
-	display: none;
-}
+
+

@@ -39,6 +39,9 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 				// Store routes
 				Route::get('/', 'ShoppingController@index')->name('shopping');
 
+				// Product Routes
+				Route::get('product/{id}/description', 'ProductPreviewController@index')->name('product-preview');
+
 				// Cart Routes
 				Route::prefix('cart')->group(function () {
 					Route::get('/', 'CartController@index')->name('cart');
@@ -49,13 +52,16 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 					// in the future make these post
 				});
 
+				// Orders Routes
+				// Route::get('/orders', 'OrderController@index')->name('my-orders');
+
 			});	
 
 		});
 	});
 
 	// Routes Logged in Users Can Access
-	Route::middleware(['auth',])->group(function () {
+	Route::middleware(['auth', 'can:view dashboard'])->group(function () {
 
 		// Dashboard Routes
 		Route::prefix('dashboard')->group(function () {
@@ -86,8 +92,15 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 
 					Route::get('/new', 'StoreController@create')->name('store-new');
 					Route::get('/edit', 'StoreController@edit')->name('store-edit');
-					Route::post('/update/{store?}', 'StoreController@update')->name('store-update');
+					Route::post('/update', 'StoreController@update')->name('store-update');
 
+					// Stripe Routes For Owner
+					Route::prefix('stripe')->group(function () {
+						Route::get('/account/create', 'StripeAccountController@create')->name('stripe-account-create');
+						Route::get('/account/pending', 'StripeAccountController@pending')->name('stripe-account-pending');
+						Route::get('/account/create/callback', 'StripeAccountController@createCallback')->name('stripe-account-create-callback');
+					});
+					
 
 					// Product Routes
 					Route::prefix('product')->group(function () {
@@ -97,6 +110,11 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 						Route::get('/delete/{product}', 'ProductController@delete')->name('product-delete');
 						Route::post('/update/{product?}', 'ProductController@update')->name('product-update');
 						Route::get('/{product}/view', 'ProductController@index')->name('product');
+					});
+
+					// Orders
+					Route::prefix('orders')->group(function () {
+						Route::get('/', 'OrderController@index')->name('store-orders');
 					});
 				});
 			});	
@@ -131,6 +149,13 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 			Route::get('/home', 'HomeController@index')->name('home');
 		});	
 
+		// Stripe Callback
+		Route::get('/webhook/internal/stripe/oauth/{code?}', 'Admin\StripeController@index')->name('stripe-connect-callback')->middleware('can:manage stripe account');
+	});
+
+	
+
+	// Route::middleware('can:checkout')->group(function () {
 		Route::namespace('Audience\Shopper')->group(function () {
 			Route::prefix('shopping')->group(function () {
 				Route::prefix('stripe')->group(function () {
@@ -143,7 +168,10 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 				Route::get('/receipt/{receiptId}', 'ReceiptController@index')->name('shopping-receipt');
 			});
 		});
-	});
+	// });
+
+	
+	
 // });
 
 // Redirect to team login

@@ -31,15 +31,20 @@ class TeamLogin
         $user = $event->user;
         $teamsCoordinator = new TeamsCoordinator($user);
         $teams = $user->teams;
+        // dd($teams);
 
         if ($teams->count() < 1) {
             // create a team for the user
-            $teamsCoordinator->createTeam('team ' . $user->name);
+            // $teamsCoordinator->createTeam('team ' . $user->name);
+            $team = $teamsCoordinator->attach(env('APP_TEAM'));
+            $teamsCoordinator->login($team);
         }
 
         if ($teams->count() === 1) {
             // sign user into team
-            $teamsCoordinator->login($teams->first());
+            // $teamsCoordinator->login($user->currentTeam);
+            $team = Team::find(env('APP_TEAM'));
+            $teamsCoordinator->login($team);
         }
     }
 }

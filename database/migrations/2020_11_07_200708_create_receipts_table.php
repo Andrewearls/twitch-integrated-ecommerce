@@ -16,9 +16,12 @@ class CreateReceiptsTable extends Migration
         Schema::create('receipts', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->integer('user_id');
-            $table->string('cart_name');
+            $table->string('user_email');
+            $table->string('cart_content');
+            $table->string('total');
+            $table->boolean('transaction_completed')->default(false);
             $table->string('payment');
+            $table->string('status');
         });
     }
 

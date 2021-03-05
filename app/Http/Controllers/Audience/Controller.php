@@ -15,7 +15,7 @@ class Controller extends OriginalController
      */
     public function index(Request $request)
     {
-        // dd($request->team);
+        // dd('data:image/png;base64, ' . base64_encode(file_get_contents('https://via.placeholder.com/150')));
         // $team = Team::find($teamSlug)->first();
     	// return $teamSlug;
         return view('audience.homepage')->with(['team' => $request->team]);

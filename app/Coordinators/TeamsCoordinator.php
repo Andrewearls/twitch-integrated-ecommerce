@@ -29,8 +29,10 @@ class TeamsCoordinator
 	 * @param team
 	 * @return bool
 	 */
-	public function login(Team $team)
+	public function login()
 	{
+		$team = Team::find(env('APP_TEAM'));
+
 		try {
 			$this->user->switchTeam($team);
 		} catch (Exception $e) {
@@ -64,6 +66,25 @@ class TeamsCoordinator
 		$this->login($team);
 
 		// return the team
+		return $team;
+	}
+
+	/**
+	 * Attatch a team to users list of teams.
+	 *
+	 * @param App/Team $id
+	 * @param Coordinator/PermissionsCoordinator $role
+	 * @return App/Team
+	 */
+	public function attach($teamId = null, $permissions = Permission::CAN_SHOP)
+	{
+		if ($teamId === null) {
+			$teamId = env('APP_TEAM');
+		}
+		$team = Team::find($teamId);
+
+		$this->user->teams()->attach($team, ['permissions' => json_encode($permissions)]);
+
 		return $team;
 	}
 

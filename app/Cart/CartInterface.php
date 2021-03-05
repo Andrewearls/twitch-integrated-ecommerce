@@ -69,10 +69,10 @@ class CartInterface
 	 * @param instance name || null
 	 * @return instance name
 	 */
-	public function instance($name = null)
+	public function instance(User $user, $name = null)
 	{
 		if ($name !== null) {
-			ShoppingCart::instance($name);
+			ShoppingCart::instance($name)->restore($user->id);
 		}
 
 		return ShoppingCart::currentInstance();
@@ -84,10 +84,10 @@ class CartInterface
 	 * @param user
 	 * @return name of the instance
 	 */
-	public function process(User $user, $chargeId)
+	public function process(User $user, $receiptId)
 	{
 		// Store the cart in a receipt category
-		$this->store($user, $chargeId);
+		$this->store($user, $receiptId);
 
 		// Switch instance
 		ShoppingCart::instance('default')->restore($user->id);
@@ -186,6 +186,16 @@ class CartInterface
 	}
 
 	/**
+	 * return total.
+	 *
+	 * @return float $total
+	 */
+	public function total()
+	{
+		return toDollars(ShoppingCart::getTotal());
+	}
+
+	/**
 	 * return a checkout ready version of the cart.
 	 *
 	 * @return object/checkout/ready/cart
@@ -194,8 +204,17 @@ class CartInterface
 	{
 		$cart = collect();
 
-		$cart->products = $this->content();
-		$cart->total = toDollars(ShoppingCart::getTotal());
+		//this should be moved to $this->contents()
+		$cart->products = [];
+
+		foreach ($this->content() as $item) {
+		    $product = Product::find($item->id);
+		    $product->quantity = $item->quantity;
+		    $cart->products[] = $product;
+		}
+		//this should be moved to $this->contents()
+
+		$cart->total = $this->total();
 		// dd($cart->products);
 
 		return $cart;
