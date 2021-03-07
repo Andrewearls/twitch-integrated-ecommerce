@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row justify-content-center">
-	<div class="col-9 card">
+<div class="row justify-content-center no-gutters">
+	<div class="col-sm-9 card">
 		<div class="card-body">
 			@yield('page-content')
 		</div>
