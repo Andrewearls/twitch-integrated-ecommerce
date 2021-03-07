@@ -1,8 +1,8 @@
 @extends('layouts.audience')
 
 @section('content')
-<div class="row justify-content-center">
-	<div class="col-10">
+<div class="row justify-content-center no-gutters">
+	<div class="col-12 col-md-10">
 		<div class="card">
 			<div class="card-header">
 				Cart
@@ -12,7 +12,7 @@
 			</div>
 
 			<!-- Shopping cart table -->
-          	<div class="table-responsive">
+          	<!-- <div class="table-responsive">
             	<table class="table">
               		<thead>
                 		<tr>
@@ -30,29 +30,55 @@
                   			</th>
                 		</tr>
               		</thead>
-              		<tbody>
+              		<tbody> -->
               			@foreach($cart as $item)
-                		<tr>
+                    <div class="row no-gutters border-bottom">
+                      <div class="col col-sm-4 col-md-auto">
+                        <div class="p-2">
+                          <img src="{{$item->primary()->image}}" class="img-fluid rounded shadow-sm">
+                        </div>
+                      </div>
+                      <div class="col pt-3">
+                        <div class="row">
+                          <div class="col-12 col-sm-3 text-center pt-sm-5">
+                            <h5 class="mb-0"> 
+                              <a href="{{route('product-preview', ['id' => $item->id])}}" class="text-dark">{{$item->name}}</a>
+                            </h5>
+                          </div>
+                          <div class="col-12 col-sm-3 text-center pt-sm-5">
+                            <strong>${{$item->usd}}</strong>
+                          </div>
+                          <div class="col-12 col-sm-3 text-center pt-sm-4">
+                            <div>Quantity</div>
+                            <div><strong>{{$item->quantity}}</strong></div>
+                          </div>
+                          <div class="col-12 col-sm-3 text-center pt-sm-5">
+                            <a href="{{route('cart.item.remove', ['itemId' => $item->id])}}" class="text-dark"><i class="fa fa-trash"></i></a>
+                          </div>
+                        </div>                        
+                      </div>
+                    </div>
+                		<!-- <tr>
                   			<th scope="row" class="border-0">
                     			<div class="p-2">
                       				<img src="{{$item->primary()->image}}" class="img-fluid rounded shadow-sm">
                       			<div class="ml-3 d-inline-block align-middle">
                         			<h5 class="mb-0"> <a href="{{route('product-preview', ['id' => $item->id])}}" class="text-dark d-inline-block align-middle">{{$item->name}}</a>
-                        			<!-- </h5><span class="text-muted font-weight-normal font-italic d-block">Category: Watches</span> -->
+                        			</h5><span class="text-muted font-weight-normal font-italic d-block">Category: Watches</span>
                       				</div>
                     			</div>
                   			</th>
                   			<td class="border-0 align-middle"><strong>${{$item->usd}}</strong></td>
                   			<td class="border-0 align-middle"><strong>{{$item->quantity}}</strong></td>
-                  			<!-- add buttons that adjust quantity -->
+                  			 add buttons that adjust quantity
                   			<td class="border-0 align-middle"><a href="{{route('cart.item.remove', ['itemId' => $item->id])}}" class="text-dark"><i class="fa fa-trash"></i></a></td>
-                		</tr>
+                		</tr> -->
                 		@endforeach
                 		
-              		</tbody>
+              		<!-- </tbody>
             	</table>
           	</div>
-        </div>
+        </div> -->
     </div>
 </div>    
 @endsection
