@@ -11,19 +11,8 @@
   <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" value="{{$address->address_two ?? ''}}">
 </div>
 
+
 <div class="row">
-  <div class="col-md-5 mb-3">
-    <label for="country">Country</label>
-    <select class="custom-select d-block w-100 country-dropdown" required="">
-      <option value="{{$country->cca3}}" selected="selected">{{$country->name->common}}</option>
-<!--       <option value="">Choose...</option>
-      <option value="USA" selected="selected">United States</option>
- -->    
-    </select>
-    <div class="invalid-feedback">
-      Please select a valid country.
-    </div>
-  </div>
   <div class="col-md-4 mb-3">
     <label for="state">State</label>
     <select class="custom-select d-block w-100 state-dropdown" required="">
@@ -39,6 +28,18 @@
     </select>
     <div class="invalid-feedback">
       Please provide a valid state.
+    </div>
+  </div>
+  <div class="col-md-5 mb-3">
+    <label for="country">Country</label>
+    <select class="custom-select d-block w-100 country-dropdown" required="">
+      <option value="{{$country->cca3}}" selected="selected">{{$country->name->common}}</option>
+<!--       <option value="">Choose...</option>
+      <option value="USA" selected="selected">United States</option>
+ -->    
+    </select>
+    <div class="invalid-feedback">
+      Please select a valid country.
     </div>
   </div>
   <div class="col-md-3 mb-3">
