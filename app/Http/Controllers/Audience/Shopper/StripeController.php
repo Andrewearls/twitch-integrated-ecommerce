@@ -11,6 +11,8 @@ use App\ReceiptStatus;
 use App\Cart\CartInterface as Cart;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderConfirmation;
+use App\Http\Requests\CheckoutFormValidator;
+
 class StripeController extends Controller
 {
 
@@ -54,6 +56,23 @@ class StripeController extends Controller
     }
 
     /**
+     * collect and store the addresses.
+     *
+     * @param Request
+     * @return view
+     */
+    public function addresses(CheckoutFormValidator $request, Cart $cart)
+    {
+        dd($request->all());
+        if (!isset($request->shipping['same'])) {
+            # code...
+        }
+        //validate addresses
+        //store addresses
+        //create receipt
+    }
+
+    /**
      * Process the payment with stripe.
      *
      * @param  request
@@ -61,23 +80,24 @@ class StripeController extends Controller
      */
     public function processCheckout(Request $request, Cart $cart)
     {
+        \Log::error($request->all());
         $user = $request->user();
-
+        \Log::error($user);
         if (empty($user)) {
             $user = new User;
             $user->email = $request->email;
             // $user->save();
         }
-        \Log::error($cart->instance());
+        \Log::error($cart->instance($user));
         // \Log::error($cart->checkout()->total))*100);
     	try {
             $chargeAmount = toCents($cart->checkout()->total);
             // \Log::error($cart->content());
             // create a receipt
             $receipt = Receipt::create([
-                'user_email' => $user->email,
+                'user_email' => $request->email,
                 // this line should be deleted
-                'cart_content' => $cart->instance(),
+                'cart_content' => $cart->instance($user),
                 // this line should be deleted
                 'total' => $chargeAmount,
                 'payment' => $request->paymentMethod,

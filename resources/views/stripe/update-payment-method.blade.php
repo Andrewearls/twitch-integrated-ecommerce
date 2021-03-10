@@ -56,7 +56,11 @@
 		        } else {
 		            // The card has been verified successfully...
 		            //send paymentMethod.id to server for processing
-					$.post("{{ route('stripe-checkout') }}", { _token: "{{csrf_token() }}", paymentMethod: paymentMethod.id })
+		            var formData = $('#form').serializeArray().reduce(function(obj, item) {
+					    obj[item.name] = item.value;
+					    return obj;
+					}, {});
+					$.post("{{ route('stripe-checkout') }}", { _token: "{{csrf_token() }}", paymentMethod: paymentMethod.id, formData })
 					.done(function (response){
 						// alert(response);
 						if(response !== "false") {

@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+@if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
 <div class="row justify-content-center no-gutters">
 	<div class="col-12 col-md-6">
 		<div class="card">
@@ -16,20 +25,15 @@
 			        	@include('stripe.checkout.cart')
 		        		<div class="col-md-8 order-md-1">
 		        	  		<h4 class="mb-3">Billing address</h4>
-		        	  		<form class="needs-validation" novalidate="">
+		        	  		<form class="needs-validation" novalidate="" action="{{route('submit-address')}}" method="post">
+		        	  			@csrf
 			        			@include('stripe.checkout.billing-address', ['address' => $billingAddress ?? ''])
 			        			<hr class="mb-4">
 			        			@include('stripe.checkout.shipping-address', ['address' => $shippingAddress ?? ''])
 
 			            		<hr class="mb-4">
-
-			            		@if(env('APP_ENV') === "local" || env('APP_ENV') === "testing")
-			            			@include('stripe.checkout.testing-payment')
-			            		@else
-				            		@include('stripe.checkout.payment')
-				            	@endif
 			            
-			            		<button class="btn btn-primary btn-lg btn-block mb-3" id="card-button" type="button">Continue to checkout</button>
+			            		<button class="btn btn-primary btn-lg btn-block mb-3" id="card-button" type="submit">Continue to checkout</button>
 			          		</form>
 			        	</div>
 			     	</div>
@@ -45,7 +49,7 @@
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
 
-<script>
+<!-- <script>
   // Example starter JavaScript for disabling form submissions if there are invalid fields
   (function() {
     'use strict';
@@ -66,5 +70,5 @@
       });
     }, false);
   })();
-</script>
+</script> -->
 @endpush
