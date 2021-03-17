@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Receipt;
 use App\ReceiptStatus;
+use App\Address;
+use App\AddressType;
 use App\Cart\CartInterface as Cart;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\OrderConfirmation;
@@ -63,13 +65,71 @@ class StripeController extends Controller
      */
     public function addresses(CheckoutFormValidator $request, Cart $cart)
     {
-        dd($request->all());
-        if (!isset($request->shipping['same'])) {
-            # code...
-        }
-        //validate addresses
+        // dd($request->all());
         //store addresses
+        $billingAddress = Address::create([
+            // 'user_id' => $request->user()->id ?? 0,
+            'address' => $request->billing['address'],
+            'address_two' => $request->billing['addressTwo'],
+            'city' => $request->billing['city'],
+            'country' => $request->billing['country'],
+            'state' => $request->billing['state'],
+            'zip' => $request->billing['zip'],
+            'type' => AddressType::BILLING,
+        ]);
+
+        if (isset($request->shipping['same'])) {
+            $shippingAddress = Address::create([
+                // 'user_id' => $request->user()->id ?? 0,
+                'address' => $request->billing['address'],
+                'address_two' => $request->billing['addressTwo'],
+                'city' => $request->billing['city'],
+                'country' => $request->billing['country'],
+                'state' => $request->billing['state'],
+                'zip' => $request->billing['zip'],
+                'type' => AddressType::SHIPPING,
+            ]);
+        } else {
+            $shippingAddress = Address::create([
+                // 'user_id' => $request->user()->id ?? 0,
+                'address' => $request->shipping['address'],
+                'address_two' => $request->shipping['addressTwo'],
+                'city' => $request->shipping['city'],
+                'country' => $request->shipping['country'],
+                'state' => $request->shipping['state'],
+                'zip' => $request->shipping['zip'],
+                'type' => AddressType::SHIPPING,
+            ]);
+        }
+
+        // attach address to user
+
         //create receipt
+        $receipt = Receipt::create([
+            'user_email' => $request->email,
+            // this line should be refactored
+            'cart_content' => $cart->instance($request->user()),
+            // this line should be refactored
+            'total' => toCents($cart->checkout()->total),
+            // 'payment' => $request->paymentMethod,
+            'status' => ReceiptStatus::NOTPAYED,
+        ]);
+
+
+        //redirect to payment
+        return redirect()->route('stripe-payment', ['receiptId' => $receipt->id, 'cart' => $cart]);
+    }
+
+    /**
+     * Return the payment collection form.
+     *
+     * @param Request
+     * @return view
+     */
+    public function payment(Request $request, Cart $cart)
+    {
+        // dd($cart);
+        return view('stripe.checkout.payment-collection')->with(['cart' => $cart->checkout()]);
     }
 
     /**
@@ -80,29 +140,26 @@ class StripeController extends Controller
      */
     public function processCheckout(Request $request, Cart $cart)
     {
-        \Log::error($request->all());
+        // \Log::error($request->all());
         $user = $request->user();
-        \Log::error($user);
-        if (empty($user)) {
-            $user = new User;
-            $user->email = $request->email;
-            // $user->save();
-        }
-        \Log::error($cart->instance($user));
+        // \Log::error($user);
+        // if (empty($user)) {
+        //     $user = new User;
+        //     $user->email = $request->email;
+        //     // $user->save();
+        // }
+        // \Log::error($cart->instance($user));
         // \Log::error($cart->checkout()->total))*100);
     	try {
-            $chargeAmount = toCents($cart->checkout()->total);
-            // \Log::error($cart->content());
+            // $chargeAmount = toCents($cart->checkout()->total);
+            \Log::error($cart->content());
             // create a receipt
-            $receipt = Receipt::create([
-                'user_email' => $request->email,
-                // this line should be deleted
+            $receipt = Receipt::where([
                 'cart_content' => $cart->instance($user),
-                // this line should be deleted
-                'total' => $chargeAmount,
-                'payment' => $request->paymentMethod,
                 'status' => ReceiptStatus::NOTPAYED,
-            ]);
+            ])->first();
+            $chargeAmount = $receipt->total;
+            // \Log::error($receipt->total);
 
             // Charge with stripe
             $stripeCharge = $user->charge($chargeAmount, $request->paymentMethod, ['transfer_group' => $receipt->id]);

@@ -11,6 +11,10 @@
   <input type="text" class="form-control" id="address2" placeholder="Apartment or suite" name="{{$type}}[addressTwo]" value="{{$address->address_two ?? ''}}">
 </div>
 
+<div class="mb-3">
+  <label for="city">City</label>
+  <input type="text" class="form-control" id="city" placeholder="Salem" name="{{$type}}[city]" value="{{$address->city ?? ''}}">
+</div>
 
 <div class="row">
   <div class="col-md-4 mb-3">

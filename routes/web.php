@@ -155,21 +155,23 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 
 	
 
-	// Route::middleware('can:checkout')->group(function () {
-	Route::namespace('Audience\Shopper')->group(function () {
-		Route::prefix('shopping')->group(function () {
-			Route::prefix('stripe')->group(function () {
-				// Stripe Routes
-				Route::get('/portal', 'StripeController@billingPortal')->name('stripe-portal');
-				Route::get('/', 'StripeController@index')->name('stripe-index');
-				Route::post('/addresses', 'StripeController@addresses')->name('submit-address');
-				Route::get('/checkout', 'StripeController@checkout')->name('stripe-checkout');
-				Route::post('/checkout', 'StripeController@processCheckout');
+	Route::middleware('auth')->group(function () {
+		Route::namespace('Audience\Shopper')->group(function () {
+			Route::prefix('shopping')->group(function () {
+				Route::prefix('stripe')->group(function () {
+					// Stripe Routes
+					// Route::get('/portal', 'StripeController@billingPortal')->name('stripe-portal');
+					Route::get('/', 'StripeController@index')->name('stripe-index');
+					Route::post('/addresses', 'StripeController@addresses')->name('submit-address');
+					Route::get('/checkout', 'StripeController@checkout')->name('stripe-checkout');
+					Route::post('/checkout', 'StripeController@processCheckout');
+					Route::get('/payment', 'StripeController@payment')->name('stripe-payment');
+					Route::post('/payment', 'StripeController@processCheckout');
+				});
+				Route::get('/receipt/{receiptId}', 'ReceiptController@index')->name('shopping-receipt');
 			});
-			Route::get('/receipt/{receiptId}', 'ReceiptController@index')->name('shopping-receipt');
 		});
 	});
-	// });
 
 	
 	

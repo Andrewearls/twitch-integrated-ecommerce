@@ -20,7 +20,7 @@ class CreateReceiptsTable extends Migration
             $table->string('cart_content');
             $table->string('total');
             $table->boolean('transaction_completed')->default(false);
-            $table->string('payment');
+            $table->string('payment')->nullable();
             $table->string('status');
         });
     }
