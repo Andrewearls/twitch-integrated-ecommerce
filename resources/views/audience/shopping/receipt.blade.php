@@ -1,8 +1,8 @@
 @extends('layouts.audience')
 
 @section('content')
-<div class="row justify-content-center">
-	<div class="col-10 card">
+<div class="row justify-content-center no-gutters">
+	<div class="col-12 col-sm-10 card">
 		<div class="card-body">
 			<h1>Receipt</h1>
 
@@ -19,7 +19,7 @@
 								<span>Payment No.</span>
 								<strong>{{$receipt->id}}</strong>
 							</div>
-							<div class="col-sm-6 text-right">
+							<div class="col-sm-6 text-sm-left text-md-right">
 								<span>Payment Date</span>
 								<strong>{{$receipt->checkoutTime}}</strong>
 							</div>
@@ -47,7 +47,7 @@
 									</a>
 								</p>
 							</div>
-							<div class="col-sm-6 text-right">
+							<div class="col-sm-6 text-sm-left text-md-right">
 								<span>Shipping Address</span>
 								<strong> </strong><br>
 								<p>
@@ -67,32 +67,32 @@
 					<div class="line-items">
 						<div class="headers clearfix">
 							<div class="row">
-								<div class="col col-xs-4">Description</div>
-								<div class="col col-xs-3">Quantity</div>
-								<div class="col col-xs-5 text-right">Amount</div>
+								<div class="col-12 col-sm-4">Description</div>
+								<div class="col-12 col-sm-3">Quantity</div>
+								<div class="col-12 col-sm-5 text-sm-left text-md-right">Amount</div>
 							</div>
 						</div>
 						<div class="items">
 							@foreach($cart->content() as $item)
 							<div class="row item">
-								<div class="col col-xs-4 desc">
+								<div class="col-12 col-sm-4 desc">
 									{{$item->name}}
 								</div>
-								<div class="col col-xs-3 qty">
+								<div class="col-12 col-sm-3 qty">
 									{{$item->quantity}}
 								</div>
-								<div class="col col-xs-5 amount text-right">
+								<div class="col-12 col-sm-5 amount text-sm-left text-md-right">
 									${{toDollars($item->price)}}
 								</div>
 							</div>
 							@endforeach
 						</div>
-						<div class="total text-right">
-							<p class="extra-notes">
-								<!-- <strong>Extra Notes</strong>
+						<div class="total text-sm-left text-md-right">
+							<!-- <p class="extra-notes">
+								<strong>Extra Notes</strong>
 								Please send all items at the same time to shipping address by next week.
-								Thanks a lot. -->
-							</p>
+								Thanks a lot.
+							</p> -->
 							<div class="field">
 								Subtotal <span>${{$cart->total()}}</span>
 							</div>

@@ -68,42 +68,41 @@ class StripeController extends Controller
         // dd($request->all());
         //store addresses
 
-        $billingAddress = Address::create([
-            // 'user_id' => $request->user()->id ?? 0,
-            'address' => $request->billing['address'],
-            'address_two' => $request->billing['addressTwo'],
-            'city' => $request->billing['city'],
-            'country' => $request->billing['country'],
-            'state' => $request->billing['state'],
-            'zip' => $request->billing['zip'],
-            'type' => AddressType::BILLING,
-        ]);
+        $billingAddress = $request->user()->billingAddress;
+        $shippingAddress = $request->user()->shippingAddress;
+        // dd($billingAddress);
+
+        $billingAddress->address = $request->billing['address'];
+        $billingAddress->address_two = $request->billing['addressTwo'];
+        $billingAddress->city = $request->billing['city'];
+        $billingAddress->country = $request->billing['country'];
+        $billingAddress->state = $request->billing['state'];
+        $billingAddress->zip = $request->billing['zip'];
+        $billingAddress->type = AddressType::BILLING;
 
         if (isset($request->shipping['same'])) {
-            $shippingAddress = Address::create([
-                // 'user_id' => $request->user()->id ?? 0,
-                'address' => $request->billing['address'],
-                'address_two' => $request->billing['addressTwo'],
-                'city' => $request->billing['city'],
-                'country' => $request->billing['country'],
-                'state' => $request->billing['state'],
-                'zip' => $request->billing['zip'],
-                'type' => AddressType::SHIPPING,
-            ]);
+            $shippingAddress->address = $request->billing['address'];
+            $shippingAddress->address_two = $request->billing['addressTwo'];
+            $shippingAddress->city = $request->billing['city'];
+            $shippingAddress->country = $request->billing['country'];
+            $shippingAddress->state = $request->billing['state'];
+            $shippingAddress->zip = $request->billing['zip'];
+            $shippingAddress->type = AddressType::SHIPPING;
+
         } else {
-            $shippingAddress = Address::create([
-                // 'user_id' => $request->user()->id ?? 0,
-                'address' => $request->shipping['address'],
-                'address_two' => $request->shipping['addressTwo'],
-                'city' => $request->shipping['city'],
-                'country' => $request->shipping['country'],
-                'state' => $request->shipping['state'],
-                'zip' => $request->shipping['zip'],
-                'type' => AddressType::SHIPPING,
-            ]);
+            $shippingAddress->address = $request->shipping['address'];
+            $shippingAddress->address_two = $request->shipping['addressTwo'];
+            $shippingAddress->city = $request->shipping['city'];
+            $shippingAddress->country = $request->shipping['country'];
+            $shippingAddress->state = $request->shipping['state'];
+            $shippingAddress->zip = $request->shipping['zip'];
+            $shippingAddress->type = AddressType::SHIPPING;
+
         }
 
         // attach address to user
+        $billingAddress->save();
+        $shippingAddress->save();
 
         //create receipt
         $receipt = Receipt::create([

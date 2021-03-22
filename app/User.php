@@ -156,7 +156,7 @@ class User extends Authenticatable
     public function getBillingAddressAttribute()
     {
         //this should be a function on the addresses model
-        return $this->addresses()->where('type', '=', AddressType::BILLING)->first();
+        return $this->addresses()->where('type', '=', AddressType::BILLING)->firstOrNew();
     }
 
     /**
@@ -167,6 +167,6 @@ class User extends Authenticatable
     public function getShippingAddressAttribute()
     {
         //this should be a function on the addresses model
-        return $this->addresses()->where('type', '=', AddressType::SHIPPING)->first();
+        return $this->addresses()->where('type', '=', AddressType::SHIPPING)->firstOrNew();
     }
 }
