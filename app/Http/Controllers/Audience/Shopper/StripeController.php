@@ -67,6 +67,7 @@ class StripeController extends Controller
     {
         // dd($request->all());
         //store addresses
+
         $billingAddress = Address::create([
             // 'user_id' => $request->user()->id ?? 0,
             'address' => $request->billing['address'],
@@ -126,10 +127,10 @@ class StripeController extends Controller
      * @param Request
      * @return view
      */
-    public function payment(Request $request, Cart $cart)
+    public function payment(Request $request, $receiptId, Cart $cart)
     {
         // dd($cart);
-        return view('stripe.checkout.payment-collection')->with(['cart' => $cart->checkout()]);
+        return view('stripe.checkout.payment-collection')->with(['cart' => $cart->checkout(), 'receiptId' => $receiptId]);
     }
 
     /**
@@ -138,8 +139,10 @@ class StripeController extends Controller
      * @param  request
      * @return view
      */
-    public function processCheckout(Request $request, Cart $cart)
+    public function processCheckout(Request $request, Cart $cart, $receiptId)
     {
+        // \Log::error($receiptId);
+        // dd($request->query('receiptId'));
         // \Log::error($request->all());
         $user = $request->user();
         // \Log::error($user);
@@ -152,12 +155,9 @@ class StripeController extends Controller
         // \Log::error($cart->checkout()->total))*100);
     	try {
             // $chargeAmount = toCents($cart->checkout()->total);
-            \Log::error($cart->content());
+            // \Log::error($cart->content());
             // create a receipt
-            $receipt = Receipt::where([
-                'cart_content' => $cart->instance($user),
-                'status' => ReceiptStatus::NOTPAYED,
-            ])->first();
+            $receipt = Receipt::find($receiptId);
             $chargeAmount = $receipt->total;
             // \Log::error($receipt->total);
 

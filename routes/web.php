@@ -165,8 +165,8 @@ Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->name
 					Route::post('/addresses', 'StripeController@addresses')->name('submit-address');
 					Route::get('/checkout', 'StripeController@checkout')->name('stripe-checkout');
 					Route::post('/checkout', 'StripeController@processCheckout');
-					Route::get('/payment', 'StripeController@payment')->name('stripe-payment');
-					Route::post('/payment', 'StripeController@processCheckout');
+					Route::get('/payment/{receiptId}', 'StripeController@payment')->name('stripe-payment');
+					Route::post('/payment/{receiptId}', 'StripeController@processCheckout');
 				});
 				Route::get('/receipt/{receiptId}', 'ReceiptController@index')->name('shopping-receipt');
 			});

@@ -60,7 +60,7 @@
 					    obj[item.name] = item.value;
 					    return obj;
 					}, {});
-					$.post("{{ route('stripe-checkout') }}", { _token: "{{csrf_token() }}", paymentMethod: paymentMethod.id, formData })
+					$.post("{{ route('stripe-payment', ['receiptId' => $receiptId]) }}", { _token: "{{csrf_token() }}", paymentMethod: paymentMethod.id, formData })
 					.done(function (response){
 						// alert(response);
 						if(response !== "false") {
